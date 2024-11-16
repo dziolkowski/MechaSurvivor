@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     //Obra¿enie zadawane przez pocisk
-    public int damage = 25; 
+    public int damage = 25;
 
     void OnTriggerEnter(Collider other)
     {

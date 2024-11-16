@@ -190,6 +190,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8688950347566985788, guid: 3668f740a86d874409ee183051993392, type: 3}
   m_PrefabInstance: {fileID: 458729827}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &458729829 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 723151796990104084, guid: 3668f740a86d874409ee183051993392, type: 3}
+  m_PrefabInstance: {fileID: 458729827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,9 +419,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 2374426181338143574, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
+      propertyPath: spawnRangeX
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374426181338143574, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
+      propertyPath: spawnRangeZ
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6325315117457524028, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.736183
+      value: -55.1
       objectReference: {fileID: 0}
     - target: {fileID: 6325315117457524028, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
       propertyPath: m_LocalPosition.y
@@ -467,6 +480,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1328522090143752013, guid: 45eb40b83ebc61e4e92497406912b6be, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 458729829}
+    - target: {fileID: -1328522090143752013, guid: 45eb40b83ebc61e4e92497406912b6be, type: 3}
+      propertyPath: offset.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -1328522090143752013, guid: 45eb40b83ebc61e4e92497406912b6be, type: 3}
+      propertyPath: offset.z
+      value: -35
+      objectReference: {fileID: 0}
     - target: {fileID: 923090323677959738, guid: 45eb40b83ebc61e4e92497406912b6be, type: 3}
       propertyPath: m_Name
       value: Main Camera
