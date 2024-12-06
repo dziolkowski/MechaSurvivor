@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    //Obra¿enie zadawane przez pocisk
-    public int damage = 25;
+    public float speed = 20f;
+    public float lifetime = 3f;
+
+    void Start()
+    {
+        //Usuniêcie po czasie
+        Destroy(gameObject, lifetime); 
+    }
+
+    void Update()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-
-        if (enemyHealth != null)
-        {
-            //Zadawanie obra¿eñ przeciwnikom
-            enemyHealth.TakeDamage(damage); 
-
-            //Niszczenie pocisku po trafieniu
-            Destroy(gameObject); 
-        }
+        // Obs³uga kolizji z celem
+        Destroy(gameObject);
     }
 }

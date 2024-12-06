@@ -47,4 +47,4 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4323813639670524191, guid: 1538805e33d4ef047bcbd6746996b249, type: 3}
   spawnRangeX: -4
   spawnRangeZ: 6
-  numberOfEnemies: 5
+  numberOfEnemies: 0
