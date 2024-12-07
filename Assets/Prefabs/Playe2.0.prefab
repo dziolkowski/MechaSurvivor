@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 20
 --- !u!1 &1327344545095728440
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 20
 --- !u!1 &2878603159338814489
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +324,7 @@ GameObject:
   - component: {fileID: 9149765019753387324}
   - component: {fileID: 2458738733646856567}
   - component: {fileID: 4837673483837978826}
-  - component: {fileID: 6680896557531769501}
+  - component: {fileID: 7427714270758567070}
   m_Layer: 0
   m_Name: Playe2.0
   m_TagString: Player
@@ -474,7 +478,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6680896557531769501
+--- !u!114 &7427714270758567070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,10 +487,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4222980587575849768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: facaf87cccb2d4940a2536b696e818d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1176ffbf07697a24b98359e4770f9a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  moveSpeed: 5
+  rotationSpeed: 100
+  cameraTransform: {fileID: 0}
 --- !u!1 &4351390306970522854
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +645,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 20
 --- !u!1 &4620293485355819281
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
+  bulletPrefab: {fileID: 0}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 20
 --- !u!1 &8740229607042466830
 GameObject:
   m_ObjectHideFlags: 0
