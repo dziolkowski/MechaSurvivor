@@ -38,6 +38,6 @@ public class TopWeaponController : MonoBehaviour
         rb.velocity = transform.forward * bulletSpeed;
 
         //Pocisk zniszczony po 3 sekundach kiedy nie trafi w cel
-        Destroy(bullet, 3f); 
+        //Destroy(bullet, 3f); // duplikat, pocisk ma na sobie skrypt który odpowiada za jego zniszczenie
     }
 }

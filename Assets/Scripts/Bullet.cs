@@ -18,9 +18,13 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        // Obs³uga kolizji z celem
-        Destroy(gameObject);
+
+    private void OnTriggerEnter(Collider other) {
+        print("lol");
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Wall")) {
+            // Obs³uga kolizji z celem
+            Destroy(this.gameObject);
+        }
+
     }
 }

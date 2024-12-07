@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     // Przypisanie obiektu gracza z poziomu Unity
     public Transform player; 
     private UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] bool isMoving = true;
 
     void Start()
     {
@@ -15,6 +16,10 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        if (isMoving == false) // do testowania/debugowania
+        {
+            return;
+        }
         MoveToPlayer();
     }
 
