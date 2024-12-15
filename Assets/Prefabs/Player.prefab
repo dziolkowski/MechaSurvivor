@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7133454519757584912}
   - component: {fileID: 7742222020693361124}
   - component: {fileID: 8736751420929201837}
-  - component: {fileID: 2586531883768560946}
+  - component: {fileID: 5941973566250903905}
   m_Layer: 0
   m_Name: LeftWeaponSocket
   m_TagString: Untagged
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &2586531883768560946
+--- !u!114 &5941973566250903905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,12 +118,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1203130146986728749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
+  m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
-  bulletSpawnPoint: {fileID: 7493215688501643415}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 7493215688501643415}
+  fireRate: 1
   bulletSpeed: 20
+  bulletLifetime: 3
 --- !u!1 &1327344545095728440
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +169,7 @@ GameObject:
   - component: {fileID: 5846648254003871226}
   - component: {fileID: 1401091783758440168}
   - component: {fileID: 2195210664007609198}
-  - component: {fileID: 4994888137593209512}
+  - component: {fileID: 592626958814356640}
   m_Layer: 0
   m_Name: BackWeaponSocket
   m_TagString: Untagged
@@ -264,7 +266,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &4994888137593209512
+--- !u!114 &592626958814356640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,12 +275,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1626891678126059020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
+  m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
-  bulletSpawnPoint: {fileID: 2875577410475984700}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 2875577410475984700}
+  fireRate: 1
   bulletSpeed: 20
+  bulletLifetime: 3
 --- !u!1 &2878603159338814489
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +540,7 @@ GameObject:
   - component: {fileID: 435238075700112875}
   - component: {fileID: 4923222104188946233}
   - component: {fileID: 784538791967044189}
-  - component: {fileID: 3879300587375682456}
+  - component: {fileID: 196809079513885575}
   m_Layer: 0
   m_Name: FrontWeaponSocket
   m_TagString: Untagged
@@ -633,7 +637,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3879300587375682456
+--- !u!114 &196809079513885575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -642,12 +646,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4569502205630991662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
+  m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
-  bulletSpawnPoint: {fileID: 8324743213712027923}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 8324743213712027923}
+  fireRate: 1
   bulletSpeed: 20
+  bulletLifetime: 3
 --- !u!1 &4620293485355819281
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,7 +836,7 @@ GameObject:
   - component: {fileID: 7916543020914426843}
   - component: {fileID: 574767891947454842}
   - component: {fileID: 4549261942400981126}
-  - component: {fileID: 8885788504501823569}
+  - component: {fileID: 6602117881727919215}
   m_Layer: 0
   m_Name: RightWeaponSocket
   m_TagString: Untagged
@@ -927,7 +933,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8885788504501823569
+--- !u!114 &6602117881727919215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -936,12 +942,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6094727039108170341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f015566295204c243895199771fab909, type: 3}
+  m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
-  bulletSpawnPoint: {fileID: 2260575784153139240}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 2260575784153139240}
+  fireRate: 1
   bulletSpeed: 20
+  bulletLifetime: 3
 --- !u!1 &8740229607042466830
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +962,7 @@ GameObject:
   - component: {fileID: 373628634158890972}
   - component: {fileID: 7637676003447729388}
   - component: {fileID: 1872802772046585422}
-  - component: {fileID: 4331677032995669291}
+  - component: {fileID: 6868172053770889463}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -1049,7 +1057,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4331677032995669291
+--- !u!114 &6868172053770889463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1058,9 +1066,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8740229607042466830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a21a51a8c79afa4392dd262a4584d79, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ab0bf04d54cb4b4b879dca1102bee3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
-  bulletSpawnPoint: {fileID: 7532858071638370888}
-  bulletSpeed: 5
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 7532858071638370888}
+  fireRate: 1
+  bulletSpeed: 20
+  bulletLifetime: 3

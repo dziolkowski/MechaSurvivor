@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 20f;
-    public float lifetime = 3f;
+    public int damage = 10; // Obra¿enia przeciwnika
 
-    void Start()
+    void OnCollisionEnter(Collision collision)
     {
-        //Usuniêcie po czasie
-        Destroy(gameObject, lifetime); 
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
-
-
-    private void OnTriggerEnter(Collider other) {
-        print("lol");
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Wall")) {
-            // Obs³uga kolizji z celem
-            Destroy(this.gameObject);
+        // Sprawdzenie, czy pocisk trafi³ w obiekt z tagiem "Enemy" lub "Wall"
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Zadawanie obra¿eñ
+            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+            Destroy(gameObject); // Niszczenie pocisku po trafieniu w przeciwnika
         }
-
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject); // Niszczenie pocisku po trafieniu w œcianê
+        }
+        else
+        {
+            Destroy(gameObject); // Niszczenie pocisku, gdy trafi w inne obiekty
+        }
     }
 }
