@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
 
 
     private void OnTriggerEnter(Collider other) {
-        print("lol");
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Wall")) {
             // Obs³uga kolizji z celem
             Destroy(this.gameObject);

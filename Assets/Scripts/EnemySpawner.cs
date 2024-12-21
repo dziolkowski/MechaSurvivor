@@ -8,10 +8,12 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
 
     // List of spawned waves
-    public Dictionary<int, Wave> listOfWaves;
+    //public Dictionary<int, Wave> listOfWaves;
     public int numberOfEnemies = 5;
 
     private int currentWave = 0;
+    private float timePassed = 0f;
+    [SerializeField] private float timeToSpawnWave = 5f;
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
@@ -26,6 +28,15 @@ public class EnemySpawner : MonoBehaviour
         // get wave from list of waves
         // go through enemies inside that wave
         // 
+    }
+    void Update() {
+        timePassed += Time.deltaTime;
+        if (timePassed > timeToSpawnWave) {
+            SpawnEnemies();
+            timePassed = 0f;
+            currentWave++;
+            print("Wave: " + currentWave);
+        }
     }
 
     void SpawnEnemies()
