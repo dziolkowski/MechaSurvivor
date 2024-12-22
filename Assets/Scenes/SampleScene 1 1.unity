@@ -405,9 +405,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 196809079513885575, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 196809079513885575, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1849153950}
+    - target: {fileID: 592626958814356640, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 592626958814356640, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletPrefab
       value: 
@@ -457,12 +465,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5941973566250903905, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941973566250903905, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1849153950}
     - target: {fileID: 6530070127301620935, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602117881727919215, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6602117881727919215, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletPrefab
@@ -673,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2374426181338143574, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
       propertyPath: timeToSpawnWave
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2374426181338143574, guid: 68f1487e801a54f4fa0f71f358862584, type: 3}
       propertyPath: listOfWaves.Array.size
