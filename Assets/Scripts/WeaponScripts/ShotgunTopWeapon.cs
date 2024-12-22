@@ -5,18 +5,20 @@ using UnityEngine;
 public class ShotgunTopWeapon : MonoBehaviour
 {
     public GameObject bulletPrefab; // Prefab pocisku
-    public Transform firePoint; // Punkt, z którego strzela shotgun
-    public float fireRate = 1f; // Czas miêdzy kolejnymi strza³ami
-    public float bulletSpeed = 20f; // Prêdkoœæ pocisku
-    public float bulletLifetime = 3f; // Czas, po którym pocisk siê niszczy
+    public Transform firePoint; // Punkt, z ktorego strzela shotgun
+    public float fireRate = 1f; // Czas miedzy kolejnymi strzalami
+    public float bulletSpeed = 20f; // Predkosc pocisku
+    public float bulletLifetime = 3f; // Czas zycia pocisku
+    public int pelletCount = 4; // Liczba pociskow wystrzelonych na raz
+    public float spreadAngle = 10f; // Kat rozrzutu pocisków
 
     private float nextFireTime = 0f;
 
     void Update()
     {
-        RotateTowardsMouse(); // Obracanie shotgunem w kierunku kursora
+        RotateTowardsMouse();
 
-        if (Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime) 
         {
             Fire();
             nextFireTime = Time.time + 1f / fireRate;
@@ -25,37 +27,40 @@ public class ShotgunTopWeapon : MonoBehaviour
 
     void RotateTowardsMouse()
     {
-        // Obliczenie kierunku do kursora myszy
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y; // Pociski na jednakowej wysokoœci
+            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci dla kazdego pocisku
 
-            // Obracanie broni w kierunku kursora myszki
+            // Obracanie broni w kierunku kursora
             Vector3 direction = (targetPosition - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+            }
         }
     }
 
     void Fire()
     {
-        // Obliczenie kierunku strza³u w kierunku kursora myszy
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        for (int i = 0; i < pelletCount; i++)
         {
-            Vector3 targetPosition = hit.point;
-            targetPosition.y = firePoint.position.y; // Ustawienie sta³ej wysokoœci pocisku
+            // Generowanie losowego kata w zakresie rozrzutu
+            float angle = Random.Range(-spreadAngle, spreadAngle);
 
-            Vector3 direction = (targetPosition - firePoint.position).normalized;
+            // Obrot na podstawie kata rozrzutu
+            Quaternion rotation = Quaternion.Euler(0, angle, 0) * firePoint.rotation;
 
             // Tworzenie pocisku
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
-            rb.velocity = direction * bulletSpeed;
 
-            // Niszczenie pocisku po okreœlonym czasie
+            // Ustawianie predkosci pocisku
+            rb.velocity = bullet.transform.forward * bulletSpeed;
+
+            // Niszczenie pocisku po okreslonym czasie
             Destroy(bullet, bulletLifetime);
         }
     }

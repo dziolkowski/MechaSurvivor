@@ -405,6 +405,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 196809079513885575, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 196809079513885575, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -412,6 +416,10 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1849153950}
+    - target: {fileID: 592626958814356640, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 592626958814356640, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletSpeed
       value: 80
@@ -465,6 +473,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5941973566250903905, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941973566250903905, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -477,6 +489,10 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6602117881727919215, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6602117881727919215, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletSpeed
       value: 80
       objectReference: {fileID: 0}
@@ -484,6 +500,10 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1849153950}
+    - target: {fileID: 6868172053770889463, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
+      propertyPath: bulletSpeed
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6868172053770889463, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: bulletPrefab
       value: 
