@@ -12,8 +12,11 @@ public class EnemySpawner : MonoBehaviour
     public int numberOfEnemies = 5;
 
     private int currentWave = 0;
-    private float timePassed = 0f;
+    [SerializeField] private int maxWave = 10;
+    [SerializeField] private float timePassed = 0f;
     [SerializeField] private float timeToSpawnWave = 5f;
+
+    //[SerializeField] private bool spawnEnemies = false;
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
@@ -22,20 +25,20 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        // Uruchamiamy spawnowanie przeciwników
-        //SpawnEnemies();
 
-        // get wave from list of waves
-        // go through enemies inside that wave
-        // 
     }
     void Update() {
         timePassed += Time.deltaTime;
         if (timePassed > timeToSpawnWave) {
-            SpawnEnemies();
-            timePassed = 0f;
-            currentWave++;
-            print("Wave: " + currentWave);
+            if (currentWave < maxWave) {
+                SpawnEnemies();
+                timePassed = 0f;
+                currentWave++;
+                print("Wave: " + currentWave);
+            }
+            else if (currentWave == maxWave) {
+                gameObject.SetActive(false);
+            }
         }
     }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] public int currentHealth;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        print(gameObject + " damage received!");
         if (currentHealth <= 0)
         {
             Die();
@@ -24,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        print("dead");
         // Niszczenie przeciwnika po œmierci
         Destroy(gameObject); 
     }
