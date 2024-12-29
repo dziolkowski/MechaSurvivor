@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7742222020693361124}
   - component: {fileID: 8736751420929201837}
   - component: {fileID: 5941973566250903905}
+  - component: {fileID: 6559773545333948869}
   m_Layer: 0
   m_Name: LeftWeaponSocket
   m_TagString: Untagged
@@ -126,6 +127,28 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
+  pelletCount: 4
+  spreadAngle: 10
+--- !u!114 &6559773545333948869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203130146986728749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a67e1175b4ee845a0f3fd997c52069, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserObject: {fileID: 0}
+  laserOrigin: {fileID: 0}
+  laserRange: 100
+  fireRate: 0.1
+  laserDamage: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1327344545095728440
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +306,8 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
+  pelletCount: 4
+  spreadAngle: 10
 --- !u!1 &2878603159338814489
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +679,8 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
+  pelletCount: 4
+  spreadAngle: 10
 --- !u!1 &4620293485355819281
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +977,8 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
+  pelletCount: 4
+  spreadAngle: 10
 --- !u!1 &8740229607042466830
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +992,8 @@ GameObject:
   - component: {fileID: 7637676003447729388}
   - component: {fileID: 1872802772046585422}
   - component: {fileID: 6868172053770889463}
+  - component: {fileID: 1009181764048100022}
+  - component: {fileID: 6760183938987502213}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -1074,3 +1105,43 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
+  pelletCount: 4
+  spreadAngle: 10
+--- !u!114 &1009181764048100022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740229607042466830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e171d3ac99dfa5489fd8c857133b6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserObject: {fileID: 0}
+  laserOrigin: {fileID: 0}
+  laserRange: 100
+  fireRate: 0.1
+  laserDamage: 10
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &6760183938987502213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740229607042466830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d0ea85eba627142b0c3817855300fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  fireRate: 2
+  rocketSpeed: 20
+  explosionRadius: 5
+  damage: 50
