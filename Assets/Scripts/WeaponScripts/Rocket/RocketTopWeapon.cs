@@ -25,21 +25,21 @@ public class RocketTopWeapon : MonoBehaviour
         }
     }
 
-    void RotateTowardsMouse()
+   void RotateTowardsMouse()
     {
-        // Pozycja kursora w swiecie
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.y));
-
-        // Kierunek z broni do kursora
-        Vector3 targetDirection = mousePosition - transform.position;
-        targetDirection.y = 0; // Obrót tylko w osi poziomej
-
-        // Jesli mamy kierunek do obrotu
-        if (targetDirection.sqrMagnitude > 0.01f)
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f); // Plynne przejscie
+            Vector3 targetPosition = hit.point;
+            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci dla kazdego pocisku
+
+            // Obracanie broni w kierunku kursora
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+            }
         }
     }
 

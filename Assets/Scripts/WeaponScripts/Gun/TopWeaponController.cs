@@ -7,14 +7,18 @@ public class TopWeaponController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public float bulletSpeed = 20f;
+    public float fireRate = 0.2f; // Czestotliwosc strzalow 
+
+    private float nextFireTime;
 
     void Update()
     {
         RotateTowardsMouse();
 
-        // Strza³ za pomoc¹ LPM
-        if (Input.GetMouseButtonDown(0)) 
+        // Automatyczne strzelanie
+        if (Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + fireRate;
             Shoot();
         }
     }
@@ -25,7 +29,7 @@ public class TopWeaponController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 direction = hit.point - transform.position;
-            //Utrzymanie pocisku na tej samej wysokoœci
+            // Utrzymanie pocisku na tej samej wysokosci
             direction.y = 0; 
             transform.forward = direction;
         }
@@ -37,7 +41,7 @@ public class TopWeaponController : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.velocity = transform.forward * bulletSpeed;
 
-        //Pocisk zniszczony po 3 sekundach kiedy nie trafi w cel
-        //Destroy(bullet, 3f); // duplikat, pocisk ma na sobie skrypt który odpowiada za jego zniszczenie
+        // Zniszczenie pocisku po 3 sekundach, jesli nie trafi w cel
+        Destroy(bullet, 3f);
     }
 }

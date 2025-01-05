@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LaserTopWeapon : MonoBehaviour
 {
-    public Transform laserObject; // Obiekt lasera 
-    public Transform laserOrigin; // Punkt poczatkowy lasera 
-    public float laserRange = 100f; // Maksymalny zasiag lasera
+    public Transform laserObject; // Obiekt lasera
+    public Transform laserOrigin; // Punkt poczatkowy lasera
+    public float laserRange = 100f; // Maksymalny zasieg lasera
     public float fireRate = 0.1f; // Czestotliwosc strzelania
     public int laserDamage = 10; // Obrazenia zadawane przez laser
     public LayerMask hitLayers; // Warstwy, ktore moga byc trafione
@@ -26,16 +26,19 @@ public class LaserTopWeapon : MonoBehaviour
 
     void RotateWeaponTowardsCursor()
     {
-        // Obliczanie pozycji kursora w przestrzeni swiata
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, hitLayers))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 targetPosition = hit.point;
-            targetPosition.y = laserOrigin.position.y; // Zablokowanie wysokosci broni (obrot tylko w poziomie)
+            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci co bron
 
+            // Obracanie broni w kierunku kursora
             Vector3 direction = (targetPosition - transform.position).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f); // Plynny obrot
+            if (direction != Vector3.zero)
+            {
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+            }
         }
     }
 
@@ -50,13 +53,17 @@ public class LaserTopWeapon : MonoBehaviour
         if (Physics.Raycast(ray, out hit, laserRange, hitLayers))
         {
             // Dostosowanie lasera i zadawanie obrazen
-            AdjustLaser(hit.point);
+            Vector3 targetPoint = hit.point;
+            targetPoint.y = laserOrigin.position.y; // Wymuszenie tej samej wysokosci
+            AdjustLaser(targetPoint);
             DealDamage(hit.collider);
         }
         else
         {
             // Maksymalna dlugosc gdy laser w nic nie trafi
-            AdjustLaser(ray.GetPoint(laserRange));
+            Vector3 targetPoint = ray.GetPoint(laserRange);
+            targetPoint.y = laserOrigin.position.y; // Wymuszenie tej samej wysokosci
+            AdjustLaser(targetPoint);
         }
 
         StartCoroutine(LaserEffect());
@@ -96,5 +103,5 @@ public class LaserTopWeapon : MonoBehaviour
 
 public interface IDamageable
 {
-    void TakeDamage(int amount);
+    void TakeDamage(int damage);
 }

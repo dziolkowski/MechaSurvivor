@@ -7,7 +7,7 @@ public class LaserSideWeapon : MonoBehaviour
     public Transform laserObject; // Obiekt lasera 
     public Transform laserOrigin; // Punkt poczatkowy lasera 
     public float laserRange = 100f; // Maksymalny zasieg lasera
-    public float fireRate = 0.1f; // Czestotliwosc strzelania
+    public float fireRate = 0.1f; // Czêstotliwosc strzelania
     public int laserDamage = 10; // Obrazenia zadawane przez laser
     public LayerMask enemyLayer; // Warstwa przeciwnikow
 
@@ -24,59 +24,35 @@ public class LaserSideWeapon : MonoBehaviour
 
     void ShootLaser()
     {
-        Transform closestEnemy = FindClosestEnemy();
+        // Strzelanie przed siebie
+        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;
 
-        if (closestEnemy != null)
+        // Sprawdz, czy trafiono przeciwnika
+        if (Physics.Raycast(laserOrigin.position, laserOrigin.forward, out RaycastHit hit, laserRange, enemyLayer))
         {
-            // Strzelaj w kierunku najblizszego przeciwnika
-            Vector3 targetPoint = closestEnemy.position;
-            AdjustLaser(targetPoint);
-            DealDamage(closestEnemy);
-        }
-        else
-        {
-            // Jesli nie ma przeciwnikow, strzelaj przed siebie
-            Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;
-            AdjustLaser(targetPoint);
+            targetPoint = hit.point; // Ustawienie celu na punkt trafienia
+            DealDamage(hit.collider); // Zastosowanie obrazen
         }
 
+        AdjustLaser(targetPoint); // Dopasowanie lasera do celu
         StartCoroutine(LaserEffect());
-    }
-
-    Transform FindClosestEnemy()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(laserOrigin.position, laserRange, enemyLayer);
-        Transform closestEnemy = null;
-        float closestDistance = Mathf.Infinity;
-
-        foreach (var hitCollider in hitColliders)
-        {
-            float distance = Vector3.Distance(laserOrigin.position, hitCollider.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestEnemy = hitCollider.transform;
-            }
-        }
-
-        return closestEnemy;
     }
 
     void AdjustLaser(Vector3 targetPoint)
     {
-        // Obliczanie kierunku i odleglosci miedzy poczatkiem a koncem lasera
+        // Obliczanie kierunku i odleg³osci miedzy poczatkiem a koncem lasera
         Vector3 direction = targetPoint - laserOrigin.position;
         float distance = direction.magnitude;
 
         // Ustawianie pozycji i skali lasera
-        laserObject.position = laserOrigin.position + direction / 2f; // Ustawianie lasera na srodku miedzy poczatkiem a koncem
+        laserObject.position = laserOrigin.position + direction / 2f; // Srodek miedzy poczatkiem a koncem
         laserObject.localScale = new Vector3(laserObject.localScale.x, laserObject.localScale.y, distance); // Dopasowanie dlugosci
 
         // Ustawianie rotacji lasera w kierunku celu
         laserObject.rotation = Quaternion.LookRotation(direction);
     }
 
-    void DealDamage(Transform target)
+    void DealDamage(Collider target)
     {
         // Sprawdzanie, czy trafiony obiekt ma komponent EnemyHealth
         EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
