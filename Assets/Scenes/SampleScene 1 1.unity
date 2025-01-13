@@ -460,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 1849153950}
     - target: {fileID: 1009181764048100022, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1009181764048100022, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: laserObject
