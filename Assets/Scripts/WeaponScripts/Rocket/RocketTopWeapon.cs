@@ -1,18 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RocketTopWeapon : MonoBehaviour
 {
     public GameObject rocketPrefab; // Prefab rakiety
-    public Transform firePoint; // Punkt wystrzalu rakiety
-    public float fireRate = 2f; // Czas pomiedzy kolejnymi strzalami
-    public float rocketSpeed = 20f; // Predkosc rakiety
-    public float explosionRadius = 5f; // Promien eksplozji
-    public float damage = 50f; // Obrazenia eksplozji
+    public Transform firePoint; // Punkt wystrza³u rakiety
+    public float fireRate = 2f; // Czas pomiêdzy kolejnymi strza³ami
+    public float rocketSpeed = 20f; // Prêdkoœæ rakiety
+    public float explosionRadius = 5f; // Promieñ eksplozji
+    public float damage = 50f; // Obra¿enia eksplozji
     private float nextFireTime = 0f;
-
-
 
     void Update()
     {
@@ -25,15 +22,14 @@ public class RocketTopWeapon : MonoBehaviour
         }
     }
 
-   void RotateTowardsMouse()
+    void RotateTowardsMouse()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci dla kazdego pocisku
+            targetPosition.y = transform.position.y;
 
-            // Obracanie broni w kierunku kursora
             Vector3 direction = (targetPosition - transform.position).normalized;
             if (direction != Vector3.zero)
             {
@@ -57,46 +53,16 @@ public class RocketTopWeapon : MonoBehaviour
         {
             rocketScript.SetParameters(explosionRadius, damage);
         }
+
+        // Ignorowanie kolizji z graczem (zak³adaj¹c, ¿e gracz ma collider)
+        Collider rocketCollider = rocket.GetComponent<Collider>();
+        Collider playerCollider = GetComponent<Collider>();
+        if (rocketCollider != null && playerCollider != null)
+        {
+            Physics.IgnoreCollision(rocketCollider, playerCollider);
+        }
     }
 }
 
-public class Rocket : MonoBehaviour
-{
-    private float explosionRadius;
-    private float damage;
-    public GameObject explosionEffect; // Prefab efektu eksplozji
 
-    public void SetParameters(float radius, float dmg)
-    {
-        explosionRadius = radius;
-        damage = dmg;
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Explode();
-    }
-
-    void Explode()
-    {
-        // Efekt eksplozji
-        if (explosionEffect != null)
-        {
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        }
-
-        // Znalezienie obiektow w promieniu eksplozji
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider nearbyObject in colliders)
-        {
-            // Zadawanie obrazen 
-            EnemyHealth enemyHealth = nearbyObject.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(Mathf.RoundToInt(damage));
-            }
-        }
-
-        Destroy(gameObject); // Zniszczenie rakiety
-    }
-}
