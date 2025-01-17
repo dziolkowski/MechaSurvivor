@@ -408,11 +408,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2391226948804075097, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690009930852704694, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 4549110265775336944, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
       propertyPath: m_Name
       value: Plane
       objectReference: {fileID: 0}
     - target: {fileID: 4549110265775336944, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152719144456560106, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971568455435338281, guid: f0cc09264f1901541b97e9b9ecf04599, type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}

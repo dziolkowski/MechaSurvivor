@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8736751420929201837}
   - component: {fileID: 5941973566250903905}
   - component: {fileID: 6559773545333948869}
+  - component: {fileID: 3068100508744834730}
   m_Layer: 0
   m_Name: LeftWeaponSocket
   m_TagString: Untagged
@@ -149,6 +150,24 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &3068100508744834730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203130146986728749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba89d8714580934082c91cc063b6e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketPrefab: {fileID: 3379967464143351762, guid: eccc33a6efea5694ba3d402a8585b38a, type: 3}
+  firePoint: {fileID: 7493215688501643415}
+  fireRate: 2
+  rocketSpeed: 20
+  explosionRadius: 5
+  damage: 50
 --- !u!1 &1327344545095728440
 GameObject:
   m_ObjectHideFlags: 0

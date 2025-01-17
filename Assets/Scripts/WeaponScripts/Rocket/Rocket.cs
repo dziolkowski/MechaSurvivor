@@ -16,17 +16,13 @@ public class Rocket : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Sprawdzenie, czy trafiono przeciwnika
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
             // Eksplozja w punkcie kolizji
             Vector3 collisionPoint = collision.contacts[0].point;
             Explode(collisionPoint);
         }
-        else
-        {
-            // Opcjonalnie: Zniszczenie rakiety przy kolizji z innym obiektem
-            Destroy(gameObject);
-        }
+        
     }
 
     void Explode(Vector3 explosionPoint)
