@@ -591,7 +591,7 @@ PrefabInstance:
       objectReference: {fileID: 1389704370}
     - target: {fileID: 6760183938987502213, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6760183938987502213, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
       propertyPath: rocketPrefab

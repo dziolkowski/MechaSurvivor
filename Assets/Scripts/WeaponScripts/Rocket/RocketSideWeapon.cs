@@ -5,11 +5,11 @@ using UnityEngine;
 public class RocketSideWeapon : MonoBehaviour
 {
     public GameObject rocketPrefab; // Prefab rakiety
-    public Transform firePoint; // Punkt wystrza³u rakiety
-    public float fireRate = 2f; // Czas pomiêdzy kolejnymi strza³ami
-    public float rocketSpeed = 20f; // Prêdkoœæ rakiety
-    public float explosionRadius = 5f; // Promieñ eksplozji
-    public float damage = 50f; // Obra¿enia eksplozji
+    public Transform firePoint; // Punkt wystrzalu rakiety
+    public float fireRate = 2f; // Czas pomiedzy kolejnymi strzalami
+    public float rocketSpeed = 20f; // Predkosc rakiety
+    public float explosionRadius = 5f; // Promien eksplozji
+    public float damage = 50f; // Obrazenia eksplozji
     private float nextFireTime = 0f;
 
     void Update()
@@ -36,7 +36,7 @@ public class RocketSideWeapon : MonoBehaviour
             rocketScript.SetParameters(explosionRadius, damage);
         }
 
-        // Ignorowanie kolizji z graczem (zak³adaj¹c, ¿e gracz ma collider)
+        // Ignorowanie kolizji z graczem (zakladaj¹c, ze gracz ma collider)
         Collider rocketCollider = rocket.GetComponent<Collider>();
         Collider playerCollider = GetComponent<Collider>();
         if (rocketCollider != null && playerCollider != null)
