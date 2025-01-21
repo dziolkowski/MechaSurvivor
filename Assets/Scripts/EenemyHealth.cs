@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     public int maxHealth = 100;
     private int currentHealth;
@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        // Niszczenie przeciwnika po œmierci
+        // Niszczenie przeciwnika po smierci
         Destroy(gameObject); 
     }
 }
