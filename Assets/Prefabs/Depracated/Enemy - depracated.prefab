@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1718311133223108848}
   - component: {fileID: 6745822311017442807}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Enemy - depracated
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8841764046585134599, guid: ee7f41685a4699541ac5240f1cf40332, type: 3}
-  isMoving: 1
+  isMoving: 0
 --- !u!114 &6745822311017442807
 MonoBehaviour:
   m_ObjectHideFlags: 0

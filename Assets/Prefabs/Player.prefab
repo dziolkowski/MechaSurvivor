@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4445946753980379856}
   - component: {fileID: 7133454519757584912}
   - component: {fileID: 7742222020693361124}
-  - component: {fileID: 8736751420929201837}
   - component: {fileID: 5941973566250903905}
   - component: {fileID: 6559773545333948869}
   - component: {fileID: 3068100508744834730}
@@ -88,29 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8736751420929201837
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203130146986728749}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &5941973566250903905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 7493215688501643415}
   fireRate: 1
-  bulletSpeed: 20
+  bulletSpeed: 40
   bulletLifetime: 3
   pelletCount: 4
   spreadAngle: 10
@@ -210,7 +186,6 @@ GameObject:
   - component: {fileID: 6530070127301620935}
   - component: {fileID: 5846648254003871226}
   - component: {fileID: 1401091783758440168}
-  - component: {fileID: 2195210664007609198}
   - component: {fileID: 592626958814356640}
   m_Layer: 0
   m_Name: BackWeaponSocket
@@ -285,29 +260,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2195210664007609198
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626891678126059020}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &592626958814356640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,10 +272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 2875577410475984700}
   fireRate: 1
-  bulletSpeed: 20
+  bulletSpeed: 40
   bulletLifetime: 3
   pelletCount: 4
   spreadAngle: 10
@@ -373,7 +325,7 @@ GameObject:
   - component: {fileID: 2458738733646856567}
   - component: {fileID: 4837673483837978826}
   - component: {fileID: 7427714270758567070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -538,7 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1176ffbf07697a24b98359e4770f9a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   rotationSpeed: 100
   cameraTransform: {fileID: 0}
 --- !u!1 &4351390306970522854
@@ -583,7 +535,6 @@ GameObject:
   - component: {fileID: 5812833195696999371}
   - component: {fileID: 435238075700112875}
   - component: {fileID: 4923222104188946233}
-  - component: {fileID: 784538791967044189}
   - component: {fileID: 196809079513885575}
   m_Layer: 0
   m_Name: FrontWeaponSocket
@@ -658,29 +609,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &784538791967044189
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4569502205630991662}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &196809079513885575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,10 +621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 8324743213712027923}
   fireRate: 1
-  bulletSpeed: 20
+  bulletSpeed: 40
   bulletLifetime: 3
   pelletCount: 4
   spreadAngle: 10
@@ -711,7 +639,6 @@ GameObject:
   - component: {fileID: 7342775245530100658}
   - component: {fileID: 3158106562826830509}
   - component: {fileID: 1374708630919107588}
-  - component: {fileID: 7689725361063561576}
   m_Layer: 0
   m_Name: TopWeapon
   m_TagString: Untagged
@@ -785,29 +712,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7689725361063561576
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4620293485355819281}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &5644543981657068604
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +785,6 @@ GameObject:
   - component: {fileID: 7461983224625128611}
   - component: {fileID: 7916543020914426843}
   - component: {fileID: 574767891947454842}
-  - component: {fileID: 4549261942400981126}
   - component: {fileID: 6602117881727919215}
   m_Layer: 0
   m_Name: RightWeaponSocket
@@ -956,29 +859,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4549261942400981126
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6094727039108170341}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &6602117881727919215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,10 +871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30073d91c534a94e800ee0eb9209f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 2260575784153139240}
   fireRate: 1
-  bulletSpeed: 20
+  bulletSpeed: 40
   bulletLifetime: 3
   pelletCount: 4
   spreadAngle: 10
@@ -1119,10 +999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab0bf04d54cb4b4b879dca1102bee3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 7532858071638370888}
   fireRate: 1
-  bulletSpeed: 20
+  bulletSpeed: 40
   bulletLifetime: 3
   pelletCount: 4
   spreadAngle: 10
