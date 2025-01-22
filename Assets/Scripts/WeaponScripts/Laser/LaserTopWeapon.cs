@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class LaserTopWeapon : MonoBehaviour
 {
-    public Transform laserObject; // Obiekt lasera
-    public Transform laserOrigin; // Punkt poczatkowy lasera
-    public float laserRange = 100f; // Maksymalny zasieg lasera
-    public float fireRate = 0.1f; // Czestotliwosc strzelania
-    public int laserDamage = 10; // Obrazenia zadawane przez laser
-    public LayerMask hitLayers; // Warstwy, ktore moga byc trafione
+    public GameObject laserPrefab; // Prefab lasera
+    public Transform laserOrigin; // Punkt pocz¹tkowy lasera
+    public float laserRange = 100f; // Maksymalny zasiêg lasera
+    public float fireRate = 0.1f; // Czêstotliwoœæ strzelania
+    public int laserDamage = 10; // Obra¿enia zadawane przez laser
+    public LayerMask hitLayers; // Warstwy, które mog¹ byæ trafione
 
     private float nextFireTime;
+    private GameObject currentLaser; // Instancja aktualnie u¿ywanego lasera
 
     void Update()
     {
         RotateWeaponTowardsCursor();
 
-        if (Time.time >= nextFireTime) // Automatyczne strzelanie co okreslony czas
+        if (Time.time >= nextFireTime) // Automatyczne strzelanie co okreœlony czas
         {
             nextFireTime = Time.time + fireRate;
             ShootLaser();
@@ -29,7 +30,7 @@ public class LaserTopWeapon : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci co bron
+            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokoœci co broñ
 
             // Obracanie broni w kierunku kursora
             Vector3 direction = (targetPosition - transform.position).normalized;
@@ -43,10 +44,17 @@ public class LaserTopWeapon : MonoBehaviour
 
     void ShootLaser()
     {
-        Ray ray = new Ray(laserOrigin.position, transform.forward); // Strzal zgodny z ustawieniem broni
+        // Tworzenie instancji lasera
+        if (currentLaser == null)
+        {
+            currentLaser = Instantiate(laserPrefab, laserOrigin.position, Quaternion.identity);
+            currentLaser.SetActive(false); // Laser na pocz¹tku jest niewidoczny
+        }
+
+        Ray ray = new Ray(laserOrigin.position, transform.forward); // Strza³ zgodny z ustawieniem broni
         RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, hitLayers);
 
-        // Szukanie najblizszego przeciwnika
+        // Szukanie najbli¿szego przeciwnika
         RaycastHit? closestHit = null;
         float closestDistance = float.MaxValue;
 
@@ -69,7 +77,7 @@ public class LaserTopWeapon : MonoBehaviour
         }
         else
         {
-            // Maksymalny zasieg, gdy laser w nic nie trafi
+            // Maksymalny zasiêg, gdy laser w nic nie trafi
             AdjustLaser(laserOrigin.position + transform.forward * laserRange);
         }
 
@@ -78,16 +86,16 @@ public class LaserTopWeapon : MonoBehaviour
 
     void AdjustLaser(Vector3 targetPoint)
     {
-        // Obliczanie kierunku i odleglosci miedzy poczatkiem a koncem lasera
+        // Obliczanie kierunku i odleg³oœci miêdzy pocz¹tkiem a koñcem lasera
         Vector3 direction = targetPoint - laserOrigin.position;
         float distance = direction.magnitude;
 
         // Ustawianie pozycji i skali lasera
-        laserObject.position = laserOrigin.position + direction / 2f; // Laser na srodku
-        laserObject.localScale = new Vector3(laserObject.localScale.x, laserObject.localScale.y, distance); // Dopasowanie dlugosci
+        currentLaser.transform.position = laserOrigin.position + direction / 2f; // Laser na œrodku
+        currentLaser.transform.localScale = new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, distance); // Dopasowanie d³ugoœci
 
         // Ustawianie rotacji lasera w kierunku celu
-        laserObject.rotation = Quaternion.LookRotation(direction);
+        currentLaser.transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void DealDamage(Collider target)
@@ -102,9 +110,9 @@ public class LaserTopWeapon : MonoBehaviour
 
     IEnumerator LaserEffect()
     {
-        laserObject.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.05f); // Czas widocznosci lasera
-        laserObject.gameObject.SetActive(false);
+        currentLaser.SetActive(true);
+        yield return new WaitForSeconds(0.05f); // Czas widocznoœci lasera
+        currentLaser.SetActive(false);
     }
 }
 
