@@ -7,8 +7,6 @@ public class EnemySpawner : MonoBehaviour
     // Enemy prefab to spawn
     public GameObject enemyPrefab;
 
-    // List of spawned waves
-    //public Dictionary<int, Wave> listOfWaves;
     public int numberOfEnemies = 5;
 
     private int currentWave = 0;
