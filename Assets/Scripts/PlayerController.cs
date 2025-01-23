@@ -41,11 +41,11 @@ public class PlayerController : MonoBehaviour
     {
         // Pobranie wejœcia z klawiatury dla obrotu
         float rotationInput = 0f;
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             rotationInput = -1f;
         }
-        else if (Input.GetKey(KeyCode.E))
+        else if (Input.GetKey(KeyCode.Mouse1))
         {
             rotationInput = 1f;
         }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5054636513551007043}
+  - component: {fileID: 1730805536896138829}
   m_Layer: 0
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
@@ -24,13 +25,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3974490839614083891}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5319053158321605573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!114 &1730805536896138829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974490839614083891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6d51b2727e3df4ca87f1b642daeea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6077524513553424396
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,14 +90,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e171d3ac99dfa5489fd8c857133b6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserObject: {fileID: 5633893640594003094, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
+  laserPrefab: {fileID: 5793367457703852492, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
   laserOrigin: {fileID: 5054636513551007043}
   laserRange: 100
   fireRate: 0.1
   laserDamage: 10
   hitLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &339884392932913491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,14 +110,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a67e1175b4ee845a0f3fd997c52069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserObject: {fileID: 5633893640594003094, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
+  laserPrefab: {fileID: 5793367457703852492, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
   laserOrigin: {fileID: 5054636513551007043}
   laserRange: 100
   fireRate: 0.1
   laserDamage: 10
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0
