@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46,6 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4323813639670524191, guid: 51c5384528d288b479de7ac7496c476b, type: 3}
   numberOfEnemies: 10
-  timePassed: 0
+  maxWave: 10
   timeToSpawnWave: 5
-  spawnEnemies: 0

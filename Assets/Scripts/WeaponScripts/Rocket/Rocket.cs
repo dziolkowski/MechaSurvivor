@@ -16,7 +16,6 @@ public class Rocket : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        print("test explode");
         // Sprawdzenie, czy trafiono przeciwnika
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {

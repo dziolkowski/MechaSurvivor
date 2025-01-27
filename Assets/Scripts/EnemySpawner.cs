@@ -5,16 +5,14 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     // Enemy prefab to spawn
-    public GameObject enemyPrefab;
-
-    public int numberOfEnemies = 5;
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private int numberOfEnemies = 5;
+    [SerializeField] private int maxWave = 10;
+    [SerializeField] private float timePassed = 0f; // time in seconds until spawner starts working
+    [SerializeField] private float timeToSpawnWave = 5f; // time between each wave
 
     private int currentWave = 0;
-    [SerializeField] private int maxWave = 10;
-    [SerializeField] private float timePassed = 0f;
-    [SerializeField] private float timeToSpawnWave = 5f;
-
-    //[SerializeField] private bool spawnEnemies = false;
+    //[SerializeField] private bool spawnEnemies = false; // implement in future to externally set spawning enemies
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
