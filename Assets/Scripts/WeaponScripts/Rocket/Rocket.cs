@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField] private float explosionTime = 1f;
     private float explosionRadius;
     private float damage;
     public GameObject explosionEffect; // Prefab efektu eksplozji
@@ -13,16 +14,16 @@ public class Rocket : MonoBehaviour
         damage = dmg;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
+        print("test explode");
         // Sprawdzenie, czy trafiono przeciwnika
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
             // Eksplozja w punkcie kolizji
-            Vector3 collisionPoint = collision.contacts[0].point;
-            Explode(collisionPoint);
+            Vector3 rocketPosition = transform.position;
+            Explode(rocketPosition);
         }
-        
     }
 
     void Explode(Vector3 explosionPoint)
@@ -30,11 +31,12 @@ public class Rocket : MonoBehaviour
         // Efekt eksplozji
         if (explosionEffect != null)
         {
-            GameObject explosion = Instantiate(explosionEffect, explosionPoint, Quaternion.identity);
-            Destroy(explosion, 2f); // Usuniêcie efektu eksplozji po 2 sekundach
+            Quaternion randomRotation = Random.rotation;
+            GameObject explosion = Instantiate(explosionEffect, explosionPoint, randomRotation);
+            Destroy(explosion, explosionTime); // UsuniÃªcie efektu eksplozji po X sekundach
         }
 
-        // Znalezienie przeciwników w promieniu eksplozji
+        // Znalezienie przeciwnikÃ³w w promieniu eksplozji
         Collider[] colliders = Physics.OverlapSphere(explosionPoint, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
