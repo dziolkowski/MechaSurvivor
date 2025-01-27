@@ -4,14 +4,14 @@ using UnityEngine;
 public class LaserSideWeapon : MonoBehaviour
 {
     public GameObject laserPrefab; // Prefab lasera
-    public Transform laserOrigin; // Punkt pocz¹tkowy lasera
-    public float laserRange = 100f; // Maksymalny zasiêg lasera
-    public float fireRate = 0.1f; // Czêstotliwoœæ strzelania
-    public int laserDamage = 10; // Obra¿enia zadawane przez laser
-    public LayerMask enemyLayer; // Warstwa przeciwników
+    public Transform laserOrigin; // Punkt poczatkowy lasera
+    public float laserRange = 100f; // Maksymalny zasieg lasera
+    public float fireRate = 0.1f; // Czestotliwosc strzelania
+    public int laserDamage = 10; // Obrazenia zadawane przez laser
+    public LayerMask enemyLayer; // Warstwa przeciwnikow
 
     private float nextFireTime;
-    private GameObject currentLaser; // Instancja aktualnie u¿ywanego lasera
+    private GameObject currentLaser; // Instancja aktualnie uzywanego lasera
 
     void Update()
     {
@@ -23,22 +23,19 @@ public class LaserSideWeapon : MonoBehaviour
     }
 
     void ShootLaser()
-    {
-        // Tworzenie instancji lasera, jeœli jeszcze nie istnieje
-        if (currentLaser == null)
+    {        
+        if (currentLaser == null)// Tworzenie instancji lasera, jesli jeszcze nie istnieje
         {
             currentLaser = Instantiate(laserPrefab, laserOrigin.position, Quaternion.identity);
-            currentLaser.SetActive(false); // Laser na pocz¹tku jest niewidoczny
+            currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
-
-        // Strzelanie przed siebie
-        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;
-
-        // Sprawdzanie, czy trafiono przeciwnika
-        if (Physics.Raycast(laserOrigin.position, laserOrigin.forward, out RaycastHit hit, laserRange, enemyLayer))
+        
+        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;// Strzelanie przed siebie
+       
+        if (Physics.Raycast(laserOrigin.position, laserOrigin.forward, out RaycastHit hit, laserRange, enemyLayer)) // Sprawdzanie, czy trafiono przeciwnika
         {
             targetPoint = hit.point; // Ustawienie celu na punkt trafienia
-            DealDamage(hit.collider); // Zastosowanie obra¿eñ
+            DealDamage(hit.collider); // Zastosowanie obrazen
         }
 
         AdjustLaser(targetPoint); // Dopasowanie lasera do celu
@@ -46,14 +43,13 @@ public class LaserSideWeapon : MonoBehaviour
     }
 
     void AdjustLaser(Vector3 targetPoint)
-    {
-        // Obliczanie kierunku i odleg³oœci miêdzy pocz¹tkiem a koñcem lasera
-        Vector3 direction = targetPoint - laserOrigin.position;
+    {        
+        Vector3 direction = targetPoint - laserOrigin.position; // Obliczanie kierunku i odleglosci miedzy poczatkiem a koncem lasera
         float distance = direction.magnitude;
 
         // Ustawianie pozycji i skali lasera
-        currentLaser.transform.position = laserOrigin.position + direction / 2f; // Œrodek miêdzy pocz¹tkiem a koñcem
-        currentLaser.transform.localScale = new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, distance); // Dopasowanie d³ugoœci
+        currentLaser.transform.position = laserOrigin.position + direction / 2f; // Srodek miedzy poczatkiem a koncem
+        currentLaser.transform.localScale = new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, distance); // Dopasowanie dlugosci
 
         // Ustawianie rotacji lasera w kierunku celu
         currentLaser.transform.rotation = Quaternion.LookRotation(direction);
@@ -71,9 +67,9 @@ public class LaserSideWeapon : MonoBehaviour
 
     IEnumerator LaserEffect()
     {
-        currentLaser.SetActive(true); // W³¹czenie widocznoœci lasera
-        yield return new WaitForSeconds(0.05f); // Czas widocznoœci lasera
-        currentLaser.SetActive(false); // Wy³¹czenie widocznoœci lasera
+        currentLaser.SetActive(true); // Wlaczenie widocznoœci lasera
+        yield return new WaitForSeconds(0.05f); // Czas widocznosci lasera
+        currentLaser.SetActive(false); // Wylaczenie widocznosci lasera
     }
 }
 

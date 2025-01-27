@@ -117,8 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33df7d819fd935d4e9af4687531e99f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
   isMoving: 1
+  retreatDistance: 2
+  retreatDuration: 0.5
 --- !u!114 &6745822311017442807
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -638,6 +638,7 @@ GameObject:
   - component: {fileID: 6660350583101156703}
   - component: {fileID: 4774593318551299893}
   - component: {fileID: 5914361468160796421}
+  - component: {fileID: 6885312143575750995}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -725,6 +726,21 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 100
   cameraTransform: {fileID: 0}
+--- !u!114 &6885312143575750995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7908879181693607227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00cde44c1a3a9004182c9069d4d5b039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  respawnPoint: {fileID: 2394313093586403951, guid: ab264944f5a891540a3068194c491339, type: 3}
+  respawnDelay: 3
 --- !u!1 &8850923275715035777
 GameObject:
   m_ObjectHideFlags: 0

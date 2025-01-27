@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    // Przypisanie obiektu gracza z poziomu Unity
-    public Transform player; 
+    public Transform player; // Obiekt gracza
     private UnityEngine.AI.NavMeshAgent agent;
-    [SerializeField] bool isMoving = true;
+    [SerializeField] private float retreatDistance = 2f; // Odleglosc odskoku
+    [SerializeField] private float retreatDuration = 0.5f; // Czas trwania odskoku
+    private bool isRetreating = false; // Sprawdzanie czy przeciwniki odskakuje
+
 
     void Start()
     {
@@ -16,22 +18,64 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        if (isMoving == false) // do testowania/debugowania
+        if (!isRetreating)
         {
-            return;
+            MoveToPlayer();
         }
-        MoveToPlayer();
     }
 
-    private void MoveToPlayer() 
+    private void MoveToPlayer()
     {
+        // Pobieranie aktualnego gracza za kazdym razem (jesli gracz zniknal i pojawil sie ponownie)
         GameObject findPlayer = GameObject.FindGameObjectWithTag("Player");
-        var moveToPlayer = findPlayer.transform.position;
-        UnityEngine.AI.NavMeshAgent enemyNavMoveTowardPlayer = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        enemyNavMoveTowardPlayer.destination = moveToPlayer;
-        if(findPlayer = null) 
+
+        if (findPlayer == null)
         {
-            Debug.LogError("Player not found");
+            Debug.LogWarning("Player not found! Enemy cannot move.");
+            return;
+        }
+
+        player = findPlayer.transform; // Ustawienie aktualnego obiektu gracza
+        agent.SetDestination(player.position); // Ustaw cel NavMeshAgent na aktualna pozycje gracza
+    }
+
+    public void DealDamage(PlayerHealth playerHealth)
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(10); // Zadawanie obrazen graczowi
+            StartCoroutine(RetreatFromPlayer()); // Odskok
+        }
+    }
+
+    private IEnumerator RetreatFromPlayer()
+    {
+        isRetreating = true;
+
+        // Oblicz kierunek odskoku
+        Vector3 directionAwayFromPlayer = (transform.position - player.position).normalized;
+        Vector3 retreatPosition = transform.position + directionAwayFromPlayer * retreatDistance;
+
+        // Ustaw cel NavMeshAgent
+        agent.SetDestination(retreatPosition);
+        Debug.Log("Enemy is retreating to position: " + retreatPosition);
+
+        yield return new WaitForSeconds(retreatDuration); // Poczekaj na zakonczenie odskoku
+
+        isRetreating = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {       
+        if (other.CompareTag("Player"))// Sprawdzanie, czy przeciwnik wszedl w kolizje z graczem
+        {
+            Debug.Log("Enemy collided with player!");
+            
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();// Pobieranie komponentu PlayerHealth z obiektu gracza
+            if (playerHealth != null)
+            {
+                DealDamage(playerHealth); // Zadawanie obrazen graczowi
+            }
         }
     }
 }
