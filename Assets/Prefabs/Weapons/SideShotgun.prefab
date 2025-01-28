@@ -91,10 +91,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 5054636513551007043}
-  fireRate: 1
+  fireRate: 1.5
   bulletSpeed: 20
   bulletLifetime: 3
-  pelletCount: 4
+  pelletCount: 7
   spreadAngle: 10
 --- !u!1 &6677274601802576208
 GameObject:

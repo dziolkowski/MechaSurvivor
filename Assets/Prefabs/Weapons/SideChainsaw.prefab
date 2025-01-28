@@ -4994,7 +4994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5720b238929c540a0316542f398e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chainsawDamage: 10
+  chainsawDamage: 40
   timeToAttack: 1
 --- !u!1 &6677274601802576208
 GameObject:

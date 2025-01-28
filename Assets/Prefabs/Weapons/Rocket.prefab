@@ -178,5 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb2d0fcd8f280e4494c59a9525f104f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTime: 1
+  explosionTime: 0.5
   explosionEffect: {fileID: 7376211662991525148, guid: a38de28d3c1f6d84185c8f173c7f8ff0, type: 3}

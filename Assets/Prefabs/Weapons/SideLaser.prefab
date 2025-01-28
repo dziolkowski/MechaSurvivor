@@ -93,7 +93,7 @@ MonoBehaviour:
   laserOrigin: {fileID: 5054636513551007043}
   laserRange: 100
   fireRate: 0.1
-  laserDamage: 10
+  laserDamage: 15
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
