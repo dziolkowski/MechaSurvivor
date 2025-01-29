@@ -5,6 +5,8 @@ using UnityEngine;
 public class TestOpenMenu : MonoBehaviour
 {
     public GameObject menuPopup;
+    public GameObject inGameUI;
+    private bool isPaused = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +16,35 @@ public class TestOpenMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Escape) && menuPopup.activeSelf == false) {
-            menuPopup.SetActive(true);
+        // Sprawdza, czy nacisnieto ESC
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                PauseGame();  // Pauzuje gre, gdy menu jest otwarte
+            }
+            else
+            {
+                ResumeGame(); // Wznawia gre, gdy menu nie jest otwarte
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && menuPopup.activeSelf == true) {
-            menuPopup.SetActive(false);
-        }
-
     }
+
+    void PauseGame()
+    {
+        isPaused = true;
+        Time.timeScale = 0f; // Pauzuje gre (zatrzymuje czas)
+        inGameUI.SetActive(false); // Ukrywa UI gry
+        menuPopup.SetActive(true);  // Pokazuje menu pauzy
+    }
+
+
+    void ResumeGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1f; // Wznawia gre
+        inGameUI.SetActive(true); // Pokazuje UI gry
+        menuPopup.SetActive(false);  // Ukrywa menu pauzy
+    }
+
 }

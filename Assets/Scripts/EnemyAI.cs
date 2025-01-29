@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie ruchu
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 

@@ -15,6 +15,7 @@ public class LaserSideWeapon : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         if (Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;

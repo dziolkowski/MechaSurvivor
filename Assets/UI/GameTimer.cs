@@ -20,7 +20,7 @@ public class GameTimer : MonoBehaviour
 
     private void Update()
     {
-        if (currentTime > 0) 
+            if (currentTime > 0) 
         { 
             currentTime -= Time.deltaTime; // Odliczanie czasu
             currentTime = Mathf.Clamp(currentTime, 0, startTime);
@@ -31,7 +31,7 @@ public class GameTimer : MonoBehaviour
             {
                 TimerEnded();
             }
-        } 
+        }        
     }
 
 

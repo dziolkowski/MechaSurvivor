@@ -15,6 +15,7 @@ public class LaserTopWeapon : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         RotateWeaponTowardsCursor();
 
         if (Time.time >= nextFireTime) // Automatyczne strzelanie co okreslony czas

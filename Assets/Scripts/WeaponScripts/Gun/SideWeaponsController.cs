@@ -12,6 +12,7 @@ public class SideWeaponsController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         // Automatyczne strzelanie po ustalonym czasie
         if (Time.time >= nextFireTime)
         {
