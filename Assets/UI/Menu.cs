@@ -16,9 +16,6 @@ public class Menu : MonoBehaviour
         Debug.Log("Open settings menu TBD");
     }
 
-    public void OnExtrasButton() {
-        Debug.Log("Open extras menu TBD");
-    }
     // Called when we click the "Quit" button.
     public void OnQuitButton() {
         Application.Quit();

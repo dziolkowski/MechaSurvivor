@@ -872,7 +872,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.19
+  m_Radius: 1
   m_Height: 3.04
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
@@ -896,7 +896,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 3.04
-  m_Radius: 1.19
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -941,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1176ffbf07697a24b98359e4770f9a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   rotationSpeed: 100
   cameraTransform: {fileID: 0}
 --- !u!114 &-3730017699123032287
@@ -956,8 +956,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cde44c1a3a9004182c9069d4d5b039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  currentHealth: 0
+  maxHealth: 100
   gameOverManager: {fileID: 0}
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!1001 &533010966146295981
 PrefabInstance:
   m_ObjectHideFlags: 0
