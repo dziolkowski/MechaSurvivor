@@ -25,12 +25,12 @@ public class RocketTopWeapon : MonoBehaviour
 
     void RotateTowardsMouse()
     {
-        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, transform.position.y, 0)); // Tworzymy p³aszczyznê na poziomie broni
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, transform.position.y, 0)); // Tworzymy plaszczyzne na poziomie broni
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (groundPlane.Raycast(ray, out float enter))
         {
-            Vector3 targetPosition = ray.GetPoint(enter); // Punkt przeciêcia kursora z p³aszczyzn¹
+            Vector3 targetPosition = ray.GetPoint(enter); // Punkt przeciecia kursora z plaszczyzna
             Vector3 direction = (targetPosition - transform.position).normalized;
 
             if (direction != Vector3.zero)

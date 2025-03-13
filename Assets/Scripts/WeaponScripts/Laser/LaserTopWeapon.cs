@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserTopWeapon : MonoBehaviour
@@ -6,7 +7,7 @@ public class LaserTopWeapon : MonoBehaviour
     public GameObject laserPrefab; // Prefab lasera
     public Transform laserOrigin; // Punkt poczatkowy lasera
     public float laserRange = 100f; // Maksymalny zasieg lasera
-    public float fireRate = 0.1f; // Czêstotliwosc strzelania
+    public float fireRate = 0.1f; // Czestotliwosc strzelania
     public int laserDamage = 10; // Obrazenia zadawane przez laser
     public LayerMask hitLayers; // Warstwy, ktore moga byc trafione
 
@@ -31,7 +32,7 @@ public class LaserTopWeapon : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci co broñ
+            targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci co bron
             
             Vector3 direction = (targetPosition - transform.position).normalized; // Obracanie broni w kierunku kursora
             if (direction != Vector3.zero)
@@ -44,43 +45,45 @@ public class LaserTopWeapon : MonoBehaviour
 
     void ShootLaser()
     {
-        // Tworzenie instancji lasera
         if (currentLaser == null)
         {
             currentLaser = Instantiate(laserPrefab, laserOrigin.position, Quaternion.identity);
             currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
 
-        Ray ray = new Ray(laserOrigin.position, transform.forward); // Strzal zgodny z ustawieniem broni
+        Ray ray = new Ray(laserOrigin.position, transform.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, hitLayers);
 
-        // Szukanie najblizszego przeciwnika
-        RaycastHit? closestHit = null;
-        float closestDistance = float.MaxValue;
+        Vector3 finalHitPoint = laserOrigin.position + transform.forward * laserRange;
+        List<IDamageable> damagedTargets = new List<IDamageable>();
 
         foreach (var hit in hits)
         {
-            float distance = Vector3.Distance(laserOrigin.position, hit.point);
-            if (distance < closestDistance)
+            if (((1 << hit.collider.gameObject.layer) & hitLayers) == 0)
+                continue; // Ignorowanie obiektow spoza hitLayers
+
+            // Jesli trafiony obiekt to sciana, ustawiamy punkt koncowy lasera i przerywamy
+            if (hit.collider.CompareTag("Wall"))
             {
-                closestDistance = distance;
-                closestHit = hit;
+                finalHitPoint = hit.point;
+                break;
+            }
+
+            // Trafiony obiekt mo¿e otrzymac obrazenia
+            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+            if (damageable != null && !damagedTargets.Contains(damageable))
+            {
+                damagedTargets.Add(damageable);
             }
         }
 
-        if (closestHit.HasValue)
+        // Zadanie obrazen wszystkim przeciwnikom trafionym przez laser
+        foreach (var target in damagedTargets)
         {
-            DealDamage(closestHit.Value.collider);
-
-            // Ustawianie lasera na trafiony punkt
-            AdjustLaser(closestHit.Value.point);
-        }
-        else
-        {
-            // Maksymalny zasieg, gdy laser w nic nie trafi
-            AdjustLaser(laserOrigin.position + transform.forward * laserRange);
+            target.TakeDamage(laserDamage);
         }
 
+        AdjustLaser(finalHitPoint);
         StartCoroutine(LaserEffect());
     }
 

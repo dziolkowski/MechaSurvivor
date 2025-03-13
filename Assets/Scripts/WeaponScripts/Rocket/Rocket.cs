@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
@@ -20,8 +21,7 @@ public class Rocket : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))
         {
             // Eksplozja w punkcie kolizji
-            Vector3 rocketPosition = transform.position;
-            Explode(rocketPosition);
+            Explode(transform.position);
         }
     }
 
@@ -32,20 +32,32 @@ public class Rocket : MonoBehaviour
         {
             Quaternion randomRotation = Random.rotation;
             GameObject explosion = Instantiate(explosionEffect, explosionPoint, randomRotation);
-            Destroy(explosion, explosionTime); // Usuniêcie efektu eksplozji po X sekundach
+            Destroy(explosion, explosionTime); // Usuniecie efektu eksplozji po X sekundach
         }
 
-        // Znalezienie przeciwników w promieniu eksplozji
+        // Znalezienie przeciwnikow w promieniu eksplozji
         Collider[] colliders = Physics.OverlapSphere(explosionPoint, explosionRadius);
+
+        //Zapamietanie przeciwnikow, ktorym zadano obrazenia
+        HashSet<GameObject> damagedEnemies = new HashSet<GameObject>();
+
+
         foreach (Collider nearbyObject in colliders)
         {
             if (nearbyObject.CompareTag("Enemy"))
             {
-               EnemyHealth enemyHealth = nearbyObject.GetComponent<EnemyHealth>();
-               if (enemyHealth != null)
-               {
-                   enemyHealth.TakeDamage(Mathf.RoundToInt(damage));
-               }
+                GameObject enemy = nearbyObject.gameObject;
+
+                //Jezeli przeciwnik nie otrzymal obrazen wczesniej, to je otrzymuje
+                if (!damagedEnemies.Contains(enemy)) 
+                { 
+                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    if (enemyHealth != null) 
+                    {
+                        enemyHealth.TakeDamage(Mathf.RoundToInt(damage));
+                        damagedEnemies.Add(enemy); // Przeciwnik dodany do listy trafionych
+                    }
+                }
             }
         }
 
