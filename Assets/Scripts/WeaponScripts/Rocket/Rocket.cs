@@ -51,7 +51,7 @@ public class Rocket : MonoBehaviour
                 //Jezeli przeciwnik nie otrzymal obrazen wczesniej, to je otrzymuje
                 if (!damagedEnemies.Contains(enemy)) 
                 { 
-                    EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                    IDamageable enemyHealth = enemy.GetComponent<IDamageable>();
                     if (enemyHealth != null) 
                     {
                         enemyHealth.TakeDamage(Mathf.RoundToInt(damage));

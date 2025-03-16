@@ -47,7 +47,7 @@ public class ChainsawSideWeapon : MonoBehaviour
 
     void DealDamage(GameObject target) {
         // Sprawdzanie, czy trafiony obiekt ma komponent EnemyHealth
-        EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+        IDamageable enemyHealth = target.GetComponent<IDamageable>();
         if (enemyHealth != null) {
             enemyHealth.TakeDamage(chainsawDamage);
         }
