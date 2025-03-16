@@ -30,12 +30,12 @@ public class SplatterHealth : MonoBehaviour, IDamageable
 
         if (damageZonePrefab != null)
         {
-            Vector3 spawnPosition = transform.position; // Domyœlna pozycja (w razie braku pod³ogi)
+            Vector3 spawnPosition = transform.position; // Domyslna pozycja (w razie braku podlogi)
 
-            // Raycast w dó³, aby znaleŸæ rzeczywist¹ pod³ogê
+            // Raycast w dol, aby znalezc rzeczywista podloge
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
             {
-                spawnPosition = hit.point; // Ustawiamy pozycjê na pod³ogê
+                spawnPosition = hit.point; // Ustawiamy pozycje na podloge
             }
 
             Instantiate(damageZonePrefab, spawnPosition, Quaternion.identity);

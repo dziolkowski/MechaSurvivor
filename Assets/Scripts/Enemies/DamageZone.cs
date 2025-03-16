@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 public class DamageZone : MonoBehaviour
 {
-    [SerializeField] private int damage = 5; // Iloœæ zadawanych obra¿eñ
+    [SerializeField] private int damage = 5; // Ilosc zadawanych obrazen
     [SerializeField] private float lifetime = 10f; // Czas po jakim plama znika
-    [SerializeField] private float damageCooldown = 0.1f; // Minimalny czas miêdzy zadaniem obra¿eñ
+    [SerializeField] private float damageCooldown = 0.1f; // Minimalny czas miedzy zadaniem obrazen
 
-    private HashSet<Collider> playerColliders = new HashSet<Collider>(); // Przechowuje kolizje nóg
+    private HashSet<Collider> playerColliders = new HashSet<Collider>(); // Przechowuje kolizje nog
     private PlayerHealth playerHealth; // Referencja do zdrowia gracza
 
     private void Start()
     {
-        Destroy(gameObject, lifetime); // Plama znika po okreœlonym czasie
+        Destroy(gameObject, lifetime); // Plama znika po okreslonym czasie
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,9 +37,9 @@ public class DamageZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerColliders.Remove(other); // Usuwamy nogê ze zbioru
+            playerColliders.Remove(other); // Usuwamy noge ze zbioru
 
-            if (playerColliders.Count == 0) // Gdy ¿adna noga nie dotyka plamy, resetujemy zdrowie
+            if (playerColliders.Count == 0) // Gdy zadna noga nie dotyka plamy, resetujemy zdrowie
             {
                 playerHealth = null;
             }
