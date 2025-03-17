@@ -16,6 +16,7 @@ public class ShotgunTopWeapon : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         RotateTowardsMouse();
 
         if (Time.time >= nextFireTime) 

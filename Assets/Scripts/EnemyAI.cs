@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -8,11 +9,19 @@ public class EnemyAI : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] private float retreatDistance = 2f; // Odleglosc odskoku
     [SerializeField] private float retreatDuration = 0.5f; // Czas trwania odskoku
+    [SerializeField] private int damageDealt = 2;
     private bool isRetreating = false; // Sprawdzanie czy przeciwniki odskakuje
 
+    [Header("Debug - do not ship modified")]
+    [SerializeField] private bool isMoving = true;
 
     void Start()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie ruchu
+        if(isMoving == false) {
+            GetComponent<NavMeshAgent>().enabled = false;
+        }
+
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
@@ -43,7 +52,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (playerHealth != null)
         {
-            playerHealth.TakeDamage(10); // Zadawanie obrazen graczowi
+            playerHealth.TakeDamage(damageDealt); // Zadawanie obrazen graczowi
             StartCoroutine(RetreatFromPlayer()); // Odskok
         }
     }

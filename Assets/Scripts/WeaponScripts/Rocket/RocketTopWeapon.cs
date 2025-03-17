@@ -13,6 +13,7 @@ public class RocketTopWeapon : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         RotateTowardsMouse();
 
         if (Time.time >= nextFireTime)
@@ -24,17 +25,18 @@ public class RocketTopWeapon : MonoBehaviour
 
     void RotateTowardsMouse()
     {
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, transform.position.y, 0)); // Tworzymy plaszczyzne na poziomie broni
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            Vector3 targetPosition = hit.point;
-            targetPosition.y = transform.position.y;
 
+        if (groundPlane.Raycast(ray, out float enter))
+        {
+            Vector3 targetPosition = ray.GetPoint(enter); // Punkt przeciecia kursora z plaszczyzna
             Vector3 direction = (targetPosition - transform.position).normalized;
+
             if (direction != Vector3.zero)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
             }
         }
     }

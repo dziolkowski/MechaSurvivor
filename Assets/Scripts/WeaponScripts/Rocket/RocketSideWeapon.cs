@@ -14,6 +14,7 @@ public class RocketSideWeapon : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
         if (Time.time >= nextFireTime)
         {
             FireRocket();
@@ -36,7 +37,7 @@ public class RocketSideWeapon : MonoBehaviour
             rocketScript.SetParameters(explosionRadius, damage);
         }
 
-        // Ignorowanie kolizji z graczem (zakladaj¹c, ze gracz ma collider)
+        // Ignorowanie kolizji z graczem (zakladajac, ze gracz ma collider)
         Collider rocketCollider = rocket.GetComponent<Collider>();
         Collider playerCollider = GetComponent<Collider>();
         if (rocketCollider != null && playerCollider != null)

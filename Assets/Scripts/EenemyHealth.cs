@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth = 100;
     [SerializeField] public int currentHealth;
 
+    public int scoreValue = 10;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -25,7 +27,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     void Die()
     {
         print("dead");
-        // Niszczenie przeciwnika po �mierci
-        Destroy(gameObject); 
+        ScoreManager.Instance.AddPoints(scoreValue); // Dodaje punkty po smierci przeciwnika
+        Destroy(gameObject); // Niszczenie przeciwnika po smierci
     }
 }
