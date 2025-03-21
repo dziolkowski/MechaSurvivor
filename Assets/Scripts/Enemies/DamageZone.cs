@@ -1,48 +1,43 @@
-using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class DamageZone : MonoBehaviour
 {
-    [SerializeField] private int damage = 5; // Ilosc zadawanych obrazen
-    [SerializeField] private float lifetime = 10f; // Czas po jakim plama znika
-    [SerializeField] private float damageCooldown = 0.1f; // Minimalny czas miedzy zadaniem obrazen
-
-    private HashSet<Collider> playerColliders = new HashSet<Collider>(); // Przechowuje kolizje nog
-    private PlayerHealth playerHealth; // Referencja do zdrowia gracza
+    [SerializeField] private float lifetime = 10f;
+    [SerializeField] private float slowMultiplier = 0.5f;
+    private PlayerController playerController;
 
     private void Start()
     {
-        Destroy(gameObject, lifetime); // Plama znika po okreslonym czasie
+        Invoke(nameof(DestroySelf), lifetime); // Plama znika po okreœlonym czasie
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (playerColliders.Count == 0) // Tylko przy pierwszym kontakcie
+            playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
             {
-                playerHealth = other.GetComponentInParent<PlayerHealth>(); // Pobieramy zdrowie gracza
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(damage);
-                }
+                playerController.ModifySpeed(slowMultiplier);
             }
-
-            playerColliders.Add(other); // Dodajemy nogê do zbioru
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && playerController != null)
         {
-            playerColliders.Remove(other); // Usuwamy noge ze zbioru
-
-            if (playerColliders.Count == 0) // Gdy zadna noga nie dotyka plamy, resetujemy zdrowie
-            {
-                playerHealth = null;
-            }
+            playerController.ResetSpeed();
+            playerController = null;
         }
+    }
+
+    private void DestroySelf()
+    {
+        if (playerController != null) // Jeœli gracz nadal jest w plamie, resetujemy jego prêdkoœæ
+        {
+            playerController.ResetSpeed();
+        }
+        Destroy(gameObject);
     }
 }

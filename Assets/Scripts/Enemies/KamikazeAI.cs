@@ -3,68 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class KamikazeAI : MonoBehaviour
+public class KamikazeAI : MonoBehaviour, IDamageable
 {
-    public Transform player; // Obiekt gracza
-    private UnityEngine.AI.NavMeshAgent agent;
-    [SerializeField] private float explosionRadius = 3f; // Promien eksplozji
-    [SerializeField] private int damageDealt = 10; // Obrazenia zadane przez eksplozje
-    [SerializeField] private GameObject explosionEffect; // Prefab eksplozji
-    [SerializeField] private float explosionEffectDuration = 2f; // Znikniecie eksplozji po 2. sekundach
+    public Transform player;
+    private NavMeshAgent agent;
 
-    [Header("Debug - do not ship modified")]
-    [SerializeField] private bool isMoving = true;
+    [SerializeField] private float detectionRadius = 10f; // Promien wykrywania gracza
+    [SerializeField] private float explosionRadius = 5f; // Promien eksplozji
+    [SerializeField] private int damageDealt = 10; // Obrazenia eksplozji
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private float explosionEffectDuration = 2f;
+
+    private bool isDead = false;
 
     void Start()
     {
-        if (Time.timeScale == 0) return; // Pauza - przerwanie ruchu
-        if (!isMoving)
-        {
-            GetComponent<NavMeshAgent>().enabled = false;
-        }
-
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
+        FindPlayer();
     }
 
     void Update()
     {
-        MoveToPlayer();
+        if (player != null)
+        {
+            agent.SetDestination(player.position);
+
+            if (Vector3.Distance(transform.position, player.position) <= explosionRadius)
+            {
+                Explode();
+            }
+        }
     }
 
-    private void MoveToPlayer()
+    private void FindPlayer()
     {
         GameObject findPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (findPlayer == null) return;
-        player = findPlayer.transform;
-        agent.SetDestination(player.position);
-
-        // Sprawdzenie dystansu do gracza i aktywowanie eksplozji
-        if (Vector3.Distance(transform.position, player.position) <= explosionRadius)
+        if (findPlayer != null)
         {
+            player = findPlayer.transform;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isDead)
+        {
+            isDead = true;
             Explode();
         }
     }
 
     private void Explode()
     {
-        // Stworzenie efektu eksplozji
+        // Tworzenie efektu eksplozji
         if (explosionEffect != null)
         {
             GameObject explosionInstance = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(explosionInstance, explosionEffectDuration);
         }
 
-        // Zadanie obra¿ez graczowi
-        if (player != null)
+        // Zadawanie obrazen wszystkim w zasiegu
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        HashSet<GameObject> damagedEntities = new HashSet<GameObject>();
+
+        foreach (Collider hit in hitColliders)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            if (!damagedEntities.Contains(hit.gameObject))
             {
-                playerHealth.TakeDamage(damageDealt);
+                if (hit.CompareTag("Player"))
+                {
+                    PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.TakeDamage(damageDealt);
+                    }
+                }
+                else if (hit.CompareTag("Enemy"))
+                {
+                    IDamageable enemy = hit.GetComponent<IDamageable>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(damageDealt);
+                    }
+                }
+                damagedEntities.Add(hit.gameObject);
             }
         }
 
-        // Zniszczenie Kamikaze
         Destroy(gameObject);
     }
 }
+
