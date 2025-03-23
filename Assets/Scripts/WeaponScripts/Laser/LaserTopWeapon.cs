@@ -33,12 +33,12 @@ public class LaserTopWeapon : MonoBehaviour
         {
             Vector3 targetPosition = hit.point;
             targetPosition.y = transform.position.y; // Ustawienie tej samej wysokosci co bron
-            
-            Vector3 direction = (targetPosition - transform.position).normalized; // Obracanie broni w kierunku kursora
+
+            Vector3 direction = (targetPosition - transform.position).normalized;
             if (direction != Vector3.zero)
             {
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             }
         }
     }
@@ -51,39 +51,29 @@ public class LaserTopWeapon : MonoBehaviour
             currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
 
-        Ray ray = new Ray(laserOrigin.position, transform.forward);
+        Ray ray = new Ray(laserOrigin.position, laserOrigin.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, hitLayers);
 
-        Vector3 finalHitPoint = laserOrigin.position + transform.forward * laserRange;
-        List<IDamageable> damagedTargets = new List<IDamageable>();
+        // Sortowanie trafien od najblizszego do najdalszego
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;
 
         foreach (var hit in hits)
         {
-            if (((1 << hit.collider.gameObject.layer) & hitLayers) == 0)
-                continue; // Ignorowanie obiektow spoza hitLayers
-
-            // Jesli trafiony obiekt to sciana, ustawiamy punkt koncowy lasera i przerywamy
-            if (hit.collider.CompareTag("Wall"))
+            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Trafienie w przeszkode
             {
-                finalHitPoint = hit.point;
-                break;
+                targetPoint = hit.point; // Skrocenie lasera do sciany
+                break; // sciana zatrzymuje promien
             }
 
-            // Trafiony obiekt mo¿e otrzymac obrazenia
-            IDamageable damageable = hit.collider.GetComponent<IDamageable>();
-            if (damageable != null && !damagedTargets.Contains(damageable))
+            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Trafienie przeciwnika
             {
-                damagedTargets.Add(damageable);
+                DealDamage(hit.collider);
             }
         }
 
-        // Zadanie obrazen wszystkim przeciwnikom trafionym przez laser
-        foreach (var target in damagedTargets)
-        {
-            target.TakeDamage(laserDamage);
-        }
-
-        AdjustLaser(finalHitPoint);
+        AdjustLaser(targetPoint);
         StartCoroutine(LaserEffect());
     }
 

@@ -31,27 +31,30 @@ public class LaserSideWeapon : MonoBehaviour
             currentLaser = Instantiate(laserPrefab, laserOrigin.position, Quaternion.identity);
             currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
-        
-        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;// Strzelanie przed siebie
-        RaycastHit[] hits = Physics.RaycastAll(laserOrigin.position, laserOrigin.forward, laserRange, enemyLayer | obstacleLayer);
 
-        foreach (var hit in hits) 
-        { 
-            if (((1 << hit.collider.gameObject.layer) & enemyLayer) != 0) // Trafienie przeciwnika
-            { 
-                DealDamage(hit.collider);
-            }
+        Ray ray = new Ray(laserOrigin.position, laserOrigin.forward);
+        RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, enemyLayer | obstacleLayer);
 
-            if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0) // Trafienie przeszkody
+        // Sortowanie trafien od najblizszego do najdalszego
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        Vector3 targetPoint = laserOrigin.position + laserOrigin.forward * laserRange;
+
+        foreach (var hit in hits)
+        {
+            if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0) // Trafienie w przeszkode
             {
                 targetPoint = hit.point; // Skrocenie lasera do sciany
                 break; // Sciana zatrzymuje promien
-            } 
-                                                                             
+            }
 
+            if (((1 << hit.collider.gameObject.layer) & enemyLayer) != 0) // Trafienie przeciwnika
+            {
+                DealDamage(hit.collider);
+            }
         }
 
-        AdjustLaser(targetPoint); // Dopasowanie lasera do celu
+        AdjustLaser(targetPoint);
         StartCoroutine(LaserEffect());
     }
 
