@@ -121,4 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 10
-  slowMultiplier: 0.5
+  moveSpeedMultiplier: 0.5
+  rotationSpeedMultiplier: 0.5

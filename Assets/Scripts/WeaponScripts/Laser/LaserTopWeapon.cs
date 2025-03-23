@@ -61,21 +61,27 @@ public class LaserTopWeapon : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Trafienie w przeszkode
+            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Sprawdzenie, czy obiekt jest w warstwach hitLayers
             {
-                targetPoint = hit.point; // Skrocenie lasera do sciany
-                break; // sciana zatrzymuje promien
-            }
+                // Trafienie przeciwnika
+                IDamageable damageable = hit.collider.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    DealDamage(hit.collider); // Zadaj obrazenia
+                    targetPoint = hit.point; // Laser zatrzymuje sie na przeciwniku
+                    break; // Trafienie przeciwnika zatrzymuje promien
+                }
 
-            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Trafienie przeciwnika
-            {
-                DealDamage(hit.collider);
+                // Trafienie przeszkody 
+                targetPoint = hit.point; // Skrocenie lasera do przeszkody
+                break; // Przeszkoda zatrzymuje promien
             }
         }
 
         AdjustLaser(targetPoint);
         StartCoroutine(LaserEffect());
     }
+
 
     void AdjustLaser(Vector3 targetPoint)
     {
@@ -93,13 +99,13 @@ public class LaserTopWeapon : MonoBehaviour
 
     void DealDamage(Collider target)
     {
-        // Sprawdzanie, czy obiekt implementuje interfejs IDamageable
         IDamageable damageable = target.GetComponent<IDamageable>();
         if (damageable != null)
         {
             damageable.TakeDamage(laserDamage);
         }
     }
+
 
     IEnumerator LaserEffect()
     {

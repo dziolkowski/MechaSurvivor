@@ -58,12 +58,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ModifySpeed(float multiplier)
+    public void ModifySpeed(float moveMultiplier, float rotationMultiplier)
     {
         if (!isSlowed) // Zapobiegamy wielokrotnemu zmniejszaniu predkosci
         {
-            moveSpeed = defaultMoveSpeed * multiplier;
-            rotationSpeed = defaultRotationSpeed * multiplier;
+            moveSpeed = defaultMoveSpeed * moveMultiplier;
+            rotationSpeed = defaultRotationSpeed * rotationMultiplier;
             isSlowed = true;
         }
     }
@@ -75,4 +75,5 @@ public class PlayerController : MonoBehaviour
         isSlowed = false;
     }
 }
+
 
