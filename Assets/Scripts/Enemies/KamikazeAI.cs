@@ -92,5 +92,15 @@ public class KamikazeAI : MonoBehaviour, IDamageable
 
         Destroy(gameObject);
     }
+
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
 }
 
