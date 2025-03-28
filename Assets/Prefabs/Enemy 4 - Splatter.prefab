@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1718311133223108848}
   - component: {fileID: 6745822311017442807}
   m_Layer: 6
-  m_Name: Enemy 1
+  m_Name: Enemy 4 - Splatter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ Animator:
   m_GameObject: {fileID: 4323813639670524191}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd8ee7ac5c737c94cb5e29c1f3ad8bc7, type: 2}
+  m_Controller: {fileID: 9100000, guid: bd7abb6a0d4ae9e4a956193ffbd352f6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   retreatDistance: 3
   retreatDuration: 1
   damageDealt: 2
+  isMoving: 1
 --- !u!114 &6745822311017442807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  HasDeathAnimation: 1
   scoreValue: 10
 --- !u!1 &5532193716483668527
 GameObject:
@@ -265,7 +267,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1462322831, guid: 40242b41f513b8d4aa07817b9a86c4ec, type: 3}
+  m_Sprite: {fileID: 71383224, guid: 2cba8623fa59e644cb1d9e2a899981b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
