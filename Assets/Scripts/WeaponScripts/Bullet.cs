@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject); // Niszczenie pocisku po trafieniu w przeciwnika
         }
         else if (other.gameObject.CompareTag("Wall")) {
-            Destroy(gameObject); // Niszczenie pocisku po trafieniu w �cian�
+            Destroy(gameObject); // Niszczenie pocisku po trafieniu w sciane
         }
         
     }

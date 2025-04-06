@@ -96,6 +96,7 @@ MonoBehaviour:
   bulletLifetime: 3
   pelletCount: 7
   spreadAngle: 10
+  bulletDamage: 25
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0

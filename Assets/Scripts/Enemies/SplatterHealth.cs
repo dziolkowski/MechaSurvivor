@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class SplatterHealth : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] public int currentHealth;
-    [SerializeField] private GameObject damageZonePrefab; // Prefab plamy
-    public int scoreValue = 10;
+    [Header("Health Settings")]
+    [SerializeField] private int maxHealth = 100; // Maksymalne zdrowie
+    [SerializeField] public int currentHealth; // Aktualne zdrowie
+    public int scoreValue = 10; // Punkty otrzymywane za zabicie przeciwnika
 
-    void Start()
+    [Header("Splatter Settings")]
+    [SerializeField] private GameObject damageZonePrefab; // Prefab plamy
+    [SerializeField] private float splatterLifetime = 10f; // Czas, po ktorym plama znika
+    [SerializeField] private float moveSpeedMultiplier = 0.5f; // Spowolnienie ruchu 
+    [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Spowolnienie oborotu
+
+    private void Start()
     {
         currentHealth = maxHealth;
     }
@@ -17,31 +23,32 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        print(gameObject + " damage received!");
+        Debug.Log(gameObject + " damage received!");
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
-    void Die()
+    private void Die()
     {
-        print("Enemy dead!");
+        Debug.Log("Enemy dead!");
 
         if (damageZonePrefab != null)
         {
-            Vector3 spawnPosition = transform.position; // Domyslna pozycja (w razie braku podlogi)
+            Vector3 spawnPosition = transform.position;
 
-            // Raycast w dol, aby znalezc rzeczywista podloge
+            // Plama plama pojawia sie w miejscu smierci Splattera ale na podlodze
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
             {
-                spawnPosition = hit.point; // Ustawiamy pozycje na podloge
+                spawnPosition = hit.point;
             }
 
-            Instantiate(damageZonePrefab, spawnPosition, Quaternion.identity);
+            GameObject splatter = Instantiate(damageZonePrefab, spawnPosition, Quaternion.identity);
+            splatter.AddComponent<DamageZoneHandler>().Initialize(splatterLifetime, moveSpeedMultiplier, rotationSpeedMultiplier);
         }
 
-        ScoreManager.Instance.AddPoints(scoreValue);
+        ScoreManager.Instance.AddPoints(scoreValue); 
         Destroy(gameObject);
     }
 }

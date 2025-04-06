@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 2987644202187739349}
   - component: {fileID: 8098467982858605062}
   - component: {fileID: 1707849282464654468}
-  - component: {fileID: 2262218960303718312}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,16 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2262218960303718312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9008639820600560658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f391440c1b03ae4a9f1341626be2fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25

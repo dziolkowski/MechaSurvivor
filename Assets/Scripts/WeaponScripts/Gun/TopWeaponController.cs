@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class TopWeaponController : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public Transform bulletSpawnPoint;
-    public float bulletSpeed = 20f;
-    public float fireRate = 0.2f; // Czestotliwosc strzalow 
-
-    private float nextFireTime;
+    [Header("Weapon Settings")]
+    public GameObject bulletPrefab; // Prefab pocisku
+    public Transform bulletSpawnPoint; // Punkt spawnu pociskow
+    public float bulletSpeed = 20f; // Predkosc pociskow
+    public float fireRate = 0.2f; // Czestotliwosc strzalow w sekundach
+    public int bulletDamage = 10; // Obrazenia zadawane przez pocisk
+    private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
 
     void Update()
     {
         if (Time.timeScale == 0) return; // Pauza - przerwanie strzelania
+
         RotateTowardsMouse();
 
-        // Automatyczne strzelanie
+        // Automatyczne strzelanie po ustalonym czasie
         if (Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + fireRate; // Ustawienie czasu kolejnrgo strzalu
             Shoot();
         }
     }
@@ -30,19 +32,29 @@ public class TopWeaponController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 direction = hit.point - transform.position;
-            // Utrzymanie pocisku na tej samej wysokosci
-            direction.y = 0; 
+            direction.y = 0;
             transform.forward = direction;
         }
     }
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * bulletSpeed;
+        if (bulletPrefab == null || bulletSpawnPoint == null)
+        {
+            Debug.LogError("Brakuje prefabu pocisku lub punktu spawnu!");
+            return;
+        }
 
-        // Zniszczenie pocisku po 3 sekundach, jesli nie trafi w cel
-        Destroy(bullet, 3f);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        Rigidbody rb = bullet.GetComponent<Rigidbody>(); // Ustawienie predkosci pocisku 
+
+        if (rb != null)
+        {
+            rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
+        }
+
+        bullet.AddComponent<InternalBulletHandler>().Initialize(bulletDamage);
+        Destroy(bullet, 3f); // Usuwanie pocisku po 3 sekundach gdy w nic nie trafi
     }
+
 }
