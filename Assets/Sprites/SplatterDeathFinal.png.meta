@@ -1,0 +1,662 @@
+fileFormatVersion: 2
+guid: 4233431a407ed1b488a13f8ffabad9dc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SplatterDeathFinal_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37f5a797403e7bb43ace66626b2bf88b
+      internalID: 11488178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_1
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc9855f56eefc74d88d61ad74ad526b
+      internalID: -456362898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_2
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8e02113b771974a8f16f90f967418e
+      internalID: 255592521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_3
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b8b7ce98418ebd4fa56481bdff5802a
+      internalID: -379439105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_4
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2880
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbec41f8db7cf154d9cac8cdca06539b
+      internalID: 384951577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b0ae046aa983d428e20fac865467e6
+      internalID: -219461661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_6
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d76a7b816b38f4dadc2d73206b168b
+      internalID: 1663015453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_7
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5e7e7b4c9512149ba661c70fa7a43c
+      internalID: 2110672557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_8
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41fc61cc48b4b1547ae0aa786d4d5895
+      internalID: -1668965971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_9
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2160
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3315399cbbe04b54292b5839093c0320
+      internalID: -518601018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4783462950301094bbe37fa798399c19
+      internalID: -87874345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_11
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b05ded8986c73940af05d1c65ca0b5e
+      internalID: -253289137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_12
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40fc9ee025bcbe84abfd23231cc867c1
+      internalID: -1429115835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_13
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a672830ca61cda419de1b8611583d64
+      internalID: 1357010404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_14
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 1440
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 881834bf86835c942b3b6f83e96d1a3e
+      internalID: 1785102612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cc77f753366b741b8dd6663f11ec2c
+      internalID: 1016168012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_16
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43fb98af6af15347ad36bef8ba06955
+      internalID: -1860600402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_17
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 467bfdc07f83637469ec4b040790f0ba
+      internalID: -383016531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_18
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75a594111d4a004b91b86ecde81a444
+      internalID: -1927627715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_19
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 720
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb345868ada334048886aa34054f81d7
+      internalID: -1771410427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c938902ae53dafe4bb5d738fc5bf962c
+      internalID: -963368159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_21
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd91b48e4687194baed704813c64b4f
+      internalID: -551749989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_22
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a51242ae7892941ad086705d75f373
+      internalID: -1771620865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_23
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa6ce1be6e39924b9608c51ff2643b8
+      internalID: 1080449331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplatterDeathFinal_24
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 720
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f0fd5e3d871739428970fe0025c27cc
+      internalID: 871019862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: cabd3f36ca2bae14f844429f488be18e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      SplatterDeathFinal_0: 11488178
+      SplatterDeathFinal_1: -456362898
+      SplatterDeathFinal_10: -87874345
+      SplatterDeathFinal_11: -253289137
+      SplatterDeathFinal_12: -1429115835
+      SplatterDeathFinal_13: 1357010404
+      SplatterDeathFinal_14: 1785102612
+      SplatterDeathFinal_15: 1016168012
+      SplatterDeathFinal_16: -1860600402
+      SplatterDeathFinal_17: -383016531
+      SplatterDeathFinal_18: -1927627715
+      SplatterDeathFinal_19: -1771410427
+      SplatterDeathFinal_2: 255592521
+      SplatterDeathFinal_20: -963368159
+      SplatterDeathFinal_21: -551749989
+      SplatterDeathFinal_22: -1771620865
+      SplatterDeathFinal_23: 1080449331
+      SplatterDeathFinal_24: 871019862
+      SplatterDeathFinal_3: -379439105
+      SplatterDeathFinal_4: 384951577
+      SplatterDeathFinal_5: -219461661
+      SplatterDeathFinal_6: 1663015453
+      SplatterDeathFinal_7: 2110672557
+      SplatterDeathFinal_8: -1668965971
+      SplatterDeathFinal_9: -518601018
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
