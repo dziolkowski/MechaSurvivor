@@ -13,7 +13,7 @@ public class InternalBulletHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) return;
+        if (other.CompareTag("Player") || other.CompareTag("Bullet")) return;
 
         IDamageable target = other.GetComponent<IDamageable>();
         if (target != null)
@@ -21,7 +21,7 @@ public class InternalBulletHandler : MonoBehaviour
             target.TakeDamage(damage);
         }
 
-        Destroy(gameObject, 3f);
+        Destroy(gameObject);
     }
 } 
     
