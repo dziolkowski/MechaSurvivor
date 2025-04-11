@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SplatterHealth : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100; // Maksymalne zdrowie
     [SerializeField] public int currentHealth; // Aktualne zdrowie
+    [SerializeField] bool HasDeathAnimation; // tymczasowe rozwiazanie dla przeciwnikow bez animacji smierci aby poprawnie umierali
     public int scoreValue = 10; // Punkty otrzymywane za zabicie przeciwnika
+    Animator animator;
 
     [Header("Splatter Settings")]
     [SerializeField] private GameObject damageZonePrefab; // Prefab plamy
@@ -15,8 +18,8 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     [SerializeField] private float moveSpeedMultiplier = 0.5f; // Spowolnienie ruchu 
     [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Spowolnienie oborotu
 
-    private void Start()
-    {
+    private void Start() {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
@@ -26,7 +29,13 @@ public class SplatterHealth : MonoBehaviour, IDamageable
         Debug.Log(gameObject + " damage received!");
         if (currentHealth <= 0)
         {
-            Die();
+            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
+            gameObject.GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
+            // WORKAROUND - USUNAC POZNIEJ /L
+            if (HasDeathAnimation) { // jesli ma anmacje smierci, to Die() zostanie wywolana po animacji
+                animator.SetTrigger("Death");
+            }
+            else Die(); // jesli nie ma animacji smierci to wywoluje Die()
         }
     }
 

@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
             // WORKAROUND - USUNAC POZNIEJ /L
             if (HasDeathAnimation) { // jesli ma anmacje smierci, to Die() zostanie wywolana po animacji
                 animator.SetTrigger("Death");
+                print("kaboom");
             }
             else Die(); // jesli nie ma animacji smierci to wywoluje Die()
         }
