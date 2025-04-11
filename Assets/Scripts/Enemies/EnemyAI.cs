@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,7 +40,6 @@ public class EnemyAI : MonoBehaviour
 
         if (findPlayer == null)
         {
-            //Debug.LogWarning("Player not found! Enemy cannot move.");
             return;
         }
 
@@ -67,7 +66,7 @@ public class EnemyAI : MonoBehaviour
 
         // Ustaw cel NavMeshAgent
         agent.SetDestination(retreatPosition);
-        //Debug.Log("Enemy is retreating to position: " + retreatPosition);
+        
 
         yield return new WaitForSeconds(retreatDuration); // Poczekaj na zakonczenie odskoku
 

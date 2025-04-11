@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Prêdkoœæ poruszania siê
-    public float rotationSpeed = 100f; // Prêdkoœæ obracania siê
+    public float moveSpeed = 5f; // Predkosc poruszania sie
+    public float rotationSpeed = 100f; // Predkosc obracania sie
     public Transform cameraTransform; // Transform kamery
     private CharacterController characterController;
+    private float defaultMoveSpeed;
+    private float defaultRotationSpeed;
+    private bool isSlowed = false; // Flaga, zeby uniknac wielokrotnego spowolnienia
 
     void Start()
     {
-        // Pobranie komponentu CharacterController
         characterController = GetComponent<CharacterController>();
+
+        // Zapisujemy domyslne wartosci predkosci przy starcie gry
+        defaultMoveSpeed = moveSpeed;
+        defaultRotationSpeed = rotationSpeed;
     }
 
     void Update()
@@ -21,15 +27,12 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        // Pobranie wejœcia z klawiatury dla ruchu
         float horizontal = Input.GetAxis("Horizontal"); // A/D
         float vertical = Input.GetAxis("Vertical"); // W/S
 
-        // Kierunek ruchu wzglêdem kamery
         Vector3 moveDirection = cameraTransform.forward * vertical + cameraTransform.right * horizontal;
-        moveDirection.y = 0f; // Wyeliminowanie ruchu w osi Y
+        moveDirection.y = 0f;
 
-        // Normalizacja wektora kierunku i poruszanie siê
         if (moveDirection.magnitude > 0.1f)
         {
             moveDirection.Normalize();
@@ -39,7 +42,6 @@ public class PlayerController : MonoBehaviour
 
     void Rotate()
     {
-        // Pobranie wejœcia z klawiatury dla obrotu
         float rotationInput = 0f;
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -50,11 +52,28 @@ public class PlayerController : MonoBehaviour
             rotationInput = 1f;
         }
 
-        // Obracanie postaci
         if (rotationInput != 0f)
         {
             transform.Rotate(Vector3.up, rotationInput * rotationSpeed * Time.deltaTime);
         }
     }
+
+    public void ModifySpeed(float moveMultiplier, float rotationMultiplier)
+    {
+        if (!isSlowed) // Zapobiegamy wielokrotnemu zmniejszaniu predkosci
+        {
+            moveSpeed = defaultMoveSpeed * moveMultiplier;
+            rotationSpeed = defaultRotationSpeed * rotationMultiplier;
+            isSlowed = true;
+        }
+    }
+
+    public void ResetSpeed()
+    {
+        moveSpeed = defaultMoveSpeed;
+        rotationSpeed = defaultRotationSpeed;
+        isSlowed = false;
+    }
 }
+
 
