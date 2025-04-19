@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform player; // Obiekt gracza
     private UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] private float movementSpeed = 3.5f; // Predkosc poruszania sie przeciwnikow 
     [SerializeField] private float retreatDistance = 2f; // Odleglosc odskoku
     [SerializeField] private float retreatDuration = 0.5f; // Czas trwania odskoku
     [SerializeField] private int damageDealt = 2;
@@ -23,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.speed = movementSpeed; // Ustaw predkosc przeciwnika
     }
 
     void Update()

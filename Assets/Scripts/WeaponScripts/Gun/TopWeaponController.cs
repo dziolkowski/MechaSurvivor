@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TopWeaponController : MonoBehaviour
 {
-    [Header("Weapon Settings")]
+    [Header("Gun Settings")]
     public GameObject bulletPrefab; // Prefab pocisku
     public Transform bulletSpawnPoint; // Punkt spawnu pociskow
     public float bulletSpeed = 20f; // Predkosc pociskow
+    public float bulletLifetime = 3f; // Czas zycia pocisku
     public float fireRate = 0.2f; // Czestotliwosc strzalow w sekundach
     public int bulletDamage = 10; // Obrazenia zadawane przez pocisk
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
@@ -54,7 +55,7 @@ public class TopWeaponController : MonoBehaviour
         }
 
         bullet.AddComponent<InternalBulletHandler>().Initialize(bulletDamage);
-        Destroy(bullet, 3f); // Usuwanie pocisku po 3 sekundach gdy w nic nie trafi
+        Destroy(bullet, bulletLifetime); // Usuwanie pocisku po ustawionym czasie
     }
 
 }

@@ -179,4 +179,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionTime: 0.5
+  rocketLifeTime: 3
   explosionEffect: {fileID: 7376211662991525148, guid: a38de28d3c1f6d84185c8f173c7f8ff0, type: 3}

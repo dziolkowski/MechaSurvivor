@@ -8,6 +8,7 @@ public class KamikazeAI : MonoBehaviour, IDamageable
     public Transform player;
     private NavMeshAgent agent;
 
+    [SerializeField] private float movementSpeed = 3.5f; // Predkosc poruszania sie kamikadze
     [SerializeField] private float detectionRadius = 10f; // Promien wykrywania gracza
     [SerializeField] private float explosionRadius = 5f; // Promien eksplozji
     [SerializeField] private int damageDealt = 10; // Obrazenia eksplozji
@@ -19,6 +20,7 @@ public class KamikazeAI : MonoBehaviour, IDamageable
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = movementSpeed; // Ustaw predkosc kamikaze
         FindPlayer();
     }
 
