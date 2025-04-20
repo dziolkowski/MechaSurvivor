@@ -20,6 +20,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        PlayerShield shield = GetComponent<PlayerShield>();
+        if (shield != null && shield.AbsorbDamage(damage))
+        {            
+            return;
+        }
+
         currentHealth -= damage;
         Debug.Log("Player takes damage. Current health: " + currentHealth);
 
