@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; // Predkosc poruszania sie
     public float rotationSpeed = 100f; // Predkosc obracania sie
     public Transform cameraTransform; // Transform kamery
+    public float rotateCooldown = 1f; // czas cooldownu w sekundach
+    private float lastRotateTime = -Mathf.Infinity;
     private CharacterController characterController;
     private float defaultMoveSpeed;
     private float defaultRotationSpeed;
@@ -46,7 +48,6 @@ public class PlayerController : MonoBehaviour
     {
         float rotationInput = 0f;
 
-        // Obrot myszk¹
         if (Input.GetKey(KeyCode.Mouse0))
         {
             rotationInput = -1f;
@@ -61,18 +62,23 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(Vector3.up, rotationInput * rotationSpeed * Time.deltaTime);
         }
 
-        // Szybkie obroty klawiszami
-        if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
+        if (Time.time - lastRotateTime >= rotateCooldown && !isRotating)
         {
-            StartCoroutine(SmoothRotate(-90f));
-        }
-        else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90°
-        {
-            StartCoroutine(SmoothRotate(90f));
-        }
-        else if (Input.GetKeyDown(KeyCode.Space)) // 180°
-        {
-            StartCoroutine(SmoothRotate(180f));
+            if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
+            {
+                StartCoroutine(SmoothRotate(-90f));
+                lastRotateTime = Time.time;
+            }
+            else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90°
+            {
+                StartCoroutine(SmoothRotate(90f));
+                lastRotateTime = Time.time;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space)) // 180°
+            {
+                StartCoroutine(SmoothRotate(180f));
+                lastRotateTime = Time.time;
+            }
         }
     }
 
