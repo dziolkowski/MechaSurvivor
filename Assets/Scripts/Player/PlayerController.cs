@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float defaultMoveSpeed;
     private float defaultRotationSpeed;
     private bool isSlowed = false; // Flaga, zeby uniknac wielokrotnego spowolnienia
+    private bool isRotating = false;
 
     void Start()
     {
@@ -62,15 +64,15 @@ public class PlayerController : MonoBehaviour
         // Szybkie obroty klawiszami
         if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
         {
-            transform.Rotate(Vector3.up, -90f);
+            StartCoroutine(SmoothRotate(-90f));
         }
         else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90°
         {
-            transform.Rotate(Vector3.up, 90f);
+            StartCoroutine(SmoothRotate(90f));
         }
         else if (Input.GetKeyDown(KeyCode.Space)) // 180°
         {
-            transform.Rotate(Vector3.up, 180f);
+            StartCoroutine(SmoothRotate(180f));
         }
     }
 
@@ -89,6 +91,30 @@ public class PlayerController : MonoBehaviour
         moveSpeed = defaultMoveSpeed;
         rotationSpeed = defaultRotationSpeed;
         isSlowed = false;
+    }
+
+    IEnumerator SmoothRotate(float angle) 
+    {
+        if (isRotating) yield break;
+
+        isRotating = true;
+
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = startRotation * Quaternion.Euler(0f, angle, 0f);
+
+        float duration = 1f; // Czas obrotu
+        float elapsed = 0f;
+
+        while (elapsed < duration) 
+        { 
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.rotation = endRotation;
+        isRotating = false;
+                            
     }
 }
 

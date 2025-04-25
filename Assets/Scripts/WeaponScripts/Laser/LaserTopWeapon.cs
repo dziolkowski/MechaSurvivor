@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LaserTopWeapon : MonoBehaviour
 {
+    [Header("Laser Settings")]
     [SerializeField] private float laserWidth = 0.1f; // Szerokosc lasera 
     public GameObject laserPrefab; // Prefab lasera
     public Transform laserOrigin; // Punkt poczatkowy lasera

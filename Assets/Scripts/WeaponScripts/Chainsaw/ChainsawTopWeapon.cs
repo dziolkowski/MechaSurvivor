@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ChainsawTopWeapon : MonoBehaviour
 {
+    [Header("Chainsaw Settings")]
     [SerializeField] private int chainsawDamage = 10; // Ilosc zadawanych obrazen
-    [SerializeField] private float timeToAttack = 1f; // Czas miedzy atakami
-    [SerializeField] private float damageRadius = 2f; // Promien obszaru zadawania obrazen
+    [SerializeField] private float areaSize = 2f; // Rozmiar obszaru dzialania 
+    [SerializeField] private float timeToAttack = 1f; // Odstep czasu miedzy kolejnymi atakami
+    [SerializeField] private Transform attackPoint; // Punkt odniesienia, z ktorego liczymy przesuniecie obszaru
 
-    private float attackCooldown = 0f; // Licznik czasu od ostatniego ataku
+    private float attackCooldown = 0f; // Czas, jaki minal od ostatniego ataku
 
     void Update()
     {
@@ -18,30 +20,34 @@ public class ChainsawTopWeapon : MonoBehaviour
         // Jezeli minelo wystarczajaco czasu od ostatniego ataku
         if (attackCooldown >= timeToAttack)
         {
-            AttackEnemiesInRange(); // Zadaj obrazenia przeciwnikom w poblizu
-            attackCooldown = 0f; // Zresetuj licznik
+            AttackEnemiesInRange(); 
+            attackCooldown = 0f; 
         }
     }
 
-    // Metoda atakujaca przeciwnikow w poblizu
+    // Metoda sprawdzajaca, czy w zasiegu obszaru ataku sa przeciwnicy
     void AttackEnemiesInRange()
     {
-        // Znajdz wszystkie obiekty w promieniu damageRadius
-        Collider[] hits = Physics.OverlapSphere(transform.position, damageRadius);
+        // Srodek obszaru ataku znajduje sie przed punktem odniesienia na odleglosc areaSize
+        Vector3 attackPosition = attackPoint.position + attackPoint.forward * areaSize;
+
+        // Wyszukiwanie obiektow w promieniu areaSize
+        Collider[] hits = Physics.OverlapSphere(attackPosition, areaSize);
 
         foreach (Collider hit in hits)
         {
+            // Jezeli obiekt ma tag "Enemy", zadaj obrazenia
             if (hit.CompareTag("Enemy"))
             {
-                DealDamage(hit.gameObject); // Zadaj obrazenia przeciwnikowi
+                DealDamage(hit.gameObject);
             }
         }
     }
 
-    // Metoda do zadawania obrazen przeciwnikowi
+    // Zadaje obrazenia przeciwnikowi, jezeli ma on komponent IDamageable
     void DealDamage(GameObject target)
     {
-        EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
+        IDamageable enemyHealth = target.GetComponent<IDamageable>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(chainsawDamage);
@@ -66,10 +72,16 @@ public class ChainsawTopWeapon : MonoBehaviour
         }
     }
 
-    // Rysowanie promienia obrazen w edytorze Unity
+    // Wizualizacja zasiegu ataku w edytorze Unity
     private void OnDrawGizmosSelected()
     {
+        if (attackPoint == null)
+            return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, damageRadius);
+
+        // Pokazujemy srodek obszaru przed bronia o wartosc areaSize
+        Vector3 attackPosition = attackPoint.position + attackPoint.forward * areaSize;
+        Gizmos.DrawWireSphere(attackPosition, areaSize);
     }
 }

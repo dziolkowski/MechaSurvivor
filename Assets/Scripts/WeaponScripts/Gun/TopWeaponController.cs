@@ -7,10 +7,13 @@ public class TopWeaponController : MonoBehaviour
     [Header("Gun Settings")]
     public GameObject bulletPrefab; // Prefab pocisku
     public Transform bulletSpawnPoint; // Punkt spawnu pociskow
+    public int projectileAmount = 1; // Ilosc pociskow
+    public float delayBetweenProjectiles = 0.05f; // Odstep miedzy wytrzalami
     public float bulletSpeed = 20f; // Predkosc pociskow
     public float bulletLifetime = 3f; // Czas zycia pocisku
     public float fireRate = 0.2f; // Czestotliwosc strzalow w sekundach
     public int bulletDamage = 10; // Obrazenia zadawane przez pocisk
+    public Vector3 projectileSize = Vector3.one; // Wielkosc pocisku
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
 
     void Update()
@@ -42,20 +45,32 @@ public class TopWeaponController : MonoBehaviour
     {
         if (bulletPrefab == null || bulletSpawnPoint == null)
         {
-            Debug.LogError("Brakuje prefabu pocisku lub punktu spawnu!");
+            Debug.LogError("Prefab pocisku lub punkt startowy nie s¹ przypisane!");
             return;
         }
 
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>(); // Ustawienie predkosci pocisku 
+        StartCoroutine(ShootBurst());
+    }
 
-        if (rb != null)
+    IEnumerator ShootBurst()
+    {
+        for (int i = 0; i < projectileAmount; i++)
         {
-            rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
-        }
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            bullet.transform.localScale = projectileSize;
 
-        bullet.AddComponent<InternalBulletHandler>().Initialize(bulletDamage);
-        Destroy(bullet, bulletLifetime); // Usuwanie pocisku po ustawionym czasie
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.velocity = bulletSpawnPoint.forward * bulletSpeed;
+            }
+
+            bullet.AddComponent<InternalBulletHandler>().Initialize(bulletDamage);
+            Destroy(bullet, bulletLifetime);
+
+            if (i < projectileAmount - 1)
+                yield return new WaitForSeconds(delayBetweenProjectiles);
+        }
     }
 
 }
