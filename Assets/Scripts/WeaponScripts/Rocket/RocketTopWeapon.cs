@@ -10,7 +10,7 @@ public class RocketTopWeapon : MonoBehaviour
     public float rocketSpeed = 20f; // Predkosc rakiety
     public float explosionRadius = 5f; // Promien eksplozji
     public float damage = 50f; // Obrazenia eksplozji
-    public Vector3 projectileSize = Vector3.one; // Wielkosc pocisku
+    public float projectileSize = 1f; // Wielkosc pocisku
     private float nextFireTime = 0f;
 
     void Update()
@@ -46,7 +46,7 @@ public class RocketTopWeapon : MonoBehaviour
     void FireRocket()
     {
         GameObject rocket = Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
-        rocket.transform.localScale = projectileSize; 
+        rocket.transform.localScale = Vector3.one * projectileSize;
         Rigidbody rb = rocket.GetComponent<Rigidbody>();
         if (rb != null)
         {

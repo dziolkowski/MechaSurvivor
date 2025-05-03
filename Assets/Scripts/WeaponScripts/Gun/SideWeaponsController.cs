@@ -13,7 +13,7 @@ public class SideWeaponsController : MonoBehaviour
     public float bulletLifetime = 3f; // Czas zycia pocisku 
     public float fireRate = 0.2f; // Czestotliwosc strzalow w sekundach
     public int bulletDamage = 10; // Ilosc obrazen zadawanych przez pocisk
-    public Vector3 projectileSize = Vector3.one; // Wielkosc pocisku
+    public float projectileSize = 0.25f; // Wielkosc pocisku
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
 
     void Update()
@@ -44,7 +44,8 @@ public class SideWeaponsController : MonoBehaviour
         for (int i = 0; i < projectileAmount; i++)
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            bullet.transform.localScale = projectileSize;
+            bullet.layer = LayerMask.NameToLayer("Bullet");
+            bullet.transform.localScale = Vector3.one * projectileSize; 
 
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (rb != null)

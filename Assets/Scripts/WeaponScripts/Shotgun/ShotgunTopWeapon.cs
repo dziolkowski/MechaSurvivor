@@ -13,7 +13,7 @@ public class ShotgunTopWeapon : MonoBehaviour
     public int projectileAmount = 4; // Liczba pociskow wystrzelonych na raz
     public float spreadAngle = 10f; // Kat rozrzutu pociskow
     public int bulletDamage = 25; // Obrazenia zadawane przez pocisk
-    public Vector3 projectileSize = Vector3.one; // Wielkosc pocisku
+    public float projectileSize = 0.25f; // Wielkosc pocisku
     private float nextFireTime = 0f;
 
     void Update()
@@ -58,7 +58,8 @@ public class ShotgunTopWeapon : MonoBehaviour
 
             // Tworzenie pocisku
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
-            bullet.transform.localScale = projectileSize;
+            bullet.layer = LayerMask.NameToLayer("Bullet");
+            bullet.transform.localScale = Vector3.one * projectileSize;
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
 
             // Ustawianie predkosci pocisku
