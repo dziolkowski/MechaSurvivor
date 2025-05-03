@@ -14,7 +14,7 @@ public class SplatterHealth : MonoBehaviour, IDamageable
 
     [Header("Splatter Settings")]
     [SerializeField] private GameObject damageZonePrefab; // Prefab plamy
-    [SerializeField] private float splatterLifetime = 10f; // Czas, po ktorym plama znika
+    [SerializeField] private float stainLifetime = 10f; // Czas, po ktorym plama znika
     [SerializeField] private float moveSpeedMultiplier = 0.5f; // Spowolnienie ruchu 
     [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Spowolnienie oborotu
 
@@ -54,7 +54,7 @@ public class SplatterHealth : MonoBehaviour, IDamageable
             }
 
             GameObject splatter = Instantiate(damageZonePrefab, spawnPosition, Quaternion.identity);
-            splatter.AddComponent<DamageZoneHandler>().Initialize(splatterLifetime, moveSpeedMultiplier, rotationSpeedMultiplier);
+            splatter.AddComponent<DamageZoneHandler>().Initialize(stainLifetime, moveSpeedMultiplier, rotationSpeedMultiplier);
         }
 
         ScoreManager.Instance.AddPoints(scoreValue); 
