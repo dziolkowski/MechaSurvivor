@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2c2be3430b6eea4d8711554f5f5d9e5
+guid: ca919ae9959725645b40530137cd4e14
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,139 +95,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UIpoprawki_6
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 4086
-        width: 116
-        height: 115
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74245379aebd36a41badfde82477319c
-      internalID: 379561950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_8
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 2188
-        width: 1409
-        height: 2031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2cbbc13b4de339942a33d993561445d8
-      internalID: -1844416159
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_9
-      rect:
-        serializedVersion: 2
-        x: 1553
-        y: 2188
-        width: 1406
-        height: 2031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8e186371f5637c4096553c79f634e0e
-      internalID: -1933423567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_10
-      rect:
-        serializedVersion: 2
-        x: 2963
-        y: 2188
-        width: 1409
-        height: 2031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db8e8035f020dcd4a8161b5ce6d27dd3
-      internalID: -1127869206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_11
-      rect:
-        serializedVersion: 2
-        x: 5787
-        y: 2188
-        width: 1399
-        height: 2031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 111d5e08973399b4b87e726a8fcbe7d5
-      internalID: -1565256789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_12
-      rect:
-        serializedVersion: 2
-        x: 4374
-        y: 2188
-        width: 1410
-        height: 2031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 31b8e5351f541d74d8967b2b7649352a
-      internalID: -1419295616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIpoprawki_14
+      name: gameoverprzyciski_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 1504
-        height: 2149
+        y: 298.5
+        width: 853
+        height: 298.5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +109,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b77f887ba8909644db6ccba4440fe05f
-      internalID: -134517416
+      spriteID: ac9ed8147d97d14448b78553ff87fa16
+      internalID: -613341970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameoverprzyciski_1
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 298.5
+        width: 853
+        height: 298.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ccc778137b4c14795bca710198dd3b
+      internalID: 742344991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameoverprzyciski_2
+      rect:
+        serializedVersion: 2
+        x: 1706
+        y: 298.5
+        width: 853
+        height: 298.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3819b3fdfca1fef4d86d9235edc6873a
+      internalID: 1555565279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameoverprzyciski_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.5
+        width: 853
+        height: 298.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 249eae74a6a5e7e4688164bbf56c06ae
+      internalID: 655533601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameoverprzyciski_4
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 0.5
+        width: 853
+        height: 298.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 475a9d378de0c934e99515d0165e8e1c
+      internalID: 53478667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameoverprzyciski_5
+      rect:
+        serializedVersion: 2
+        x: 1706
+        y: 0.5
+        width: 853
+        height: 298.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0086004c956acfd4bac65b2456f7d24b
+      internalID: 1635587763
       vertices: []
       indices: 
       edges: []
@@ -244,7 +223,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5ea6c675abec3bd418eb497b67cdc76f
+    spriteID: c1705263b7ed4264e87750cec00343d4
     internalID: 0
     vertices: []
     indices: 
@@ -252,23 +231,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UIpoprawki_0: -1612763216
-      UIpoprawki_1: -1219182547
-      UIpoprawki_10: -1127869206
-      UIpoprawki_11: -1565256789
-      UIpoprawki_12: -1419295616
-      UIpoprawki_13: -563879442
-      UIpoprawki_14: -134517416
-      UIpoprawki_15: -2100685034
-      UIpoprawki_16: -1368157866
-      UIpoprawki_2: -1634860358
-      UIpoprawki_3: -797155629
-      UIpoprawki_4: -1564755407
-      UIpoprawki_5: -210958899
-      UIpoprawki_6: 379561950
-      UIpoprawki_7: -576518162
-      UIpoprawki_8: -1844416159
-      UIpoprawki_9: -1933423567
+      gameoverprzyciski_0: -613341970
+      gameoverprzyciski_1: 742344991
+      gameoverprzyciski_2: 1555565279
+      gameoverprzyciski_3: 655533601
+      gameoverprzyciski_4: 53478667
+      gameoverprzyciski_5: 1635587763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
