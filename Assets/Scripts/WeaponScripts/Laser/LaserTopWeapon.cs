@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LaserTopWeapon : MonoBehaviour
 {
+    [Header("Laser Settings")]
+    [SerializeField] private float laserWidth = 0.1f; // Szerokosc lasera 
     public GameObject laserPrefab; // Prefab lasera
     public Transform laserOrigin; // Punkt poczatkowy lasera
     public float laserRange = 100f; // Maksymalny zasieg lasera
@@ -85,15 +87,11 @@ public class LaserTopWeapon : MonoBehaviour
 
     void AdjustLaser(Vector3 targetPoint)
     {
-        // Obliczanie kierunku i odleglosci miedzy poczatkiem a koncem lasera
         Vector3 direction = targetPoint - laserOrigin.position;
         float distance = direction.magnitude;
 
-        // Ustawianie pozycji i skali lasera
-        currentLaser.transform.position = laserOrigin.position + direction / 2f; // Laser na srodku
-        currentLaser.transform.localScale = new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, distance); // Dopasowanie dlugosci
-
-        // Ustawianie rotacji lasera w kierunku celu
+        currentLaser.transform.position = laserOrigin.position + direction / 2f;
+        currentLaser.transform.localScale = new Vector3(laserWidth, currentLaser.transform.localScale.y, distance);
         currentLaser.transform.rotation = Quaternion.LookRotation(direction);
     }
 

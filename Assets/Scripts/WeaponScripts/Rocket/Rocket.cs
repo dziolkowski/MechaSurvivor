@@ -4,11 +4,23 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    [SerializeField] private float explosionTime = 1f;
+    [SerializeField] private float explosionTime = 1f; // Czas trwania efektu eksplozji
+    [SerializeField] private float rocketLifeTime = 3f; // Czas ¿ycia rakiety
+    private bool hasExploded = false;
     private float explosionRadius;
     private float damage;
     public GameObject explosionEffect; // Prefab efektu eksplozji
 
+
+    void Start()
+    {
+        Invoke(nameof(ExplodeByTimeout), rocketLifeTime);    
+    }
+
+    void ExplodeByTimeout() 
+    {
+        Explode(transform.position);
+    }
     public void SetParameters(float radius, float dmg)
     {
         explosionRadius = radius;
@@ -27,6 +39,10 @@ public class Rocket : MonoBehaviour
 
     void Explode(Vector3 explosionPoint)
     {
+        if (hasExploded) return;
+        hasExploded = true;
+
+
         // Efekt eksplozji
         if (explosionEffect != null)
         {
@@ -49,10 +65,10 @@ public class Rocket : MonoBehaviour
                 GameObject enemy = nearbyObject.gameObject;
 
                 //Jezeli przeciwnik nie otrzymal obrazen wczesniej, to je otrzymuje
-                if (!damagedEnemies.Contains(enemy)) 
-                { 
+                if (!damagedEnemies.Contains(enemy))
+                {
                     IDamageable enemyHealth = enemy.GetComponent<IDamageable>();
-                    if (enemyHealth != null) 
+                    if (enemyHealth != null)
                     {
                         enemyHealth.TakeDamage(Mathf.RoundToInt(damage));
                         damagedEnemies.Add(enemy); // Przeciwnik dodany do listy trafionych
@@ -61,7 +77,8 @@ public class Rocket : MonoBehaviour
             }
         }
 
-        Destroy(gameObject); // Zniszczenie rakiety
+        Destroy(gameObject); // Zniszczenie rakiety 
     }
 }
+
 

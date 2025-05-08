@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2533192146529562880}
   - component: {fileID: 1499225392835572401}
   - component: {fileID: 4528246409693494680}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,9 +92,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1329168837050447884}
-  m_Layer: 0
-  m_Name: Weapon Socket 3
-  m_TagString: Untagged
+  - component: {fileID: 3363198858307983586}
+  m_Layer: 3
+  m_Name: Weapon Socket Right 3
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +115,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 349868894350556139}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &3363198858307983586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695359498597294214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7d779013556647ad6956ddfa11743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 1
 --- !u!1 &2146676201243870660
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,9 +137,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621671955677405054}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: playerModel
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,9 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2878342530667267490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon Socket Top
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,9 +209,10 @@ GameObject:
   - component: {fileID: 1372520552753357601}
   - component: {fileID: 2976112122283082659}
   - component: {fileID: 8232863062396812122}
-  m_Layer: 0
+  - component: {fileID: 1200188335175902225}
+  m_Layer: 3
   m_Name: TopPart
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,6 +295,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6d51b2727e3df4ca87f1b642daeea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1200188335175902225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038729359138420423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7d779013556647ad6956ddfa11743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 0
 --- !u!1 &3202470846871413882
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,9 +319,9 @@ GameObject:
   - component: {fileID: 8510372688670440684}
   - component: {fileID: 132732510050959353}
   - component: {fileID: 4438793381296647371}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LowerBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,9 +400,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7302733997883706833}
-  m_Layer: 0
-  m_Name: Weapon Socket 2
-  m_TagString: Untagged
+  - component: {fileID: 5819481828165661596}
+  m_Layer: 3
+  m_Name: Weapon Socket Up 2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,6 +423,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 349868894350556139}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &5819481828165661596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3601802383233974264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7d779013556647ad6956ddfa11743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 1
 --- !u!1 &3981140787075589614
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,9 +445,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6836537979619292704}
-  m_Layer: 0
-  m_Name: Weapon Socket 1
-  m_TagString: Untagged
+  - component: {fileID: 367871480091315232}
+  m_Layer: 3
+  m_Name: Weapon Socket Left 1
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,6 +468,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 349868894350556139}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &367871480091315232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981140787075589614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7d779013556647ad6956ddfa11743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 1
 --- !u!1 &5787743371495823090
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,9 +492,9 @@ GameObject:
   - component: {fileID: 2682248541254894575}
   - component: {fileID: 6013466364519567659}
   - component: {fileID: 594032633446848218}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -519,9 +575,9 @@ GameObject:
   - component: {fileID: 349868894350556139}
   - component: {fileID: 9110409762207812994}
   - component: {fileID: 949406358200287072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpperBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,9 +660,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 469272479990939969}
-  m_Layer: 0
-  m_Name: Weapon Socket 4
-  m_TagString: Untagged
+  - component: {fileID: 5993487307364317136}
+  m_Layer: 3
+  m_Name: Weapon Socket Down 4
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -626,6 +683,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 349868894350556139}
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &5993487307364317136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888948116718357647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7d779013556647ad6956ddfa11743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 1
 --- !u!1 &7908879181693607227
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,6 +709,7 @@ GameObject:
   - component: {fileID: 4774593318551299893}
   - component: {fileID: 5914361468160796421}
   - component: {fileID: 6885312143575750995}
+  - component: {fileID: 3780706300452494875}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -726,6 +797,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 100
   cameraTransform: {fileID: 0}
+  rotateCooldown: 1
 --- !u!114 &6885312143575750995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,9 +810,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00cde44c1a3a9004182c9069d4d5b039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  respawnPoint: {fileID: 2394313093586403951, guid: ab264944f5a891540a3068194c491339, type: 3}
-  respawnDelay: 3
+  currentHealth: 0
+  maxHealth: 100
+  gameOverManager: {fileID: 0}
+  healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
+--- !u!114 &3780706300452494875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7908879181693607227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ae6fc8fcdaa054e8a057324bcf8ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldPoints: 0
 --- !u!1 &8850923275715035777
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,9 +839,9 @@ GameObject:
   - component: {fileID: 6872961189896673976}
   - component: {fileID: 5784495067103286895}
   - component: {fileID: 4526017945081148062}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,9 +922,9 @@ GameObject:
   - component: {fileID: 3903201433258453699}
   - component: {fileID: 4075734439390600752}
   - component: {fileID: 1087997728867725831}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Leg3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
