@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-    public float startTime = 60f; // Czas startowy w sekundach
+    public float gameLength = 60f; // Czas startowy w sekundach
     private float currentTime; // Aktualny czas
     public TextMeshProUGUI timerText; // Tekst na UI
     public GameOverManager gameOverManager; // Referencja do GameOverManager
 
     private void Start()
     {
-        currentTime = startTime; // Poczatkowe ustawienie czasu
+        currentTime = gameLength; // Poczatkowe ustawienie czasu
         UpdateTimerUI();
     }
 
@@ -23,7 +23,7 @@ public class GameTimer : MonoBehaviour
             if (currentTime > 0) 
         { 
             currentTime -= Time.deltaTime; // Odliczanie czasu
-            currentTime = Mathf.Clamp(currentTime, 0, startTime);
+            currentTime = Mathf.Clamp(currentTime, 0, gameLength);
 
             UpdateTimerUI(); // Aktualizacja tekstu na UI
 

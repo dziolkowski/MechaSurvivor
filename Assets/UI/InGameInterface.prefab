@@ -8322,7 +8322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0b6c4a2f1e14e4b94f36692a78af31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 600
+  gameLength: 600
   timerText: {fileID: 5309928509245658756}
   gameOverManager: {fileID: 7687397182775994007}
 --- !u!114 &7760368374768999621
