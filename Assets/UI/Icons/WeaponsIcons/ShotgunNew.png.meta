@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d7275d5292488d94fa1cfd54b9d49d8d
+guid: 8303e67cbde623745b0c48aa26d22ee5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -91,26 +91,38 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GunNew_0
+      name: ShotgunNew_0
       rect:
         serializedVersion: 2
-        x: 246
+        x: 130
         y: 0
-        width: 228
-        height: 344
+        width: 470
+        height: 500
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77ec5796cc4108245b0bdc1a73c6a848
-      internalID: -1801457183
+      spriteID: c43d3a08a4bfe7a4083d8d5b4f10e2a8
+      internalID: 663564146
       vertices: []
       indices: 
       edges: []
@@ -118,7 +130,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9349ec7026b670640b060b82a066ac33
+    spriteID: 02abf0e396f98b44a8c6a47fa5e0ff46
     internalID: 0
     vertices: []
     indices: 
@@ -126,7 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GunNew_0: -1801457183
+      ShotgunNew_0: 663564146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

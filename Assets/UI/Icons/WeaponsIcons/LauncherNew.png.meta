@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 97b732776de60884abe1923dbf633363
+guid: 5763de340fcec004bb368a1956a51991
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -91,26 +91,38 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LaserNew_0
+      name: LauncherNew_0
       rect:
         serializedVersion: 2
-        x: 235
+        x: 130
         y: 0
-        width: 251
-        height: 242
+        width: 470
+        height: 500
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3b146321239e284eb4198f557ac986b
-      internalID: -1408528642
+      spriteID: ba66772ab3674904b9dd496dc056bbdc
+      internalID: -253127009
       vertices: []
       indices: 
       edges: []
@@ -118,7 +130,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4aceba7f0d9bce943b14c09e2adabf93
+    spriteID: 3d675f19ce9d4a54a8affb5a454ce2a9
     internalID: 0
     vertices: []
     indices: 
@@ -126,7 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LaserNew_0: -1408528642
+      LauncherNew_0: -253127009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
