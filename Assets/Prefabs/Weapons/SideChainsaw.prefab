@@ -4926,7 +4926,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &5518724995759315641
+--- !u!1 &4977404707649699003
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4934,21 +4934,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3264392397011266931}
-  m_Layer: 3
+  - component: {fileID: 760607596990382123}
+  m_Layer: 0
   m_Name: Area Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3264392397011266931
+--- !u!4 &760607596990382123
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5518724995759315641}
+  m_GameObject: {fileID: 4977404707649699003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4990,7 +4990,7 @@ Transform:
   m_Children:
   - {fileID: 5319053158321605573}
   - {fileID: 3333213731867702841}
-  - {fileID: 3264392397011266931}
+  - {fileID: 760607596990382123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7092190522441998570
@@ -5029,7 +5029,7 @@ MonoBehaviour:
   chainsawDamage: 50
   areaSize: 2
   timeToAttack: 1
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 760607596990382123}
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0

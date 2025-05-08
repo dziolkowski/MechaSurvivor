@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a67e1175b4ee845a0f3fd997c52069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserWidth: 0.1
   laserPrefab: {fileID: 5793367457703852492, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
   laserOrigin: {fileID: 5054636513551007043}
   laserRange: 100
@@ -97,6 +98,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0
