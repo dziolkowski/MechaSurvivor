@@ -9,7 +9,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] public int currentHealth;
     [SerializeField] bool HasDeathAnimation; // tymczasowe rozwiazanie dla przeciwnikow bez animacji smierci aby poprawnie umierali
 
-    public int scoreValue = 10;
+    public int scoreValue = 10; 
+    public int expValue = 10;
     Animator animator;
 
     void Start()
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     {
         //print("dead");
         ScoreManager.Instance.AddPoints(scoreValue); // Dodaje punkty po smierci przeciwnika
+        FindObjectOfType<PlayerExperience>().AddExperience(expValue); // Dostajemy exp za punkty
         Destroy(gameObject); // Niszczenie przeciwnika po smierci
     }
 }
