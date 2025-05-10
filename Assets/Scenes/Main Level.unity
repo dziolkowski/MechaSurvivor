@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5296,7 +5296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &321399533
 Transform:
   m_ObjectHideFlags: 0
@@ -5340,7 +5340,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321399532}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -5940,6 +5940,14 @@ PrefabInstance:
       propertyPath: gameLength
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 2109677976590036417, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -16.880005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109677976590036417, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21.388977
+      objectReference: {fileID: 0}
     - target: {fileID: 4397196537913093649, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5951,6 +5959,10 @@ PrefabInstance:
     - target: {fileID: 4497780109471974753, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4817562903364618732, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0024414062
       objectReference: {fileID: 0}
     - target: {fileID: 5268983154456283296, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_Name
@@ -7496,6 +7508,92 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451043443}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &459825265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 459825266}
+  - component: {fileID: 459825268}
+  - component: {fileID: 459825267}
+  m_Layer: 0
+  m_Name: Boss Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &459825266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459825265}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 61.30487, y: 31.243788, z: 47.38888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1179267048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &459825267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459825265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acec0b62d03e634c8134422190ff031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Spawn Miniboss Variation 1
+    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    eventType: 3
+    hasTriggered: 0
+  - eventName: Spawn Miniboss Variation 2
+    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    eventType: 3
+    hasTriggered: 0
+  triggerTimes:
+  - 300
+  - 510
+  spawnPoints:
+  - {fileID: 1167124167}
+  - {fileID: 321399533}
+  - {fileID: 1541370308}
+  - {fileID: 1092391268}
+  autoStart: 1
+  randomEvents: 1
+  loopEvents: 0
+--- !u!114 &459825268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459825265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32b75f9f607c548b63f65e25d21968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Spawn boss
+    timeToTrigger: 600
+    targetObject: {fileID: 0}
+    eventType: 3
+    spawnLocation: {fileID: 0}
+    hasTriggered: 0
+  autoStart: 1
+  loopEvents: 0
 --- !u!1 &465641482
 GameObject:
   m_ObjectHideFlags: 0
@@ -20173,7 +20271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1092391268
 Transform:
   m_ObjectHideFlags: 0
@@ -20217,7 +20315,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092391267}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21519,7 +21617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167124167
 Transform:
   m_ObjectHideFlags: 0
@@ -21563,7 +21661,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167124166}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21925,6 +22023,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175364160}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1179267047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179267048}
+  m_Layer: 0
+  m_Name: Event Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179267048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179267047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -98.43643, y: 26.3206, z: -101.8689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1862175879}
+  - {fileID: 459825266}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197367082
 GameObject:
   m_ObjectHideFlags: 0
@@ -28259,7 +28390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1541370308
 Transform:
   m_ObjectHideFlags: 0
@@ -28303,7 +28434,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541370307}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -33913,6 +34044,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847504419}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1862175877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1862175879}
+  - component: {fileID: 1862175878}
+  m_Layer: 0
+  m_Name: Weapon Events
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1862175878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862175877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b90044828759b14682d375ddb9df7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Civil Sector Weapon
+    targetObject: {fileID: 1167124166}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Industrial Sector Weapon
+    targetObject: {fileID: 321399532}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Commercial Sector Weapon
+    targetObject: {fileID: 1541370307}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Train Station Weapon
+    targetObject: {fileID: 1092391267}
+    eventType: 1
+    hasTriggered: 0
+  autoStart: 1
+  randomEvents: 1
+  triggerTimes:
+  - 60
+  - 180
+  - 300
+  - 420
+--- !u!4 &1862175879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862175877}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 98.43643, y: 0.5793991, z: 101.8689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1179267048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1868323286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38017,3 +38216,4 @@ SceneRoots:
   - {fileID: 1945262355}
   - {fileID: 562481009}
   - {fileID: 502279399}
+  - {fileID: 1179267048}
