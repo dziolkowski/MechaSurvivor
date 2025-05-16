@@ -80,9 +80,7 @@ public class EnemyAI : MonoBehaviour
         if (other.CompareTag("Player"))// Sprawdzanie, czy przeciwnik wszedl w kolizje z graczem
         {
             Debug.Log("Enemy collided with player!");
-            if (GetComponent<EnemyHealth>().currentHealth <= 0) { // jesli przeciwnik ma 0 hp, nie zadaje obrazen przy stycznosci /L
-                return;
-            }
+            
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();// Pobieranie komponentu PlayerHealth z obiektu gracza
             if (playerHealth != null)
             {
