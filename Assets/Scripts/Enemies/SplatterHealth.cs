@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SplatterHealth : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
+    [SerializeField] private string enemyType; // The type of the enemy
     [SerializeField] private int maxHealth = 100; // Maksymalne zdrowie
     [SerializeField] public int currentHealth; // Aktualne zdrowie
     [SerializeField] bool HasDeathAnimation; // tymczasowe rozwiazanie dla przeciwnikow bez animacji smierci aby poprawnie umierali
@@ -18,9 +19,37 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     [SerializeField] private float moveSpeedMultiplier = 0.5f; // Spowolnienie ruchu 
     [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Spowolnienie oborotu
 
+    private EnemyManager enemyManager;
+
     private void Start() {
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+
+        // Find the EnemyManager instance in the scene
+        enemyManager = FindAnyObjectByType<EnemyManager>();
+        if (enemyManager == null)
+        {
+            Debug.LogWarning("EnemyManager not found! Defaulting maxHealth to 100.");
+        }
+
+        // Initialize max health and current health based on the enemy type
+        SetEnemyType(enemyType);
+    }
+
+    /// <summary>
+    /// Sets the enemy's type and updates its max health based on EnemyManager's settings.
+    /// </summary>
+    /// <param name="type">The enemy type to set.</param>
+    public void SetEnemyType(string type)
+    {
+        enemyType = type;
+
+        // Get the corresponding max health value from the EnemyManager
+        if (enemyManager != null)
+        {
+            maxHealth = enemyManager.GetEnemyHealth(enemyType);
+        }
+
+        currentHealth = maxHealth; // Initialize current health
     }
 
     public void TakeDamage(int damage)
