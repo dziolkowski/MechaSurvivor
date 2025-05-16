@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6889666828957524147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651574186434453707}
+  - component: {fileID: 7570602336065831071}
+  m_Layer: 0
+  m_Name: OutsideCameraSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1651574186434453707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889666828957524147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7570602336065831071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889666828957524147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd762a9a3f1b1134cace54466f5960e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnConfigs:
+  - enemyName: Worm
+    prefab: {fileID: 4323813639670524191, guid: 51c5384528d288b479de7ac7496c476b, type: 3}
+    spawnInterval: 0.5
+    canSpawn: 1
+  - enemyName: Maw
+    prefab: {fileID: 4323813639670524191, guid: d6c1faefb620821469014858124b280b, type: 3}
+    spawnInterval: 1
+    canSpawn: 0
+  - enemyName: Kamikaze
+    prefab: {fileID: 4323813639670524191, guid: 238fd877be4b2914192833d087cd3bcd, type: 3}
+    spawnInterval: 0.7
+    canSpawn: 0
+  - enemyName: Splatter
+    prefab: {fileID: 4323813639670524191, guid: ab16593521fe6b74bbfa894332bfa486, type: 3}
+    spawnInterval: 0.9
+    canSpawn: 0
+  spawnRadius: 90
+  spawnMargin: 10
+  playerTransform: {fileID: 0}
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 1024

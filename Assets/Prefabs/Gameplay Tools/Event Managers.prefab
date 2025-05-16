@@ -1,0 +1,435 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &586946773045183518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1852572432619172281}
+  - component: {fileID: 4968278587700476153}
+  m_Layer: 0
+  m_Name: Enemy Event Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1852572432619172281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586946773045183518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 890392400193752899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4968278587700476153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586946773045183518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30010abb3531cd546b1a4db96321b724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scheduledEvents:
+  - eventType: 0
+    targetName: Worm
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 5
+  - eventType: 1
+    targetName: Maw
+    newHealthValue: 0
+    newCanSpawnValue: 1
+    triggerTime: 10
+  - eventType: 0
+    targetName: Maw
+    newHealthValue: 500
+    newCanSpawnValue: 1
+    triggerTime: 15
+  - eventType: 1
+    targetName: Kamikaze
+    newHealthValue: 0
+    newCanSpawnValue: 1
+    triggerTime: 20
+  - eventType: 0
+    targetName: Kamikaze
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 25
+  - eventType: 1
+    targetName: Splatter
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 30
+  - eventType: 0
+    targetName: Splatter
+    newHealthValue: 300
+    newCanSpawnValue: 1
+    triggerTime: 35
+  enemyManager: {fileID: 0}
+  spawner: {fileID: 0}
+--- !u!1 &817360923127953442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191288173953039124}
+  - component: {fileID: 2241952099376446183}
+  m_Layer: 0
+  m_Name: Weapon Events
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191288173953039124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817360923127953442}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 98.43643, y: 0.5793991, z: 101.8689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 890392400193752899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2241952099376446183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817360923127953442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b90044828759b14682d375ddb9df7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Civil Sector Weapon
+    targetObject: {fileID: 0}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Industrial Sector Weapon
+    targetObject: {fileID: 0}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Commercial Sector Weapon
+    targetObject: {fileID: 0}
+    eventType: 1
+    hasTriggered: 0
+  - eventName: Train Station Weapon
+    targetObject: {fileID: 0}
+    eventType: 1
+    hasTriggered: 0
+  autoStart: 1
+  randomEvents: 1
+  triggerTimes:
+  - 60
+  - 180
+  - 300
+  - 420
+--- !u!1 &3973040590274644894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890392400193752899}
+  m_Layer: 0
+  m_Name: Event Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890392400193752899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973040590274644894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -98.43643, y: 26.3206, z: -101.8689}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1845976139082170134}
+  - {fileID: 191288173953039124}
+  - {fileID: 1509295844552350185}
+  - {fileID: 1852572432619172281}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7557916057659532815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509295844552350185}
+  - component: {fileID: 284849351111984790}
+  - component: {fileID: 5167142783264055986}
+  m_Layer: 0
+  m_Name: Boss Events
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509295844552350185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557916057659532815}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 61.30487, y: 31.243788, z: 47.38888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 890392400193752899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &284849351111984790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557916057659532815}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc32b75f9f607c548b63f65e25d21968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Spawn boss
+    timeToTrigger: 600
+    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    eventType: 3
+    spawnLocation: {fileID: 0}
+    hasTriggered: 0
+  autoStart: 1
+  loopEvents: 0
+--- !u!114 &5167142783264055986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557916057659532815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acec0b62d03e634c8134422190ff031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Spawn Miniboss Variation 1
+    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    eventType: 3
+    hasTriggered: 0
+  - eventName: Spawn Miniboss Variation 2
+    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    eventType: 3
+    hasTriggered: 0
+  triggerTimes:
+  - 300
+  - 510
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  autoStart: 1
+  randomEvents: 1
+  loopEvents: 0
+--- !u!1001 &6473878577667185534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 890392400193752899}
+    m_Modifications:
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: dropPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: dropInterval
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: slotSelectionPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlots.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlots.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlots.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlots.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'slotButtons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'slotButtons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'slotButtons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'slotButtons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponIcons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponIcons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponIcons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponNames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponNames.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponNames.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlotIcons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlotIcons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlotIcons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'sideSlotIcons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponButtons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponButtons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545989726390651679, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: 'weaponButtons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 96.25643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.9706
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 95.88889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718941606634672638, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 6718941606634672638, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+      propertyPath: m_Name
+      value: Weapon Drop Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+--- !u!4 &1845976139082170134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4632497302006391912, guid: 1b7256678a1c0a84c92839f5e178d755, type: 3}
+  m_PrefabInstance: {fileID: 6473878577667185534}
+  m_PrefabAsset: {fileID: 0}

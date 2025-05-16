@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
 
         // Find the EnemyManager instance in the scene
-        enemyManager = FindObjectOfType<EnemyManager>();
+        enemyManager = FindAnyObjectByType<EnemyManager>();
         if (enemyManager == null)
         {
             Debug.LogWarning("EnemyManager not found! Defaulting maxHealth to 100.");
@@ -43,13 +43,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         }
 
         currentHealth = maxHealth; // Initialize current health
-        Debug.Log($"Enemy type set to {enemyType} with max health {maxHealth}.");
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log($"{gameObject.name} took {damage} damage!");
+        //Debug.Log($"{gameObject.name} took {damage} damage!");
 
         if (currentHealth <= 0)
         {
@@ -77,6 +76,6 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         // Add player score and destroy the game object
         ScoreManager.Instance.AddPoints(scoreValue);
         Destroy(gameObject);
-        Debug.Log($"{gameObject.name} has died and is destroyed.");
+        //Debug.Log($"{gameObject.name} has died and is destroyed.");
     }
 }

@@ -11,8 +11,9 @@ public class TimeBasedEventManager : MonoBehaviour
         public EventType eventType;                              // The type of event
         public string targetName;                                // Target enemy name (for both events)
         public int newHealthValue;                               // New health value (only for IncreaseEnemyHP)
-        public bool newCanSpawnValue = true;                            // New canSpawn value (only for ToggleCanSpawn)
+        public bool newCanSpawnValue = true;                     // New canSpawn value (only for ToggleCanSpawn)
         public float triggerTime;                                // When to trigger (in seconds since game started)
+        public bool hasOccurred = false;                         // Indicates if the event has occurred
     }
 
     [SerializeField] private List<ScheduledEvent> scheduledEvents = new List<ScheduledEvent>(); // Event list
@@ -29,16 +30,32 @@ public class TimeBasedEventManager : MonoBehaviour
 
     private IEnumerator ProcessEvents()
     {
-        // Iterate through the scheduled events
-        foreach (var scheduledEvent in scheduledEvents)
+        while (scheduledEvents.Count > 0)
         {
-            float waitTime = scheduledEvent.triggerTime - (Time.time - gameStartTime); // Time left
+            var nextEvent = scheduledEvents[0];
+
+            // Calculate the wait time based on the next event's trigger time
+            float waitTime = nextEvent.triggerTime - (Time.time - gameStartTime);
+
             if (waitTime > 0)
             {
-                yield return new WaitForSeconds(waitTime); // Wait until trigger time
+                yield return new WaitForSeconds(waitTime);
             }
 
-            ExecuteEvent(scheduledEvent); // Trigger the event
+            ExecuteEvent(nextEvent); // Execute the next event
+            nextEvent.hasOccurred = true; // Mark the event as occurred
+
+            // Remove the occurred event from the list
+            scheduledEvents.RemoveAt(0);
+        }
+
+        if (scheduledEvents.Count == 0)
+        {
+            Debug.Log("All events completed");
+        }
+        else
+        {
+            Debug.LogWarning("Some events are missing or ended incorrect!");
         }
     }
 
@@ -79,5 +96,14 @@ public class TimeBasedEventManager : MonoBehaviour
                 Debug.LogWarning("Unknown event type!");
                 break;
         }
+    }
+
+    /// <summary>
+    /// Removes events that have already occurred.
+    /// </summary>
+    public void RemoveOccurredEvents()
+    {
+        scheduledEvents.RemoveAll(e => e.hasOccurred);
+        Debug.Log("Removed all occurred events.");
     }
 }

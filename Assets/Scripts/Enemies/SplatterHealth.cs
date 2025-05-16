@@ -25,7 +25,7 @@ public class SplatterHealth : MonoBehaviour, IDamageable
         animator = GetComponent<Animator>();
 
         // Find the EnemyManager instance in the scene
-        enemyManager = FindObjectOfType<EnemyManager>();
+        enemyManager = FindAnyObjectByType<EnemyManager>();
         if (enemyManager == null)
         {
             Debug.LogWarning("EnemyManager not found! Defaulting maxHealth to 100.");
@@ -50,7 +50,6 @@ public class SplatterHealth : MonoBehaviour, IDamageable
         }
 
         currentHealth = maxHealth; // Initialize current health
-        Debug.Log($"Enemy type set to {enemyType} with max health {maxHealth}.");
     }
 
     public void TakeDamage(int damage)
