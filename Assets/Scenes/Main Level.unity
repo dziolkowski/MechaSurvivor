@@ -8020,6 +8020,88 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485815766}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &486319716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486319717}
+  - component: {fileID: 486319718}
+  m_Layer: 0
+  m_Name: Enemy Event Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &486319717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486319716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1179267048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &486319718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486319716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30010abb3531cd546b1a4db96321b724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scheduledEvents:
+  - eventType: 0
+    targetName: Worm
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 5
+  - eventType: 1
+    targetName: Maw
+    newHealthValue: 0
+    newCanSpawnValue: 1
+    triggerTime: 10
+  - eventType: 0
+    targetName: Maw
+    newHealthValue: 500
+    newCanSpawnValue: 1
+    triggerTime: 15
+  - eventType: 1
+    targetName: Kamikaze
+    newHealthValue: 0
+    newCanSpawnValue: 1
+    triggerTime: 20
+  - eventType: 0
+    targetName: Kamikaze
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 25
+  - eventType: 1
+    targetName: Splatter
+    newHealthValue: 150
+    newCanSpawnValue: 1
+    triggerTime: 30
+  - eventType: 0
+    targetName: Splatter
+    newHealthValue: 300
+    newCanSpawnValue: 1
+    triggerTime: 35
+  enemyManager: {fileID: 1185626857}
+  spawner: {fileID: 698660109}
 --- !u!1 &487675628
 GameObject:
   m_ObjectHideFlags: 0
@@ -13300,7 +13382,7 @@ MonoBehaviour:
   - enemyName: Worm
     prefab: {fileID: 4323813639670524191, guid: 51c5384528d288b479de7ac7496c476b, type: 3}
     spawnInterval: 0.5
-    canSpawn: 0
+    canSpawn: 1
   - enemyName: Maw
     prefab: {fileID: 4323813639670524191, guid: d6c1faefb620821469014858124b280b, type: 3}
     spawnInterval: 1
@@ -13312,8 +13394,8 @@ MonoBehaviour:
   - enemyName: Splatter
     prefab: {fileID: 4323813639670524191, guid: ab16593521fe6b74bbfa894332bfa486, type: 3}
     spawnInterval: 0.9
-    canSpawn: 1
-  spawnRadius: 100
+    canSpawn: 0
+  spawnRadius: 90
   spawnMargin: 10
   playerTransform: {fileID: 1945722340}
   obstacleLayers:
@@ -22129,7 +22211,7 @@ Transform:
   m_Children:
   - {fileID: 1862175879}
   - {fileID: 459825266}
-  - {fileID: 1185626856}
+  - {fileID: 486319717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1185626855
@@ -22157,12 +22239,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185626855}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -98.43643, y: 26.3206, z: -101.8689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1179267048}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1185626857
 MonoBehaviour:
@@ -38347,3 +38429,4 @@ SceneRoots:
   - {fileID: 502279399}
   - {fileID: 1179267048}
   - {fileID: 698660110}
+  - {fileID: 1185626856}
