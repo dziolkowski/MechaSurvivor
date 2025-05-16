@@ -1,16 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class SplatterHealth : MonoBehaviour, IDamageable
 {
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100; // Maksymalne zdrowie
-    [SerializeField] public int currentHealth; // Aktualne zdrowie
-    [SerializeField] bool HasDeathAnimation; // tymczasowe rozwiazanie dla przeciwnikow bez animacji smierci aby poprawnie umierali
-    public int scoreValue = 10; // Punkty otrzymywane za zabicie przeciwnika
-    Animator animator;
+    [SerializeField] private string enemyType; // The type of the enemy
+    [SerializeField] private int maxHealth = 100; // Max health of the enemy
+    [SerializeField] public int currentHealth; // Current health of the enemy
+    [SerializeField] private bool hasDeathAnimation; // Toggle for death animation
+    public int scoreValue = 10; // Points awarded for killing the enemy
+
+    private Animator animator;
+    private EnemyManager enemyManager;
 
     [Header("Splatter Settings")]
     [SerializeField] private GameObject damageZonePrefab; // Prefab plamy
@@ -18,36 +20,80 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     [SerializeField] private float moveSpeedMultiplier = 0.5f; // Spowolnienie ruchu 
     [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Spowolnienie oborotu
 
-    private void Start() {
+    private void Start()
+    {
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+
+        // Find the EnemyManager instance in the scene
+        enemyManager = FindAnyObjectByType<EnemyManager>();
+        if (enemyManager == null)
+        {
+            Debug.LogWarning("EnemyManager not found! Defaulting maxHealth to 100.");
+        }
+
+        // Initialize max health and current health based on the enemy type
+        SetEnemyType(enemyType);
+    }
+
+    /// <summary>
+    /// Sets the enemy's type and updates its max health based on EnemyManager's settings.
+    /// </summary>
+    /// <param name="type">The enemy type to set.</param>
+    public void SetEnemyType(string type)
+    {
+        enemyType = type;
+
+        // Get the corresponding max health value from the EnemyManager
+        if (enemyManager != null)
+        {
+            maxHealth = enemyManager.GetEnemyHealth(enemyType);
+        }
+
+        currentHealth = maxHealth; // Initialize current health
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(gameObject + " damage received!");
+        Debug.Log($"{gameObject.name} took {damage} damage!");
+
         if (currentHealth <= 0)
         {
-            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
-            gameObject.GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
-            // WORKAROUND - USUNAC POZNIEJ /L
-            if (HasDeathAnimation) { // jesli ma anmacje smierci, to Die() zostanie wywolana po animacji
-                animator.SetTrigger("Death");
-            }
-            else Die(); // jesli nie ma animacji smierci to wywoluje Die()
+            Die();
         }
     }
 
     private void Die()
     {
-        Debug.Log("Enemy dead!");
+        Debug.Log($"{gameObject.name} has died!");
 
+        // Disable collider and stop movement
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<NavMeshAgent>().isStopped = true;
+
+        // Always spawn splatter effect and award points, regardless of animation
+        PerformSplatterEffect();
+        ScoreManager.Instance.AddPoints(scoreValue);
+
+        // Trigger animation if applicable, then destroy the enemy
+        if (hasDeathAnimation)
+        {
+            animator.SetTrigger("Death");
+            StartCoroutine(DestroyAfterAnimation());
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void PerformSplatterEffect()
+    {
         if (damageZonePrefab != null)
         {
             Vector3 spawnPosition = transform.position;
 
-            // Plama plama pojawia sie w miejscu smierci Splattera ale na podlodze
+            // Adjust the spawn position to the ground
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 5f))
             {
                 spawnPosition = hit.point;
@@ -57,7 +103,13 @@ public class SplatterHealth : MonoBehaviour, IDamageable
             splatter.AddComponent<DamageZoneHandler>().Initialize(stainLifetime, moveSpeedMultiplier, rotationSpeedMultiplier);
         }
 
-        ScoreManager.Instance.AddPoints(scoreValue); 
+        Debug.Log("Splatter effect applied.");
+    }
+
+    private IEnumerator DestroyAfterAnimation()
+    {
+        // Wait for the animation to finish before destroying the object
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }
 }

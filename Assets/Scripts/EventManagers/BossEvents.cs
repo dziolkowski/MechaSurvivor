@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class AdvancedTimedEventsManager : MonoBehaviour
+public class BossEvents : MonoBehaviour
 {
     public enum EventType
     {

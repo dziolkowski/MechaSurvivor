@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
+  movementSpeed: 3.5
   retreatDistance: 3
   retreatDuration: 1
   damageDealt: 2
@@ -134,12 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b632e9bf4865b94ca6f2162b57ddcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: Splatter
   maxHealth: 100
   currentHealth: 0
-  HasDeathAnimation: 1
+  hasDeathAnimation: 0
   scoreValue: 10
   damageZonePrefab: {fileID: 4326308168249668937, guid: f149511053b14144f92f3c21bf6c68be, type: 3}
-  splatterLifetime: 10
+  stainLifetime: 10
   moveSpeedMultiplier: 0.5
   rotationSpeedMultiplier: 0.5
 --- !u!1 &5532193716483668527

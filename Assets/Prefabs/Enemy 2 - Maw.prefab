@@ -135,9 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa5b1de44f3b2745a75cf9826167cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: Maw
   maxHealth: 200
   currentHealth: 0
-  HasDeathAnimation: 1
+  hasDeathAnimation: 0
   scoreValue: 10
 --- !u!1 &5532193716483668527
 GameObject:
