@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09b3fc726cb14684eb848b1d0af44ca1
+guid: 1902382b1edd01f478a8977fd510a325
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,13 +95,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EmptySlotIcon 1_0
+      name: wyborBroniUI_0
       rect:
         serializedVersion: 2
-        x: 366
-        y: 286
-        width: 330
-        height: 335
+        x: 0
+        y: 0
+        width: 1424
+        height: 2094
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,8 +109,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3955601b53ca4047b9a5b689c014cc7
-      internalID: -2066429453
+      spriteID: 0d128e3c97a6a6b42bbbad4fba82d499
+      internalID: -487167088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wyborBroniUI_1
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 0
+        width: 1424
+        height: 2094
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3a179c184469f41bdeddf186350d72
+      internalID: 351329750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wyborBroniUI_2
+      rect:
+        serializedVersion: 2
+        x: 2848
+        y: 0
+        width: 1424
+        height: 2094
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c535e6c52ded549aa91b0dc0e6f221
+      internalID: -997286982
       vertices: []
       indices: 
       edges: []
@@ -118,7 +160,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3b94093aecb026b4998cd089905f347b
+    spriteID: d66f5a1c75542734bb8eb5781496ff2e
     internalID: 0
     vertices: []
     indices: 
@@ -126,7 +168,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      EmptySlotIcon 1_0: -2066429453
+      wyborBroniUI_0: -487167088
+      wyborBroniUI_1: 351329750
+      wyborBroniUI_2: -997286982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
