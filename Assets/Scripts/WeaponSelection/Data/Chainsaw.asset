@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Chainsaw
   m_EditorClassIdentifier: 
   weaponName: Chainsaw
+  description: Chainsaw Weapon
   icon: {fileID: 21300000, guid: 87d0a4da45b5c464f8bd2656100bbd99, type: 3}
   topSlotPrefab: {fileID: 6077524513553424396, guid: 03a76d4ccd6ff5a44893ca0cbed69510, type: 3}
   sideSlotPrefab: {fileID: 6077524513553424396, guid: 5f08d5efae2aa974fa84fd4f0d42797c, type: 3}
