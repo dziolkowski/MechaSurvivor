@@ -4,7 +4,9 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager Instance;
-    private HashSet<WeaponType> ownedWeapons = new();
+
+    // Lista posiadanych broni
+    private List<BaseWeapon> equippedWeapons = new();
 
     private void Awake()
     {
@@ -14,13 +16,24 @@ public class WeaponManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void AddWeapon(WeaponType weaponType)
+    // Dodaje bron do listy jesli nie zostala juz dodana
+    public void RegisterWeapon(BaseWeapon weapon)
     {
-        ownedWeapons.Add(weaponType);
+        if (!equippedWeapons.Contains(weapon))
+        {
+            equippedWeapons.Add(weapon);
+        }
     }
 
-    public bool HasWeapon(WeaponType weaponType)
+    // Sprawdza czy gracz posiada bron danego typu
+    public bool HasWeapon(WeaponType type)
     {
-        return ownedWeapons.Contains(weaponType);
+        return equippedWeapons.Exists(w => w.weaponType == type);
+    }
+
+    // Zwraca wszystkie bronie danego typu
+    public List<BaseWeapon> GetWeaponsOfType(WeaponType type)
+    {
+        return equippedWeapons.FindAll(w => w.weaponType == type);
     }
 }

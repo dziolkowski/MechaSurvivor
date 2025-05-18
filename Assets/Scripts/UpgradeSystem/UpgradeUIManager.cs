@@ -10,123 +10,197 @@ public class UpgradeUIManager : MonoBehaviour
     public List<Image> icons;
     public List<TMP_Text> titles;
     public List<TMP_Text> descriptions;
-    public List<List<Image>> upgradeLevelIndicators; // 3 listy po 5 obrazkow ka¿da
 
-    public List<StatUpgradeData> allUpgrades; // Wszystkie upgrady dostepne w grze
-
-    private List<StatUpgradeData> availableUpgrades = new();
-
-    void Start()
+    [System.Serializable]
+    public class UpgradeLevelIndicatorGroup
     {
-        upgradePanel.SetActive(false);
+        public List<Image> indicators; // 5 kwadratow na upgrade
     }
 
-    public void ShowUpgradeChoices(List<StatUpgradeData> availableUpgrades)
-    {
-        upgradePanel.SetActive(true); // Pokazujemy ekran upgradu
+    public List<UpgradeLevelIndicatorGroup> upgradeLevelIndicators;
+    public List<StatUpgradeData> allUpgrades; // Wszystkie upgrady dostepne w grze
 
-        // Przycinamy, zeby nie przekroczyc ilosci przyciskow:
-        if (availableUpgrades.Count > upgradeButtons.Count)
+    private List<StatUpgradeData> lastUpgradeChoices = new(); // Zapamietane poprzednie upgrady
+
+    private void Start()
+    {
+        if (upgradePanel != null)
+            upgradePanel.SetActive(false);
+        else
+            Debug.LogError("Upgrade panel is NOT assigned!");
+    }
+
+    public void ShowUpgradeChoices()
+    {
+        List<StatUpgradeData> availableUpgrades = GetRandomUpgradeChoices(3);
+
+        if (availableUpgrades.Count == 0)
         {
-            availableUpgrades = availableUpgrades.GetRange(0, upgradeButtons.Count);
+            Debug.LogWarning("No available upgrades found!");
+            return;
         }
+
+        if (upgradePanel != null)
+            upgradePanel.SetActive(true);
+
+        Time.timeScale = 0f; // Pauza 
 
         for (int i = 0; i < availableUpgrades.Count; i++)
         {
-            StatUpgradeData upgrade = availableUpgrades[i];
-
-            upgradeButtons[i].gameObject.SetActive(true);
-            icons[i].sprite = upgrade.icon;
-            titles[i].text = upgrade.upgradeTitle;
-            descriptions[i].text = upgrade.description;
-
-            // Aktualizacja poziomow upgradu
-            int currentLevel = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
-            for (int j = 0; j < upgradeLevelIndicators[i].Count; j++)
+            if (i >= upgradeButtons.Count)
             {
-                upgradeLevelIndicators[i][j].color = j < currentLevel ? Color.green : Color.gray;
+                Debug.LogWarning($"No button available for upgrade index {i}");
+                continue;
             }
 
-            int index = i;
-            upgradeButtons[i].onClick.RemoveAllListeners();
-            upgradeButtons[i].onClick.AddListener(() => ApplyUpgrade(availableUpgrades[index]));
+            StatUpgradeData upgrade = availableUpgrades[i];
+            Debug.Log($"Setting up upgrade {i}: {upgrade.upgradeTitle}");
+
+            if (upgradeButtons[i] != null)
+            {
+                upgradeButtons[i].gameObject.SetActive(true);
+
+                if (icons.Count > i && icons[i] != null)
+                    icons[i].sprite = upgrade.icon;
+                if (titles.Count > i && titles[i] != null)
+                    titles[i].text = upgrade.upgradeTitle;
+                if (descriptions.Count > i && descriptions[i] != null)
+                    descriptions[i].text = upgrade.description;
+
+                // Pokazujemy poziomy upgradu
+                if (upgradeLevelIndicators.Count > i && upgradeLevelIndicators[i] != null)
+                {
+                    int currentLevel = PlayerUpgradeTracker.Instance != null ?
+                        PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade) : 0;
+
+                    Debug.Log($"Upgrade '{upgrade.upgradeTitle}' current level: {currentLevel}");
+
+                    var group = upgradeLevelIndicators[i].indicators;
+                    for (int j = 0; j < group.Count; j++)
+                    {
+                        if (group[j] != null)
+                            group[j].gameObject.SetActive(j < currentLevel); // Ilosc kwadratow oznacza poziom ugradu
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"No level indicators for button {i}");
+                }
+
+                int index = i;
+                upgradeButtons[i].onClick.RemoveAllListeners();
+                upgradeButtons[i].onClick.AddListener(() => ApplyUpgrade(availableUpgrades[index]));
+            }
+            else
+            {
+                Debug.LogWarning($"Upgrade button {i} is null");
+            }
         }
 
-        // Ukryj niewykorzystane przyciski jesli lista upgradow jest krotsza niz ilosc slotow
+        // Ukryj niewykorzystane przyciski
         for (int i = availableUpgrades.Count; i < upgradeButtons.Count; i++)
         {
-            upgradeButtons[i].gameObject.SetActive(false);
+            if (upgradeButtons[i] != null)
+                upgradeButtons[i].gameObject.SetActive(false);
         }
     }
-
 
     void ApplyUpgrade(StatUpgradeData upgrade)
     {
         Debug.Log("Upgrade applied: " + upgrade.upgradeTitle);
-        PlayerUpgradeTracker.Instance.ApplyUpgrade(upgrade);
-        //HideUpgradeUI();  // jesli masz metode do ukrycia UI
+        if (PlayerUpgradeTracker.Instance != null)
+            PlayerUpgradeTracker.Instance.ApplyUpgrade(upgrade);
+        else
+            Debug.LogError("PlayerUpgradeTracker instance is missing!");
+
+        HideUpgradeUI(); // Zamknij panel
     }
 
-    void SelectUpgrade(StatUpgradeData upgrade)
+    void HideUpgradeUI()
     {
-        PlayerUpgradeTracker.Instance.ApplyUpgrade(upgrade);
+        if (upgradePanel != null)
+            upgradePanel.SetActive(false);
 
-        upgradePanel.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // Wznowienie gry
     }
 
-    private List<StatUpgradeData> FilterValidUpgrades()
+    private List<StatUpgradeData> GetRandomUpgradeChoices(int count)
     {
-        List<StatUpgradeData> valid = new();
+        List<StatUpgradeData> weaponUpgrades = new();
+        List<StatUpgradeData> playerUpgrades = new();
 
         foreach (var upgrade in allUpgrades)
         {
+            if (PlayerUpgradeTracker.Instance == null) continue;
+
             int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
-            if (level >= 5) continue; // Maksymalnie 5 poziomow
+            if (level >= 5) continue;
 
-            if (!upgrade.isPlayerUpgrade) // Broñ
+            if (!upgrade.isPlayerUpgrade)
             {
-               if (WeaponManager.Instance.HasWeapon(upgrade.weaponType))
-                    valid.Add(upgrade);
-            }
-            else // Gracz
-            {
-                valid.Add(upgrade);
-            }
-        }
-
-        // Jesli nic nie znaleziono, dodaj awaryjne 
-        if (valid.Count == 0)
-        {
-            foreach (var upgrade in allUpgrades)
-            {
-                if (upgrade.isPlayerUpgrade &&
-                   (upgrade.statType == StatType.MaxHealth || upgrade.statType == StatType.ShieldRegen))
+                if (WeaponManager.Instance != null &&
+                    WeaponManager.Instance.HasWeapon(upgrade.weaponType) &&
+                    !weaponUpgrades.Exists(u => u.weaponType == upgrade.weaponType))
                 {
-                    valid.Add(upgrade);
+                    weaponUpgrades.Add(upgrade);
                 }
             }
-        }
-
-        return valid;
-    }
-
-
-    private List<StatUpgradeData> GetUniqueStatUpgrades(List<StatUpgradeData> upgrades)
-    {
-        var unique = new List<StatUpgradeData>();
-        var seen = new HashSet<(WeaponType, StatType)>();
-
-        foreach (var upgrade in upgrades)
-        {
-            var key = (upgrade.weaponType, upgrade.statType);
-            if (!seen.Contains(key))
+            else
             {
-                unique.Add(upgrade);
-                seen.Add(key);
+                playerUpgrades.Add(upgrade);
             }
         }
 
-        return unique;
+        // Tasujemy
+        ShuffleList(weaponUpgrades);
+        ShuffleList(playerUpgrades);
+
+        List<StatUpgradeData> filtered = new();
+
+        // Dodajemy rozne upgrady i pomijamy te, ktore byly ostatnio pokazane
+        foreach (var u in weaponUpgrades)
+        {
+            if (!lastUpgradeChoices.Contains(u))
+                filtered.Add(u);
+        }
+        foreach (var u in playerUpgrades)
+        {
+            if (!lastUpgradeChoices.Contains(u))
+                filtered.Add(u);
+        }
+
+        ShuffleList(filtered);
+
+        // Jesli nie ma wystarczajacej liczby unikalnych, dodajemy reszte
+        if (filtered.Count < count)
+        {
+            List<StatUpgradeData> fallback = new();
+            fallback.AddRange(weaponUpgrades);
+            fallback.AddRange(playerUpgrades);
+            ShuffleList(fallback);
+
+            foreach (var u in fallback)
+            {
+                if (!filtered.Contains(u))
+                    filtered.Add(u);
+                if (filtered.Count >= count) break;
+            }
+        }
+
+        List<StatUpgradeData> final = filtered.GetRange(0, Mathf.Min(count, filtered.Count));
+        lastUpgradeChoices = new List<StatUpgradeData>(final);
+        return final;
+    }
+
+    private void ShuffleList<T>(List<T> list)
+    {
+        System.Random rng = new System.Random(); // Lepsze losowanie 
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            (list[n], list[k]) = (list[k], list[n]);
+        }
     }
 }

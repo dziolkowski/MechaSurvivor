@@ -1,46 +1,82 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUpgradeTracker : MonoBehaviour
 {
-    // Singleton
-    public static PlayerUpgradeTracker Instance;
+    public static PlayerUpgradeTracker Instance { get; private set; }
 
-    // Trzymamy poziomy upgradow
-    public Dictionary<StatUpgradeData, int> upgradeLevels = new();
+    private Dictionary<StatUpgradeData, int> upgradeLevels = new();
+
+    public static event Action<StatUpgradeData> OnUpgradeApplied;
 
     private void Awake()
     {
-        // Ustawiamy instancjê Singletona
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject); // Jeœli ju¿ istnieje, usuwamy duplikat
-        }
+        Instance = this;
     }
 
-    // Tu metoda do stosowania upgradu
     public void ApplyUpgrade(StatUpgradeData upgrade)
     {
-        if (upgradeLevels.ContainsKey(upgrade))
-        {
+        if (!upgradeLevels.ContainsKey(upgrade))
+            upgradeLevels[upgrade] = 1;
+        else
             upgradeLevels[upgrade]++;
+
+        Debug.Log("Applied upgrade: " + upgrade.upgradeTitle + " - New level: " + upgradeLevels[upgrade]);
+
+        if (upgrade.isPlayerUpgrade)
+        {
+            int newLevel = upgradeLevels[upgrade];
+            float value = upgrade.GetValueAtLevel(newLevel - 1);
+
+            if (upgrade.statType == StatType.MaxShieldPoints)
+            {
+                PlayerShield.Instance.UpgradeShield((int)value);
+            }
+
+            OnUpgradeApplied?.Invoke(upgrade);
         }
         else
         {
-            upgradeLevels[upgrade] = 1;
+            var weapons = WeaponManager.Instance.GetWeaponsOfType(upgrade.weaponType);
+            foreach (var weapon in weapons)
+            {
+                weapon.ApplyUpgrade(upgrade);
+            }
         }
-
-        // Mozesz dodaæ tu efekty typu: zwieksz HP
-        Debug.Log($"Upgrade applied: {upgrade.name}, new level: {upgradeLevels[upgrade]}");
     }
 
-    // Mo¿esz dodac metody do pobierania poziomu upgrade itp.
     public int GetUpgradeLevel(StatUpgradeData upgrade)
     {
-        return upgradeLevels.TryGetValue(upgrade, out var level) ? level : 0;
+        if (upgradeLevels.TryGetValue(upgrade, out int level))
+            return level;
+        return 0;
+    }
+
+    public int GetUpgradeLevelForStat(StatType statType)
+    {
+        int level = 0;
+        foreach (var kvp in upgradeLevels)
+        {
+            if (kvp.Key.statType == statType)
+                level += kvp.Value;
+        }
+        return level;
+    }
+
+    public int GetUpgradeLevelForWeapon(WeaponType weaponType, StatType statType)
+    {
+        int level = 0;
+        foreach (var kvp in upgradeLevels)
+        {
+            if (kvp.Key.weaponType == weaponType && kvp.Key.statType == statType)
+                level += kvp.Value;
+        }
+        return level;
     }
 }

@@ -119,6 +119,12 @@ public class WeaponDropManager : MonoBehaviour
             {
                 sideSlots[slotIndex].AssignWeapon(selectedWeapon);
 
+                var baseWeapon = sideSlots[slotIndex].GetComponentInChildren<BaseWeapon>();
+                if (baseWeapon != null)
+                {
+                    WeaponManager.Instance.RegisterWeapon(baseWeapon);
+                }
+
                 // Zmieniamy tekst na przycisku na nazwe broni
                 TMP_Text buttonText = slotButtons[slotIndex].GetComponentInChildren<TMP_Text>();
                 if (buttonText != null)

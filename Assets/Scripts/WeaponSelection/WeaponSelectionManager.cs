@@ -44,6 +44,12 @@ public class WeaponSelectionManager : MonoBehaviour
     {
         topSlot.GetComponent<WeaponSlot>().AssignWeapon(weapon);
 
+        var baseWeapon = topSlot.GetComponentInChildren<BaseWeapon>();
+        if (baseWeapon != null)
+        {
+            WeaponManager.Instance.RegisterWeapon(baseWeapon);
+        }
+
         // Aktualizowanie ikony na interfejsie
         if (topSlotIconHUD != null)
         {

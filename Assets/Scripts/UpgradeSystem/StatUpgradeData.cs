@@ -9,7 +9,8 @@ public enum StatType
 {
     Damage, FireRate, ProjectileSize, ProjectileAmount, BulletSpeed,
     LaserWidth, RocketSpeed, ExplosionRadius, AreaSize, TimeToAttack,
-    MaxHealth, ShieldRegen, BulletDamage
+    MaxHealth, ShieldRegen, BulletDamage, MaxShieldPoints, ChainsawDamage, 
+    LaserDamage
 }
 
 [CreateAssetMenu(fileName = "New Stat Upgrade", menuName = "Upgrades/StatUpgrade")]
@@ -20,7 +21,7 @@ public class StatUpgradeData : ScriptableObject
     public Sprite icon;
 
     public WeaponType weaponType;     // Dla broni lub gracza (Player)
-    public StatType statType;         // Konkretny stat, np. Damage, MaxHealth itp.
+    public StatType statType;         // Konkretna statystyka, np. Damage, MaxHealth itp.
 
     public float[] upgradeValues = new float[5]; // Poziomy 0–4
 

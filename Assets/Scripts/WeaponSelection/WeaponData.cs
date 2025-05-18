@@ -9,4 +9,6 @@ public class WeaponData : ScriptableObject
     public Sprite icon;
     public GameObject topSlotPrefab; // Bron na czubku
     public GameObject sideSlotPrefab; // Bron na korpusie
+
+    public WeaponType weaponType;
 }

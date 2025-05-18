@@ -89,13 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab0bf04d54cb4b4b879dca1102bee3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 2
   bulletPrefab: {fileID: 9008639820600560658, guid: fffffd189d88b3a4f86296699d39150e, type: 3}
   firePoint: {fileID: 5054636513551007043}
   fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
-  pelletCount: 4
+  projectileAmount: 4
   spreadAngle: 10
+  bulletDamage: 25
+  projectileSize: 0.25
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0

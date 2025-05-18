@@ -8,9 +8,9 @@ public class PlayerExperience : MonoBehaviour
     public int expToNextLevel = 100;
 
     public UpgradeUIManager upgradeUIManager; // Przypisz w Inspectorze
-    [SerializeField] private List<StatUpgradeData> allUpgrades; // Dodaj tutaj upgrade'y
+    [SerializeField] private List<StatUpgradeData> allUpgrades; // Dodaj tutaj upgrady
 
-    // Wywo³uj to, gdy gracz zabije przeciwnika
+    // Wywoluj to, gdy gracz zabije przeciwnika
     public void AddExperience(int amount)
     {
         currentExp += amount;
@@ -29,6 +29,6 @@ public class PlayerExperience : MonoBehaviour
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * 1.25f); // Koszt kolejnego levelu
 
         // Pokazujemy ekran wyboru upgradow
-        upgradeUIManager.ShowUpgradeChoices(allUpgrades);
+        upgradeUIManager.ShowUpgradeChoices();
     }
 }

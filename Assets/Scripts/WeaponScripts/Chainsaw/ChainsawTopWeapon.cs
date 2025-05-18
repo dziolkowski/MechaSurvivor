@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChainsawTopWeapon : MonoBehaviour
+public class ChainsawTopWeapon : BaseWeapon
 {
     [Header("Chainsaw Settings")]
     [SerializeField] private int chainsawDamage = 10; // Ilosc zadawanych obrazen
@@ -11,6 +11,16 @@ public class ChainsawTopWeapon : MonoBehaviour
     [SerializeField] private Transform attackPoint; // Punkt odniesienia, z ktorego liczymy przesuniecie obszaru
 
     private float attackCooldown = 0f; // Czas, jaki minal od ostatniego ataku
+
+
+
+    protected override void Start()
+    {
+        weaponType = WeaponType.Chainsaw; // Ustaw typ broni tutaj
+        base.Start();
+    }
+
+
 
     void Update()
     {
@@ -83,5 +93,28 @@ public class ChainsawTopWeapon : MonoBehaviour
         // Pokazujemy srodek obszaru przed bronia o wartosc areaSize
         Vector3 attackPosition = attackPoint.position + attackPoint.forward * areaSize;
         Gizmos.DrawWireSphere(attackPosition, areaSize);
+    }
+
+
+    public override void ApplyUpgrade(StatUpgradeData upgrade)
+    {
+        int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
+        float value = upgrade.GetValueAtLevel(level - 1);
+
+        switch (upgrade.statType)
+        {
+            case StatType.Damage:
+            case StatType.ChainsawDamage:
+                chainsawDamage += Mathf.RoundToInt(value);
+                break;
+            case StatType.AreaSize:
+                areaSize += value;
+                break;
+            case StatType.TimeToAttack:
+                timeToAttack += Mathf.RoundToInt(value);
+                break;
+        }
+
+        Debug.Log($"{weaponType} upgraded: {upgrade.statType} +{value}");
     }
 }
