@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool isSlowed = false; // Flaga, zeby uniknac wielokrotnego spowolnienia
     private bool isRotating = false;
 
+    [SerializeField] AudioClip skillSFX;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -66,20 +68,23 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
             {
-                StartCoroutine(SmoothRotate(-90f));
-                lastRotateTime = Time.time;
+                SkillRotate(-90f);
             }
             else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90°
             {
-                StartCoroutine(SmoothRotate(90f));
-                lastRotateTime = Time.time;
+                SkillRotate(90f);
             }
             else if (Input.GetKeyDown(KeyCode.Space)) // 180°
             {
-                StartCoroutine(SmoothRotate(180f));
-                lastRotateTime = Time.time;
+                SkillRotate(180f);
             }
         }
+    }
+
+    private void SkillRotate(float value) {
+        GetComponent<AudioSource>().PlayOneShot(skillSFX);
+        StartCoroutine(SmoothRotate(value));
+        lastRotateTime = Time.time;
     }
 
     public void ModifySpeed(float moveMultiplier, float rotationMultiplier)
