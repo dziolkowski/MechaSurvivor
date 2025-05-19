@@ -138,7 +138,7 @@ MonoBehaviour:
   enemyType: Splatter
   maxHealth: 100
   currentHealth: 0
-  hasDeathAnimation: 0
+  HasDeathAnimation: 1
   scoreValue: 10
   damageZonePrefab: {fileID: 4326308168249668937, guid: f149511053b14144f92f3c21bf6c68be, type: 3}
   stainLifetime: 10

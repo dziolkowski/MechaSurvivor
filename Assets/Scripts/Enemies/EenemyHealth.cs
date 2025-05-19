@@ -52,27 +52,21 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
-            Die();
+            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
+            GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
+            // WORKAROUND - USUNAC POZNIEJ /L
+            if (hasDeathAnimation) { // jesli ma anmacje smierci, to Die() zostanie wywolana po animacji
+                animator.SetTrigger("Death");
+                print("kaboom");
+            }
+            else {
+                Debug.Log("skipping animation");
+                Die(); // jesli nie ma animacji smierci to wywoluje Die()
+            }
         }
     }
 
-    private void Die()
-    {
-        GetComponent<CapsuleCollider>().enabled = false; // Disable collider to prevent additional damage
-        GetComponent<NavMeshAgent>().isStopped = true; // Stop enemy movement
-
-        if (hasDeathAnimation)
-        {
-            animator.SetTrigger("Death");
-        }
-        else
-        {
-            PerformDeath();
-        }
-    }
-
-    private void PerformDeath()
-    {
+    private void Die() {
         // Add player score and destroy the game object
         ScoreManager.Instance.AddPoints(scoreValue);
         Destroy(gameObject);

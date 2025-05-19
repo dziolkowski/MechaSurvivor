@@ -16,9 +16,10 @@ public class KamikazeAI : MonoBehaviour, IDamageable
     [SerializeField] private float explosionEffectDuration = 2f;
 
     private bool isDead = false;
+    private Animator animator;
 
-    void Start()
-    {
+    void Start() {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed; // Ustaw predkosc kamikaze
         FindPlayer();
@@ -30,9 +31,10 @@ public class KamikazeAI : MonoBehaviour, IDamageable
         {
             agent.SetDestination(player.position);
 
-            if (Vector3.Distance(transform.position, player.position) <= explosionRadius)
-            {
-                Explode();
+            if (Vector3.Distance(transform.position, player.position) <= explosionRadius) {
+                GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
+                GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
+                animator.SetTrigger("Death");
             }
         }
     }
@@ -51,7 +53,10 @@ public class KamikazeAI : MonoBehaviour, IDamageable
         if (!isDead)
         {
             isDead = true;
-            Explode();
+            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
+            GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
+            animator.SetTrigger("Death");
+            //Explode();
         }
     }
 
@@ -91,10 +96,8 @@ public class KamikazeAI : MonoBehaviour, IDamageable
                 damagedEntities.Add(hit.gameObject);
             }
         }
-
         Destroy(gameObject);
     }
-
 
     void OnDrawGizmosSelected()
     {

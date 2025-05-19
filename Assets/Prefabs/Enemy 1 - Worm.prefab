@@ -138,7 +138,7 @@ MonoBehaviour:
   enemyType: Worm
   maxHealth: 100
   currentHealth: 0
-  hasDeathAnimation: 0
+  hasDeathAnimation: 1
   scoreValue: 10
 --- !u!1 &5532193716483668527
 GameObject:

@@ -123,7 +123,7 @@ MonoBehaviour:
   explosionRadius: 5
   damageDealt: 10
   explosionEffect: {fileID: 7376211662991525148, guid: a38de28d3c1f6d84185c8f173c7f8ff0, type: 3}
-  explosionEffectDuration: 2
+  explosionEffectDuration: 0.5
 --- !u!114 &6745822311017442807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   enemyType: Kamikaze
   maxHealth: 100
   currentHealth: 0
-  hasDeathAnimation: 0
+  hasDeathAnimation: 1
   scoreValue: 10
 --- !u!1 &5532193716483668527
 GameObject:
