@@ -38,6 +38,18 @@ public class PlayerUpgradeTracker : MonoBehaviour
             {
                 PlayerShield.Instance.UpgradeShield((int)value);
             }
+            else if (upgrade.statType == StatType.MoveSpeed)
+            {
+                PlayerController player = FindObjectOfType<PlayerController>();
+                if (player != null)
+                    player.moveSpeed += value;
+            }
+            else if (upgrade.statType == StatType.RotationSpeed)
+            {
+                PlayerController player = FindObjectOfType<PlayerController>();
+                if (player != null)
+                    player.rotationSpeed += value;
+            }
 
             OnUpgradeApplied?.Invoke(upgrade);
         }

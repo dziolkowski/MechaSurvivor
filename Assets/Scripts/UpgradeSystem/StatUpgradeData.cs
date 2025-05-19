@@ -10,7 +10,7 @@ public enum StatType
     Damage, FireRate, ProjectileSize, ProjectileAmount, BulletSpeed,
     LaserWidth, RocketSpeed, ExplosionRadius, AreaSize, TimeToAttack,
     MaxHealth, ShieldRegen, BulletDamage, MaxShieldPoints, ChainsawDamage, 
-    LaserDamage
+    LaserDamage, MoveSpeed, RotationSpeed
 }
 
 [CreateAssetMenu(fileName = "New Stat Upgrade", menuName = "Upgrades/StatUpgrade")]

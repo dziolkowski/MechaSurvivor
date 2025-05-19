@@ -79,7 +79,7 @@ public class UpgradeUIManager : MonoBehaviour
                     for (int j = 0; j < group.Count; j++)
                     {
                         if (group[j] != null)
-                            group[j].gameObject.SetActive(j < currentLevel); // Ilosc kwadratow oznacza poziom ugradu
+                            group[j].gameObject.SetActive(j < currentLevel); // Ilosc kwadratow oznacza poziom upgradu
                     }
                 }
                 else
@@ -126,9 +126,9 @@ public class UpgradeUIManager : MonoBehaviour
 
     private List<StatUpgradeData> GetRandomUpgradeChoices(int count)
     {
-        List<StatUpgradeData> weaponUpgrades = new();
-        List<StatUpgradeData> playerUpgrades = new();
+        List<StatUpgradeData> validUpgrades = new();
 
+        // Zbieramy tylko upgrady, ktore nie osiagnely 5 poziomu
         foreach (var upgrade in allUpgrades)
         {
             if (PlayerUpgradeTracker.Instance == null) continue;
@@ -136,60 +136,55 @@ public class UpgradeUIManager : MonoBehaviour
             int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
             if (level >= 5) continue;
 
+            // Sprawdzamy czy upgrade dotyczy broni posiadanej przez gracza
             if (!upgrade.isPlayerUpgrade)
             {
-                if (WeaponManager.Instance != null &&
-                    WeaponManager.Instance.HasWeapon(upgrade.weaponType) &&
-                    !weaponUpgrades.Exists(u => u.weaponType == upgrade.weaponType))
+                if (WeaponManager.Instance != null && WeaponManager.Instance.HasWeapon(upgrade.weaponType))
                 {
-                    weaponUpgrades.Add(upgrade);
+                    validUpgrades.Add(upgrade);
                 }
             }
             else
             {
-                playerUpgrades.Add(upgrade);
+                // Upgrady gracza
+                validUpgrades.Add(upgrade);
             }
         }
 
-        // Tasujemy
-        ShuffleList(weaponUpgrades);
-        ShuffleList(playerUpgrades);
+        // Tasujemy aby zapewnic pelna losowosc
+        ShuffleList(validUpgrades);
 
-        List<StatUpgradeData> filtered = new();
+        List<StatUpgradeData> selected = new();
+        HashSet<string> usedWeaponStatCombos = new(); // Unikalna kombinacja: weaponType + stat
+        HashSet<string> usedPlayerStats = new(); // Zeby uniknac powtorek upgrade'ow playera
 
-        // Dodajemy rozne upgrady i pomijamy te, ktore byly ostatnio pokazane
-        foreach (var u in weaponUpgrades)
+        foreach (var upgrade in validUpgrades)
         {
-            if (!lastUpgradeChoices.Contains(u))
-                filtered.Add(u);
-        }
-        foreach (var u in playerUpgrades)
-        {
-            if (!lastUpgradeChoices.Contains(u))
-                filtered.Add(u);
-        }
+            // Tworzymy unikalny klucz
+            string key = upgrade.isPlayerUpgrade
+                ? $"PLAYER_{upgrade.statType}"
+                : $"{upgrade.weaponType}_{upgrade.statType}";
 
-        ShuffleList(filtered);
-
-        // Jesli nie ma wystarczajacej liczby unikalnych, dodajemy reszte
-        if (filtered.Count < count)
-        {
-            List<StatUpgradeData> fallback = new();
-            fallback.AddRange(weaponUpgrades);
-            fallback.AddRange(playerUpgrades);
-            ShuffleList(fallback);
-
-            foreach (var u in fallback)
+            // Brak mozliwosci pojawienia siê upgradu z ta sama statystyka dla tej samej broni
+            if (upgrade.isPlayerUpgrade)
             {
-                if (!filtered.Contains(u))
-                    filtered.Add(u);
-                if (filtered.Count >= count) break;
+                if (usedPlayerStats.Contains(key)) continue;
+                usedPlayerStats.Add(key);
             }
+            else
+            {
+                if (usedWeaponStatCombos.Contains(key)) continue;
+                usedWeaponStatCombos.Add(key);
+            }
+
+            selected.Add(upgrade);
+            if (selected.Count >= count)
+                break;
         }
 
-        List<StatUpgradeData> final = filtered.GetRange(0, Mathf.Min(count, filtered.Count));
-        lastUpgradeChoices = new List<StatUpgradeData>(final);
-        return final;
+        // Zapamietujemy wybrane upgrady aby uniknac ich w nastepnym pokazie
+        lastUpgradeChoices = new List<StatUpgradeData>(selected);
+        return selected;
     }
 
     private void ShuffleList<T>(List<T> list)
