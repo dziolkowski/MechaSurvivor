@@ -9,48 +9,50 @@ public class WeaponDropManager : MonoBehaviour
     public List<WeaponData> remainingWeapons = new List<WeaponData>();
     public List<WeaponSlot> sideSlots;
     public List<Image> sideSlotIcons; //Lista ikon, ktore zmieniaja siê na interfejsie
-    public float dropInterval = 30f;
+    
+    //public float dropInterval = 30f;
 
     public GameObject dropPanel; // Panel UI z przyciskami wyboru
 
     // Gotowe przyciski UI (3 sztuki)
     public List<Button> weaponButtons;
     public List<Image> weaponIcons; // Ikony broni na przyciskach
-    public List<TMP_Text> weaponNames; // Nazwy broni (jesli uzywasz TextMeshPro)
+    public List<TMP_Text> weaponNames; // Nazwy broni 
+    public List<TMP_Text> weaponDescriptions; // Opisy broni
 
     private WeaponData selectedWeapon; // Aktualnie wybrana bron
 
     public GameObject slotSelectionPanel; // Panel do wyboru slotu
     public List<Button> slotButtons; // Przyciski do wyboru slotow
-
+    public List<Image> slotButtonIcons; // Lista ikon wyswietalnych na ekranie wyboru slotow
 
 
     public void Initialize(List<WeaponData> weapons)
     {
         remainingWeapons = weapons;
-        StartCoroutine(DropLoop());
+        //StartCoroutine(DropLoop());
     }
 
-    IEnumerator DropLoop()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(dropInterval);
+   //IEnumerator DropLoop()
+   // {
+   //     while (true)
+   //     {
+   //         yield return new WaitForSeconds(dropInterval);
 
-            if (HasFreeSlot())
-            {
-                ShowDropOptions();
-            }
-            else
-            {
-                // Wszystkie sloty sa zajete 
-                Debug.Log("Wszystkie sloty s¹ ju¿ zajête. Dropy zatrzymane.");
-                yield break; // Zatrzymujemy petle calkowicie
-            }
-        }
-    }
+   //         if (HasFreeSlot())
+   //         {
+   //             ShowDropOptions();
+   //         }
+   //         else
+   //         {
+   //             // Wszystkie sloty sa zajete 
+   //             Debug.Log("Wszystkie sloty s¹ ju¿ zajête. Dropy zatrzymane.");
+   //             yield break; // Zatrzymujemy petle calkowicie
+   //         }
+   //     }
+   // }
 
-    void ShowDropOptions()
+    public void ShowDropOptions()
     {
         Time.timeScale = 0f; // Pauza
 
@@ -68,12 +70,16 @@ public class WeaponDropManager : MonoBehaviour
                 WeaponData weapon = pool[index];
                 pool.RemoveAt(index);
 
-                // Ustaw ikone i nazwe
+                // Ustaw ikone, nazwe i opis
                 if (weaponIcons != null && weaponIcons.Count > i)
                     weaponIcons[i].sprite = weapon.icon;
 
                 if (weaponNames != null && weaponNames.Count > i)
                     weaponNames[i].text = weapon.weaponName;
+
+                if (weaponDescriptions != null && weaponDescriptions.Count > i)
+                    weaponDescriptions[i].text = weapon.description;
+
 
                 // Czyscimy stare listenery
                 weaponButtons[i].onClick.RemoveAllListeners();
@@ -119,11 +125,17 @@ public class WeaponDropManager : MonoBehaviour
             {
                 sideSlots[slotIndex].AssignWeapon(selectedWeapon);
 
-                // Zmieniamy tekst na przycisku na nazwe broni
-                TMP_Text buttonText = slotButtons[slotIndex].GetComponentInChildren<TMP_Text>();
-                if (buttonText != null)
+                var baseWeapon = sideSlots[slotIndex].GetComponentInChildren<BaseWeapon>();
+                if (baseWeapon != null)
                 {
-                    buttonText.text = selectedWeapon.weaponName;
+                    WeaponManager.Instance.RegisterWeapon(baseWeapon);
+                }
+
+                // Zmieniamy pusty slot na ikone broni
+                if (slotButtonIcons != null && slotButtonIcons.Count > slotIndex)
+                {
+                    slotButtonIcons[slotIndex].sprite = selectedWeapon.icon;
+                    slotButtonIcons[slotIndex].enabled = true; // Pewnosc, ze ikona jest widoczna
                 }
 
                 // Aktualizujemy ikone na interfejsie
@@ -144,7 +156,7 @@ public class WeaponDropManager : MonoBehaviour
     }
 
 
-    bool HasFreeSlot()
+    public bool HasFreeSlot()
     {
         foreach (var slot in sideSlots)
         {

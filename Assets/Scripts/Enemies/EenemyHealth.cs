@@ -9,7 +9,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     [SerializeField] public int currentHealth;
     [SerializeField] private bool hasDeathAnimation; // Toggle for death animation
 
-    public int scoreValue = 10;
+    public int scoreValue = 10; 
+    public int expValue = 10;
     private Animator animator;
     private EnemyManager enemyManager;
 
@@ -67,9 +68,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     }
 
     private void Die() {
+        //print("dead");
         // Add player score and destroy the game object
-        ScoreManager.Instance.AddPoints(scoreValue);
-        Destroy(gameObject);
+        ScoreManager.Instance.AddPoints(scoreValue); // Dodaje punkty po smierci przeciwnika
+        FindObjectOfType<PlayerExperience>().AddExperience(expValue); // Dostajemy exp za punkty
+        Destroy(gameObject); // Niszczenie przeciwnika po smierci
         //Debug.Log($"{gameObject.name} has died and is destroyed.");
     }
 }

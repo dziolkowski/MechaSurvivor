@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,14 +26,27 @@ public class WeaponSelectionManager : MonoBehaviour
             var weapon = availableWeapons[i];
             var button = topWeaponButtons[i];
 
-            // Ustaw ikone na przycisku 
+            // Ustaw ikone broni
             Image iconImage = button.transform.Find("Icon").GetComponent<Image>();
             if (iconImage != null)
             {
                 iconImage.sprite = weapon.icon;
             }
 
-            // Potrzebujemy tymczasowej zmiennej, zeby uniknac problemu z referencja w petli
+            // Ustaw nazwe broni
+            TMP_Text nameText = button.transform.Find("Name").GetComponent<TMP_Text>();
+            if (nameText != null)
+            {
+                nameText.text = weapon.weaponName;
+            }
+
+            // Ustaw opis broni
+            TMP_Text descriptionText = button.transform.Find("Description").GetComponent<TMP_Text>();
+            if (descriptionText != null)
+            {
+                descriptionText.text = weapon.description;
+            }
+
             WeaponData capturedWeapon = weapon;
 
             button.onClick.RemoveAllListeners(); // Czyscimy stare eventy
@@ -43,6 +57,12 @@ public class WeaponSelectionManager : MonoBehaviour
     void SelectTopWeapon(WeaponData weapon)
     {
         topSlot.GetComponent<WeaponSlot>().AssignWeapon(weapon);
+
+        var baseWeapon = topSlot.GetComponentInChildren<BaseWeapon>();
+        if (baseWeapon != null)
+        {
+            WeaponManager.Instance.RegisterWeapon(baseWeapon);
+        }
 
         // Aktualizowanie ikony na interfejsie
         if (topSlotIconHUD != null)

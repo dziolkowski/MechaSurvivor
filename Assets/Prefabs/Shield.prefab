@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9048791563980068632}
   - component: {fileID: 6957505012228229080}
   - component: {fileID: 6607536139443375845}
-  - component: {fileID: -3260469072953901551}
+  - component: {fileID: -4635931014498097184}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3260469072953901551
+--- !u!114 &-4635931014498097184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,3 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a154714092ef5ce4e81b9e0f722fbd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldValue: 50
