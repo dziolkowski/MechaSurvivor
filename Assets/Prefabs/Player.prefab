@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ae6fc8fcdaa054e8a057324bcf8ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxShieldPoints: 0
+  maxShieldPoints: 50
 --- !u!114 &9163299045891905943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +955,7 @@ MonoBehaviour:
   level: 0
   currentExp: 0
   expToNextLevel: 10
+  expMultiplier: 1.25
   upgradeUIManager: {fileID: 0}
   allUpgrades:
   - {fileID: 11400000, guid: ce5b2a42767540e469cd201e12897dc3, type: 2}

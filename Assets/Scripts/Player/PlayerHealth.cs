@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
-        Debug.Log("Player takes damage. Current health: " + currentHealth);
+        //Debug.Log("Player takes damage. Current health: " + currentHealth);
 
         UpdateHealthUI(); // Aktualizacja po zadaniu obrazen
 

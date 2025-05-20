@@ -34,7 +34,7 @@ public class WeaponSelectionManager : MonoBehaviour
             }
 
             // Ustaw nazwe broni
-            TMP_Text nameText = button.transform.Find("Name").GetComponent<TMP_Text>();
+            TMP_Text nameText = button.transform.Find("Weapon Name").GetComponent<TMP_Text>();
             if (nameText != null)
             {
                 nameText.text = weapon.weaponName;
