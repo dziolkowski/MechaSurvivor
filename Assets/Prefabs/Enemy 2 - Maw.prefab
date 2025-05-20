@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
-  movementSpeed: 3.5
+  movementSpeed: 2.5
   retreatDistance: 6
   retreatDuration: 1
   damageDealt: 3
@@ -140,6 +140,7 @@ MonoBehaviour:
   currentHealth: 0
   hasDeathAnimation: 1
   scoreValue: 10
+  expValue: 10
 --- !u!1 &5532193716483668527
 GameObject:
   m_ObjectHideFlags: 0

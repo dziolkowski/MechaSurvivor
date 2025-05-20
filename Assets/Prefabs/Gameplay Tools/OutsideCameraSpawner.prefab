@@ -61,9 +61,12 @@ MonoBehaviour:
     prefab: {fileID: 4323813639670524191, guid: ab16593521fe6b74bbfa894332bfa486, type: 3}
     spawnInterval: 0.9
     canSpawn: 0
-  spawnRadius: 90
+  spawnRadius: 60
   spawnMargin: 10
   playerTransform: {fileID: 0}
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 1024
+  maxActiveEnemies: 100
+  resumeSpawnThreshold: 10
+  spawnedEnemies: []
