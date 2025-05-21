@@ -6726,6 +6726,10 @@ PrefabInstance:
       propertyPath: gameLength
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 2108504263615402224, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -441.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2109677976590036417, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -16.880005
@@ -6733,6 +6737,10 @@ PrefabInstance:
     - target: {fileID: 2109677976590036417, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -21.388977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237242466568493572, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4397196537913093649, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: m_Enabled

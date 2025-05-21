@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4281463263535965246}
   - component: {fileID: 7031106237209067705}
   - component: {fileID: 2551107401718188332}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: StainTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 58.68123
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.00000007947286, y: -4.890107, z: -0.00000007947286}

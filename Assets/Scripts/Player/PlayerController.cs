@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f; // Predkosc poruszania sie
     public float rotationSpeed = 100f; // Predkosc obracania sie
     public Transform cameraTransform; // Transform kamery
-    public float rotateCooldown = 1f; // czas cooldownu w sekundach
+    public float rotateCooldown = 1f; // Czas cooldownu w sekundach
     private float lastRotateTime = -Mathf.Infinity;
     private CharacterController characterController;
+
     private float defaultMoveSpeed;
     private float defaultRotationSpeed;
-    private bool isSlowed = false; // Flaga, zeby uniknac wielokrotnego spowolnienia
+
+    private int slowZones = 0; // Licznik plam spowalniajacych gracza
     private bool isRotating = false;
 
     [SerializeField] AudioClip skillSFX;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(Vector3.up, rotationInput * rotationSpeed * Time.deltaTime);
         }
 
+        // Obrot specjalny po klawiszu
         if (Time.time - lastRotateTime >= rotateCooldown && !isRotating)
         {
             if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
@@ -81,7 +84,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void SkillRotate(float value) {
+    private void SkillRotate(float value)
+    {
         GetComponent<AudioSource>().PlayOneShot(skillSFX);
         StartCoroutine(SmoothRotate(value));
         lastRotateTime = Time.time;
@@ -89,11 +93,17 @@ public class PlayerController : MonoBehaviour
 
     public void ModifySpeed(float moveMultiplier, float rotationMultiplier)
     {
-        if (!isSlowed) // Zapobiegamy wielokrotnemu zmniejszaniu predkosci
+        slowZones++; // Zwiekszamy licznik aktywnych stref spowolnienia
+        moveSpeed = defaultMoveSpeed * moveMultiplier;
+        rotationSpeed = defaultRotationSpeed * rotationMultiplier;
+    }
+
+    public void RemoveSlow()
+    {
+        slowZones = Mathf.Max(0, slowZones - 1); // Zmniejszamy licznik, ale nie schodzimy ponizej zera
+        if (slowZones == 0)
         {
-            moveSpeed = defaultMoveSpeed * moveMultiplier;
-            rotationSpeed = defaultRotationSpeed * rotationMultiplier;
-            isSlowed = true;
+            ResetSpeed(); // Przywroc predkosc tylko gdy gracz nie znajduje sie juz w zadnej strefie
         }
     }
 
@@ -101,10 +111,9 @@ public class PlayerController : MonoBehaviour
     {
         moveSpeed = defaultMoveSpeed;
         rotationSpeed = defaultRotationSpeed;
-        isSlowed = false;
     }
 
-    IEnumerator SmoothRotate(float angle) 
+    IEnumerator SmoothRotate(float angle)
     {
         if (isRotating) yield break;
 
@@ -116,8 +125,8 @@ public class PlayerController : MonoBehaviour
         float duration = 1f; // Czas obrotu
         float elapsed = 0f;
 
-        while (elapsed < duration) 
-        { 
+        while (elapsed < duration)
+        {
             transform.rotation = Quaternion.Slerp(startRotation, endRotation, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
@@ -125,7 +134,6 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = endRotation;
         isRotating = false;
-                            
     }
 }
 
