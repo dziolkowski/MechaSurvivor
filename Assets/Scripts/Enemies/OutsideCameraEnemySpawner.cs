@@ -14,11 +14,15 @@ public class SpawnEnemiesOnNavMesh : MonoBehaviour
         public bool canSpawn = false;     // Toggle spawning on/off
     }
 
-    [SerializeField] private List<EnemySpawnConfig> enemySpawnConfigs = new List<EnemySpawnConfig>(); // Enemy configurations
+    [SerializeField] private List<EnemySpawnConfig> enemySpawnConfigs = new List<EnemySpawnConfig>();
     [SerializeField] private float spawnRadius = 50f;         // Maximum spawn distance
     [SerializeField] private float spawnMargin = 5f;          // Minimum spawn margin
     [SerializeField] private Transform playerTransform;       // Player position reference
     [SerializeField] private LayerMask obstacleLayers;        // Layers to avoid while spawning
+    [SerializeField] private int maxActiveEnemies = 100;       // Maximum number of active enemies
+    [SerializeField] private int resumeSpawnThreshold = 10;   // Number of enemies to reduce before resuming spawning 
+
+    [SerializeField] private List<GameObject> spawnedEnemies = new List<GameObject>(); // Track active enemies
 
     private void Start()
     {
@@ -46,34 +50,56 @@ public class SpawnEnemiesOnNavMesh : MonoBehaviour
     {
         while (config.canSpawn)
         {
+            CleanUpDestroyedEnemies(); // Remove any destroyed enemies from the list
+
+            while (spawnedEnemies.Count >= maxActiveEnemies)
+            {
+                // Wait for a short interval to recheck the conditions
+                yield return new WaitForSeconds(1f);
+
+                // Cleanup destroyed enemies again if needed
+                CleanUpDestroyedEnemies();
+
+                // Check if the condition to resume spawning is met
+                if (spawnedEnemies.Count <= maxActiveEnemies - resumeSpawnThreshold)
+                {
+                    break;
+                }
+            }
+
             yield return new WaitForSeconds(config.spawnInterval);
 
-            // Continuously try to find a valid spawn position
+            // Spawn an enemy if within limits
             Vector3 spawnPosition = GetValidSpawnPosition();
-            Instantiate(config.prefab, spawnPosition, Quaternion.identity);
-            //Debug.Log($"Spawned {config.enemyName} at {spawnPosition}");
+            GameObject enemy = Instantiate(config.prefab, spawnPosition, Quaternion.identity);
+            spawnedEnemies.Add(enemy); // Add the new enemy to the list
         }
     }
 
     private Vector3 GetValidSpawnPosition()
     {
-        while (true) // Keep trying until a valid position is found
+        while (true)
         {
-            Vector2 randomDirection = Random.insideUnitCircle.normalized; // Random 2D direction
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
             float randomDistance = Random.Range(spawnRadius - spawnMargin, spawnRadius);
             Vector3 randomPoint = playerTransform.position + new Vector3(randomDirection.x, 0, randomDirection.y) * randomDistance;
 
-            randomPoint.y = playerTransform.position.y; // Ensure the same height as the player
+            randomPoint.y = playerTransform.position.y;
 
-            // Validate the position using NavMesh and obstacles
             if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, NavMesh.AllAreas) &&
                 !Physics.Linecast(playerTransform.position, hit.position, obstacleLayers))
             {
-                return hit.position; // Valid position found, return it
+                return hit.position;
             }
 
             Debug.Log("Retrying to find a valid spawn position...");
         }
+    }
+
+    private void CleanUpDestroyedEnemies()
+    {
+        // Remove enemies that have been destroyed from the list
+        spawnedEnemies.RemoveAll(enemy => enemy == null);
     }
 
     public void StartSpawning(string enemyName)

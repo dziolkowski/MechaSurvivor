@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Laser
   m_EditorClassIdentifier: 
   weaponName: Laser
+  description: Laser Weapon
   icon: {fileID: -1408528642, guid: 97b732776de60884abe1923dbf633363, type: 3}
   topSlotPrefab: {fileID: 6077524513553424396, guid: b6120e3104f056c4eb91f5ec760a0c89, type: 3}
   sideSlotPrefab: {fileID: 6077524513553424396, guid: cb8d81e79ee5c7149a8cbf91e39c8235, type: 3}
+  weaponType: 1

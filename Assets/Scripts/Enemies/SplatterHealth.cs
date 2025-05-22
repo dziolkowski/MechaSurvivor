@@ -11,6 +11,7 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     [SerializeField] public int currentHealth; // Aktualne zdrowie
     [SerializeField] bool HasDeathAnimation; // tymczasowe rozwiazanie dla przeciwnikow bez animacji smierci aby poprawnie umierali
     public int scoreValue = 10; // Punkty otrzymywane za zabicie przeciwnika
+    public int expValue = 10; // Exp otrzymywany za zabicie przeciwnika
     Animator animator;
 
     [Header("Splatter Settings")]
@@ -86,7 +87,8 @@ public class SplatterHealth : MonoBehaviour, IDamageable
             splatter.AddComponent<DamageZoneHandler>().Initialize(stainLifetime, moveSpeedMultiplier, rotationSpeedMultiplier);
         }
 
-        ScoreManager.Instance.AddPoints(scoreValue); 
+        ScoreManager.Instance.AddPoints(scoreValue); // Dodaje punkty po smierci przeciwnika
+        FindObjectOfType<PlayerExperience>().AddExperience(expValue); // Dostajemy exp za punkty
         Destroy(gameObject);
     }
 }

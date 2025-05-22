@@ -5,8 +5,18 @@ using UnityEngine;
 public class ShieldSpawner : MonoBehaviour
 {
     public GameObject shieldPrefab; // Prefab tarczy
-    public float respawnTime = 10f; // Czas, po ktorym tarcza pojawia sie na mapie
+    public float respawnTime = 10f; // Czas, po kttrym tarcza pojawi siê po podniesieniu
     private GameObject currentShield;
+
+    private void OnDrawGizmosSelected() {
+        DrawSphere(transform.position, 1f);
+    }
+
+    private void DrawSphere(Vector3 position, float radius) {
+        Gizmos.color = Color.red; // Set the color of the gizmo
+        Gizmos.DrawWireSphere(position, radius); // Draw the sphere gizmo
+    }
+
 
     void Start()
     {
@@ -16,18 +26,19 @@ public class ShieldSpawner : MonoBehaviour
     void SpawnShield()
     {
         currentShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
-        Invoke(nameof(CheckRespawn), respawnTime);
+
+        // Przekazujemy referencjê do spawnera
+        ShieldPickup shieldScript = currentShield.GetComponent<ShieldPickup>();
+        if (shieldScript != null)
+        {
+            shieldScript.spawner = this;
+        }
     }
 
-    void CheckRespawn()
+    // Wolane przez tarcze, gdy zostanie podniesiona
+    public void OnShieldPickedUp()
     {
-        if (currentShield == null)
-        {
-            SpawnShield();
-        }
-        else
-        {
-            Invoke(nameof(CheckRespawn), 1f);
-        }
+        currentShield = null;
+        Invoke(nameof(SpawnShield), respawnTime);
     }
 }

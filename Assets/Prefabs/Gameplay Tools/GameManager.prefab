@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3650602115441333591}
   - component: {fileID: 4556221924687212660}
+  - component: {fileID: 5090522812212054136}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29,7 +30,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 16.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 874636599535620162}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4556221924687212660
@@ -46,3 +48,120 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: a713c73098f7f0e4385432f97407315e, type: 3}
   hotSpot: {x: 32, y: 32}
+--- !u!114 &5090522812212054136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5797701734454122552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54dd40290d7aad2479d57e612da68f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6327925309530254826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 874636599535620162}
+  - component: {fileID: 5049165435344295219}
+  m_Layer: 0
+  m_Name: Upgrade Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874636599535620162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327925309530254826}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -123.300545, y: -9.10764, z: -120.68495}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3650602115441333591}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5049165435344295219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6327925309530254826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d3fc8714792454981a2794c411f6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradePanel: {fileID: 0}
+  upgradeButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  icons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  titles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  descriptions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  upgradeLevelIndicators:
+  - indicators:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - indicators:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - indicators:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  allUpgrades:
+  - {fileID: 11400000, guid: ce5b2a42767540e469cd201e12897dc3, type: 2}
+  - {fileID: 11400000, guid: f5e57ea077a36ec46be2a681bf127272, type: 2}
+  - {fileID: 11400000, guid: d5a924f7dc8942341a11e59ea658408a, type: 2}
+  - {fileID: 11400000, guid: 667ba1cfd9852f643ac2263d553387d1, type: 2}
+  - {fileID: 11400000, guid: 681728ee935b1f54e9e53d0e2f494c9b, type: 2}
+  - {fileID: 11400000, guid: 440800af2e5cab541be132d13799f41e, type: 2}
+  - {fileID: 11400000, guid: 99d8ceb5df681f24cab6ac53bfc35549, type: 2}
+  - {fileID: 11400000, guid: bd5288f101720414fba0cff34bd8982b, type: 2}
+  - {fileID: 11400000, guid: 54fd6b60e0faeb94b9fe76beec7ca21f, type: 2}
+  - {fileID: 11400000, guid: 8554643ae8a3f7645900d0857386160d, type: 2}
+  - {fileID: 11400000, guid: 76b92841abfe6db48a8f37bd1ba24976, type: 2}
+  - {fileID: 11400000, guid: e9a06829fb1be4848b5ec1e23fec7ab6, type: 2}
+  - {fileID: 11400000, guid: 6832a4f550d7066498133f828b50949b, type: 2}
+  - {fileID: 11400000, guid: 889b4080d20b5ef4e852bb46f594bccf, type: 2}
+  - {fileID: 11400000, guid: c48c88f9ac62afd4d9f44fdb934300e1, type: 2}
+  - {fileID: 11400000, guid: 43d87344af2791f46940bea30c3d61c7, type: 2}
+  - {fileID: 11400000, guid: 15b30f94839c751438921a4f9b980e0d, type: 2}
+  - {fileID: 11400000, guid: 1d7423e21d7d9fc4eaadbb75e2db330e, type: 2}
+  - {fileID: 11400000, guid: 2e7358d1fdf0b884ab343455d1901cf9, type: 2}
+  - {fileID: 11400000, guid: 07fc61aa9215b474fa0936966aeed6cb, type: 2}
+  - {fileID: 11400000, guid: b29c8d742f1b72a4e80da3090e899aeb, type: 2}
+  - {fileID: 11400000, guid: bdef4f5573b904645a1448341957ce05, type: 2}
+  - {fileID: 11400000, guid: c866bed11fda74c4496b4dd1f61a072c, type: 2}
+  - {fileID: 11400000, guid: 516f708d56c466345b6b2330f64971e0, type: 2}

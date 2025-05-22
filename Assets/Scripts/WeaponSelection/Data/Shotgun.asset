@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   weaponName: Shotgun
+  description: Shotgun Weapon
   icon: {fileID: 663564146, guid: 8303e67cbde623745b0c48aa26d22ee5, type: 3}
   topSlotPrefab: {fileID: 6077524513553424396, guid: 5e402074aa5f9dc40a31486cc6ca135b, type: 3}
   sideSlotPrefab: {fileID: 6077524513553424396, guid: 50cb9f3baddf9724e8306d7cbeed3889, type: 3}
+  weaponType: 2

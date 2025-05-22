@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketSideWeapon : MonoBehaviour
+public class RocketSideWeapon : BaseWeapon
 {
     [Header("RocketLauncher Settings")]
     public GameObject rocketPrefab; // Prefab rakiety
@@ -13,6 +13,13 @@ public class RocketSideWeapon : MonoBehaviour
     public float damage = 50f; // Obrazenia eksplozji
     public float projectileSize = 1f; // Wielkosc pocisku
     private float nextFireTime = 0f;
+
+
+    protected override void Start()
+    {
+        weaponType = WeaponType.RocketLauncher; // Ustaw typ broni tutaj
+        base.Start();
+    }
 
     void Update()
     {
@@ -47,5 +54,33 @@ public class RocketSideWeapon : MonoBehaviour
         {
             Physics.IgnoreCollision(rocketCollider, playerCollider);
         }
+    }
+
+    public override void ApplyUpgrade(StatUpgradeData upgrade)
+    {
+        int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
+        float value = upgrade.GetValueAtLevel(level - 1);
+
+        switch (upgrade.statType)
+        {
+            case StatType.Damage:
+                damage += Mathf.RoundToInt(value);
+                break;
+            case StatType.FireRate:
+                fireRate -= value;
+                if (fireRate < 0.01f) fireRate = 0.01f;
+                break;
+            case StatType.ProjectileSize:
+                projectileSize += value;
+                break;
+            case StatType.ExplosionRadius:
+                explosionRadius += value;
+                break;
+            case StatType.RocketSpeed:
+                rocketSpeed += value;
+                break;
+        }
+
+        Debug.Log($"{weaponType} upgraded: {upgrade.statType} +{value}");
     }
 }
