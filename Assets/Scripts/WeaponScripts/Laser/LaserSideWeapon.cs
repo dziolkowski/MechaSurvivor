@@ -107,7 +107,7 @@ public class LaserSideWeapon : BaseWeapon
                 break;
             case StatType.FireRate:
                 fireRate -= value;
-                if (fireRate < 0.1f) fireRate = 0.1f;
+                if (fireRate < 0.01f) fireRate = 0.01f;
                 break;
             case StatType.LaserWidth:
                 laserWidth += value;

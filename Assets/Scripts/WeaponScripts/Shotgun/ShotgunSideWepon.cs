@@ -73,7 +73,7 @@ public class ShotgunSideWepon : BaseWeapon
                 break;
             case StatType.FireRate:
                 fireRate -= value;
-                if (fireRate < 0.05f) fireRate = 0.05f;
+                if (fireRate < 0.01f) fireRate = 0.01f;
                 break;
             case StatType.ProjectileSize:
                 projectileSize += value;

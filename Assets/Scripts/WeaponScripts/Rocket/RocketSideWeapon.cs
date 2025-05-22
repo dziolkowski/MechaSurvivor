@@ -68,7 +68,7 @@ public class RocketSideWeapon : BaseWeapon
                 break;
             case StatType.FireRate:
                 fireRate -= value;
-                if (fireRate < 2f) fireRate = 2f;
+                if (fireRate < 0.01f) fireRate = 0.01f;
                 break;
             case StatType.ProjectileSize:
                 projectileSize += value;

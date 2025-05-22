@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShieldSpawner : MonoBehaviour
 {
     public GameObject shieldPrefab; // Prefab tarczy
-    public float respawnTime = 10f; // Czas, po ktorym tarcza pojawia sie na mapie
+    public float respawnTime = 10f; // Czas, po kttrym tarcza pojawi siê po podniesieniu
     private GameObject currentShield;
 
     void Start()
@@ -16,18 +16,19 @@ public class ShieldSpawner : MonoBehaviour
     void SpawnShield()
     {
         currentShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
-        Invoke(nameof(CheckRespawn), respawnTime);
+
+        // Przekazujemy referencjê do spawnera
+        ShieldPickup shieldScript = currentShield.GetComponent<ShieldPickup>();
+        if (shieldScript != null)
+        {
+            shieldScript.spawner = this;
+        }
     }
 
-    void CheckRespawn()
+    // Wolane przez tarcze, gdy zostanie podniesiona
+    public void OnShieldPickedUp()
     {
-        if (currentShield == null)
-        {
-            SpawnShield();
-        }
-        else
-        {
-            Invoke(nameof(CheckRespawn), 1f);
-        }
+        currentShield = null;
+        Invoke(nameof(SpawnShield), respawnTime);
     }
 }
