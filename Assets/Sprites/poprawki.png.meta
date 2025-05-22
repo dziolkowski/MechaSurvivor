@@ -110,13 +110,13 @@ TextureImporter:
       name: poprawki_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 2074
-        width: 1404
-        height: 2074
+        width: 1392
+        height: 2023
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 16, y: 0, z: 1, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -131,13 +131,13 @@ TextureImporter:
       name: poprawki_1
       rect:
         serializedVersion: 2
-        x: 1404
+        x: 1417
         y: 2074
-        width: 1403
-        height: 2074
+        width: 1390
+        height: 2023
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 16, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -152,13 +152,13 @@ TextureImporter:
       name: poprawki_2
       rect:
         serializedVersion: 2
-        x: 2808
+        x: 2820
         y: 2074
-        width: 1404
-        height: 2074
+        width: 1390
+        height: 2024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 17, y: 0, z: 1, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -207,27 +207,6 @@ TextureImporter:
       bones: []
       spriteID: 07b98b0f9d6b53a42995372202260135
       internalID: -890391237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: poprawki_5
-      rect:
-        serializedVersion: 2
-        x: 2808
-        y: 0
-        width: 1404
-        height: 2074
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b2622aff55650d244ab1217fd9cf548b
-      internalID: 171194499
       vertices: []
       indices: 
       edges: []

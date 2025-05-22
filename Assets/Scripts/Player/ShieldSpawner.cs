@@ -8,6 +8,16 @@ public class ShieldSpawner : MonoBehaviour
     public float respawnTime = 10f; // Czas, po kttrym tarcza pojawi siê po podniesieniu
     private GameObject currentShield;
 
+    private void OnDrawGizmosSelected() {
+        DrawSphere(transform.position, 1f);
+    }
+
+    private void DrawSphere(Vector3 position, float radius) {
+        Gizmos.color = Color.red; // Set the color of the gizmo
+        Gizmos.DrawWireSphere(position, radius); // Draw the sphere gizmo
+    }
+
+
     void Start()
     {
         SpawnShield();
