@@ -5,87 +5,111 @@ using UnityEngine.AI;
 
 public class KamikazeAI : MonoBehaviour, IDamageable
 {
-    public Transform player;
-    private NavMeshAgent agent;
+    private Transform player; // Gracz 
 
-    [SerializeField] private float movementSpeed = 3.5f; // Predkosc poruszania sie kamikadze
-    [SerializeField] private float detectionRadius = 10f; // Promien wykrywania gracza
-    [SerializeField] private float explosionRadius = 5f; // Promien eksplozji
-    [SerializeField] private int damageDealt = 10; // Obrazenia eksplozji
+    [SerializeField] private float movementSpeed = 3.5f;
+    [SerializeField] private float detectionRadius = 5f;
+
+    [SerializeField] private float explosionDelay = 0.5f;
+    [SerializeField] private float explosionRadius = 5f;
+    [SerializeField] private int damageDealt = 10;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float explosionEffectDuration = 2f;
 
-    private bool isDead = false;
-    private Animator animator;
+    [SerializeField] private int scoreValue = 10;
+    [SerializeField] private int expValue = 10;
 
-    void Start() {
-        animator = GetComponent<Animator>();
+    private NavMeshAgent agent;
+    private Animator animator;
+    private bool isExploding = false;
+    private bool isDead = false;
+
+    void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = movementSpeed; // Ustaw predkosc kamikaze
-        FindPlayer();
+        animator = GetComponent<Animator>();
+        agent.speed = movementSpeed;
     }
 
     void Update()
     {
-        if (player != null)
-        {
-            agent.SetDestination(player.position);
+        if (isExploding || isDead) return;
 
-            if (Vector3.Distance(transform.position, player.position) <= explosionRadius) {
-                GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
-                GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
-                animator.SetTrigger("Death");
-            }
-        }
+        MoveToPlayer();
     }
 
-    private void FindPlayer()
+    private void MoveToPlayer()
     {
-        GameObject findPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (findPlayer != null)
+        // Jesli gracz nie przypiety, sprobuj go znalezc
+        if (player == null)
         {
-            player = findPlayer.transform;
+            GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
+            if (foundPlayer != null)
+            {
+                player = foundPlayer.transform;
+            }
+            else return;
+        }
+
+        agent.SetDestination(player.position);
+
+        float distance = Vector3.Distance(transform.position, player.position);
+        if (distance <= detectionRadius)
+        {
+            StartExplosion(); // Wybuch, gdy gracz jest blisko
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (!isDead)
-        {
-            isDead = true;
-            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
-            GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
-            animator.SetTrigger("Death");
-            //Explode();
-        }
+        if (isDead) return;
+
+        isDead = true;
+        StartExplosion(); // Wybuch przy smierci
     }
 
-    private void Explode()
+    private void StartExplosion()
     {
-        // Tworzenie efektu eksplozji
-        if (explosionEffect != null)
+        if (isExploding) return;
+
+        isExploding = true;
+        agent.isStopped = true;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        if (animator != null)
         {
-            GameObject explosionInstance = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(explosionInstance, explosionEffectDuration);
+            animator.SetTrigger("Death");
         }
 
-        // Zadawanie obrazen wszystkim w zasiegu
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        HashSet<GameObject> damagedEntities = new HashSet<GameObject>();
+        StartCoroutine(ExplodeAfterDelay());
+    }
 
-        foreach (Collider hit in hitColliders)
+    private IEnumerator ExplodeAfterDelay()
+    {
+        yield return new WaitForSeconds(explosionDelay);
+
+        if (explosionEffect != null)
         {
-            if (!damagedEntities.Contains(hit.gameObject))
+            GameObject effect = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(effect, explosionEffectDuration);
+        }
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius);
+        HashSet<GameObject> damaged = new HashSet<GameObject>();
+
+        foreach (Collider hit in hits)
+        {
+            if (!damaged.Contains(hit.gameObject))
             {
                 if (hit.CompareTag("Player"))
                 {
-                    PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
-                    if (playerHealth != null)
+                    PlayerHealth ph = hit.GetComponent<PlayerHealth>();
+                    if (ph != null)
                     {
-                        playerHealth.TakeDamage(damageDealt);
+                        ph.TakeDamage(damageDealt);
                     }
                 }
-                else if (hit.CompareTag("Enemy"))
+                else if (hit.CompareTag("Enemy") && hit.gameObject != gameObject)
                 {
                     IDamageable enemy = hit.GetComponent<IDamageable>();
                     if (enemy != null)
@@ -93,19 +117,23 @@ public class KamikazeAI : MonoBehaviour, IDamageable
                         enemy.TakeDamage(damageDealt);
                     }
                 }
-                damagedEntities.Add(hit.gameObject);
+                damaged.Add(hit.gameObject);
             }
         }
-        Destroy(gameObject);
+
+        ScoreManager.Instance?.AddPoints(scoreValue);
+        FindObjectOfType<PlayerExperience>()?.AddExperience(expValue);
+
+        Destroy(gameObject); // Znikniecie po eksplozji
     }
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
 
