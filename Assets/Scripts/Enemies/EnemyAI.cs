@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player; // Obiekt gracza
+    private Transform player; // Obiekt gracza
     private UnityEngine.AI.NavMeshAgent agent;
     [SerializeField] private float movementSpeed = 3.5f; // Predkosc poruszania sie przeciwnikow 
     [SerializeField] private float retreatDistance = 2f; // Odleglosc odskoku
     [SerializeField] private float retreatDuration = 0.5f; // Czas trwania odskoku
     [SerializeField] private int damageDealt = 2;
-    private bool isRetreating = false; // Sprawdzanie czy przeciwniki odskakuje
+    private bool isRetreating = false; // Sprawdzanie czy przeciwnik odskakuje
 
     [Header("Debug - do NOT ship set to FALSE")]
     [SerializeField] private bool isMoving = true;

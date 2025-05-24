@@ -1,78 +1,76 @@
-using System.Collections;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
-    [SerializeField] private string enemyType; // The type of the enemy
-    [SerializeField] private int maxHealth = 100; // Max health of the enemy
+    [SerializeField] private string enemyType;
+    [SerializeField] private int maxHealth = 100;
     [SerializeField] public int currentHealth;
-    [SerializeField] private bool hasDeathAnimation; // Toggle for death animation
+    [SerializeField] private bool hasDeathAnimation;
 
-    public int scoreValue = 10; 
+    public int scoreValue = 10;
     public int expValue = 10;
     private Animator animator;
     private EnemyManager enemyManager;
 
+    private bool isDead = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        // Find the EnemyManager instance in the scene
         enemyManager = FindAnyObjectByType<EnemyManager>();
-        if (enemyManager == null)
-        {
-            Debug.LogWarning("EnemyManager not found! Defaulting maxHealth to 100.");
-        }
 
-        // Initialize max health and current health based on the enemy type
         SetEnemyType(enemyType);
     }
 
-    /// <summary>
-    /// Sets the enemy's type and updates its max health based on EnemyManager's settings.
-    /// </summary>
-    /// <param name="type">The enemy type to set.</param>
     public void SetEnemyType(string type)
     {
         enemyType = type;
 
-        // Get the corresponding max health value from the EnemyManager
         if (enemyManager != null)
         {
             maxHealth = enemyManager.GetEnemyHealth(enemyType);
         }
 
-        currentHealth = maxHealth; // Initialize current health
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
-        //Debug.Log($"{gameObject.name} took {damage} damage!");
 
         if (currentHealth <= 0)
         {
-            GetComponent<CapsuleCollider>().enabled = false; // wylaczenie collidera aby nie zadawac graczowi obrazen /L
-            GetComponent<NavMeshAgent>().isStopped = true; // zatrzymanie przeciwnika w momencie kiedy ma 0 HP /L
-            // WORKAROUND - USUNAC POZNIEJ /L
-            if (hasDeathAnimation) { // jesli ma anmacje smierci, to Die() zostanie wywolana po animacji
+            isDead = true;
+
+            GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<NavMeshAgent>().isStopped = true;
+
+            if (hasDeathAnimation)
+            {
                 animator.SetTrigger("Death");
-                print("kaboom");
             }
-            else {
-                Debug.Log("skipping animation");
-                Die(); // jesli nie ma animacji smierci to wywoluje Die()
+            else
+            {
+                Die();
             }
         }
     }
 
-    private void Die() {
-        //print("dead");
-        // Add player score and destroy the game object
-        ScoreManager.Instance.AddPoints(scoreValue); // Dodaje punkty po smierci przeciwnika
-        FindObjectOfType<PlayerExperience>().AddExperience(expValue); // Dostajemy exp za punkty
-        Destroy(gameObject); // Niszczenie przeciwnika po smierci
-        //Debug.Log($"{gameObject.name} has died and is destroyed.");
+    public void ForceDie()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        Die(); // Wymuszenie natychmiastowej smierci
+    }
+
+    private void Die()
+    {
+        ScoreManager.Instance.AddPoints(scoreValue);
+        FindObjectOfType<PlayerExperience>()?.AddExperience(expValue);
+        Destroy(gameObject);
     }
 }
