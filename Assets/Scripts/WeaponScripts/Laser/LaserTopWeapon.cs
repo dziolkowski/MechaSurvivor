@@ -16,10 +16,11 @@ public class LaserTopWeapon : BaseWeapon
     private float nextFireTime;
     private GameObject currentLaser; // Instancja aktualnie uzywanego lasera
 
-
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.Laser; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -62,6 +63,7 @@ public class LaserTopWeapon : BaseWeapon
             currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
 
+        audioPlayer.PlayAudio();
         Ray ray = new Ray(laserOrigin.position, laserOrigin.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, hitLayers);
 
