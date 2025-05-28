@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TopWeaponController : MonoBehaviour
+public class TopWeaponController : BaseWeapon
 {
     [Header("Gun Settings")]
     public GameObject bulletPrefab; // Prefab pocisku
@@ -15,6 +15,13 @@ public class TopWeaponController : MonoBehaviour
     public int bulletDamage = 10; // Obrazenia zadawane przez pocisk
     public float projectileSize = 0.25f; // Wielkosc pocisku
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
+
+
+    protected override void Start()
+    {
+        weaponType = WeaponType.Gun; // Ustaw typ broni tutaj
+        base.Start();
+    }
 
     void Update()
     {
@@ -72,6 +79,35 @@ public class TopWeaponController : MonoBehaviour
             if (i < projectileAmount - 1)
                 yield return new WaitForSeconds(delayBetweenProjectiles);
         }
+    }
+
+    public override void ApplyUpgrade(StatUpgradeData upgrade)
+    {
+        int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
+        float value = upgrade.GetValueAtLevel(level - 1);
+
+        switch (upgrade.statType)
+        {
+            case StatType.Damage:
+            case StatType.BulletDamage:
+                bulletDamage += Mathf.RoundToInt(value);
+                break;
+            case StatType.FireRate:
+                fireRate -= value;
+                if (fireRate < 0.01f) fireRate = 0.01f;
+                break;
+            case StatType.ProjectileSize:
+                projectileSize += value;
+                break;
+            case StatType.ProjectileAmount:
+                projectileAmount += Mathf.RoundToInt(value);
+                break;
+            case StatType.BulletSpeed:
+                bulletSpeed += value;
+                break;
+        }
+
+        Debug.Log($"{weaponType} upgraded: {upgrade.statType} +{value}");
     }
 
 }

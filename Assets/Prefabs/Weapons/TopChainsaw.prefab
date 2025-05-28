@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457294819aca979469297613188cf97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponType: 3
   chainsawDamage: 10
   areaSize: 2
   timeToAttack: 1

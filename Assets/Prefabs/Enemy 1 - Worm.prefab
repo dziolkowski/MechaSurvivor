@@ -57,10 +57,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 8
+  m_Radius: 1.88
+  m_Height: 3.41
   m_Direction: 1
-  m_Center: {x: 0, y: 3.53, z: 0}
+  m_Center: {x: 0, y: 1.32, z: 0}
 --- !u!95 &4261681930192518379
 Animator:
   serializedVersion: 7
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
-  movementSpeed: 3.5
+  movementSpeed: 2.5
   retreatDistance: 3
   retreatDuration: 1
   damageDealt: 2
@@ -138,8 +138,9 @@ MonoBehaviour:
   enemyType: Worm
   maxHealth: 100
   currentHealth: 0
-  hasDeathAnimation: 0
+  hasDeathAnimation: 1
   scoreValue: 10
+  expValue: 10
 --- !u!1 &5532193716483668527
 GameObject:
   m_ObjectHideFlags: 0

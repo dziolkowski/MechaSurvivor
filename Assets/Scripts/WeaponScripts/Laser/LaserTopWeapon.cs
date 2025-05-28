@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserTopWeapon : MonoBehaviour
+public class LaserTopWeapon : BaseWeapon
 {
     [Header("Laser Settings")]
     [SerializeField] private float laserWidth = 0.1f; // Szerokosc lasera 
@@ -15,6 +15,15 @@ public class LaserTopWeapon : MonoBehaviour
 
     private float nextFireTime;
     private GameObject currentLaser; // Instancja aktualnie uzywanego lasera
+
+
+
+    protected override void Start()
+    {
+        weaponType = WeaponType.Laser; // Ustaw typ broni tutaj
+        base.Start();
+    }
+
 
     void Update()
     {
@@ -110,6 +119,29 @@ public class LaserTopWeapon : MonoBehaviour
         currentLaser.SetActive(true);
         yield return new WaitForSeconds(0.05f); // Czas widocznosci lasera
         currentLaser.SetActive(false);
+    }
+
+    public override void ApplyUpgrade(StatUpgradeData upgrade)
+    {
+        int level = PlayerUpgradeTracker.Instance.GetUpgradeLevel(upgrade);
+        float value = upgrade.GetValueAtLevel(level - 1);
+
+        switch (upgrade.statType)
+        {
+            case StatType.Damage:
+            case StatType.LaserDamage:
+                laserDamage += Mathf.RoundToInt(value);
+                break;
+            case StatType.FireRate:
+                fireRate -= value;
+                if (fireRate < 0.01f) fireRate = 0.01f;
+                break;
+            case StatType.LaserWidth:
+                laserWidth += value;
+                break;
+        }
+
+        Debug.Log($"{weaponType} upgraded: {upgrade.statType} +{value}");
     }
 }
 

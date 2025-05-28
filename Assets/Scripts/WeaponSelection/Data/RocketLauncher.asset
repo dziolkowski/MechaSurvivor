@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: RocketLauncher
   m_EditorClassIdentifier: 
   weaponName: Rocket Launcher
+  description: Rocket Launcher Weapon
   icon: {fileID: -253127009, guid: 5763de340fcec004bb368a1956a51991, type: 3}
   topSlotPrefab: {fileID: 6077524513553424396, guid: a57e889fd2542bf4b9c4baae07cf85fa, type: 3}
   sideSlotPrefab: {fileID: 6077524513553424396, guid: 6fd134795b174f54d85637e7fdd255a4, type: 3}
+  weaponType: 4

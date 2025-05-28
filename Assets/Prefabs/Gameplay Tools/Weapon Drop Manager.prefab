@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6718941606634672638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43841827, y: 4.9654994, z: -12.405465}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,7 +55,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  dropInterval: 30
   dropPanel: {fileID: 0}
   weaponButtons:
   - {fileID: 0}
@@ -69,9 +68,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  weaponDescriptions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   slotSelectionPanel: {fileID: 0}
   slotButtons:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  slotButtonIcons: []

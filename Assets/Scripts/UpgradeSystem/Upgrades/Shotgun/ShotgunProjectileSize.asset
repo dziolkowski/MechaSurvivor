@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
+  m_Name: ShotgunProjectileSize
+  m_EditorClassIdentifier: 
+  upgradeTitle: Shotgun Projectile Size
+  description: Increase the projectile
+  icon: {fileID: 21300000, guid: dd42a6880f387184e9678a5838b113f4, type: 3}
+  weaponType: 2
+  statType: 2
+  upgradeValues:
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  isPlayerUpgrade: 0

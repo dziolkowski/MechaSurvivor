@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   weaponName: Gun
+  description: Gun Weapon
   icon: {fileID: -1801457183, guid: d7275d5292488d94fa1cfd54b9d49d8d, type: 3}
   topSlotPrefab: {fileID: 6077524513553424396, guid: 25e647437a7e0b542a0cf61ff0b1b67d, type: 3}
   sideSlotPrefab: {fileID: 6077524513553424396, guid: f58963c6a59964f499d0e83542c7c511, type: 3}
+  weaponType: 0

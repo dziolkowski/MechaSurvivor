@@ -6,7 +6,10 @@ using UnityEngine;
 public class WeaponData : ScriptableObject
 {
     public string weaponName;
+    public string description;
     public Sprite icon;
     public GameObject topSlotPrefab; // Bron na czubku
     public GameObject sideSlotPrefab; // Bron na korpusie
+
+    public WeaponType weaponType;
 }
