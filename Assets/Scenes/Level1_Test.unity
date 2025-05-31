@@ -7643,7 +7643,7 @@ MonoBehaviour:
   explosionIncrementalRadius: 1
   explosionDamage: 10
   attackTriggerDistance: 20
-  explosionPoolPrefab: {fileID: 4907371642679499664, guid: 1593b21f99bbe1f4c8b1254c6493ae5f, type: 3}
+  explosionPoolPrefab: {fileID: 4497881063563668843, guid: 1593b21f99bbe1f4c8b1254c6493ae5f, type: 3}
 --- !u!136 &1679174511
 CapsuleCollider:
   m_ObjectHideFlags: 0
