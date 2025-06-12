@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2201215129321791089}
   - component: {fileID: 1718311133223108848}
   - component: {fileID: 6745822311017442807}
+  - component: {fileID: -6568809986168619099}
   m_Layer: 6
   m_Name: Enemy 1 - Worm
   m_TagString: Enemy
@@ -117,11 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33df7d819fd935d4e9af4687531e99f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
   movementSpeed: 2.5
   retreatDistance: 3
   retreatDuration: 1
-  damageDealt: 2
+  damage: 2
   isMoving: 1
 --- !u!114 &6745822311017442807
 MonoBehaviour:
@@ -141,6 +141,20 @@ MonoBehaviour:
   hasDeathAnimation: 1
   scoreValue: 10
   expValue: 10
+--- !u!114 &-6568809986168619099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323813639670524191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa538dd73740c394fb0efac2b613c7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuffed: 0
+  buffEffect: {fileID: 0}
 --- !u!1 &5532193716483668527
 GameObject:
   m_ObjectHideFlags: 0

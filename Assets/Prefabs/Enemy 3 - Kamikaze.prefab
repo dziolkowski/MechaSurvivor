@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2201215129321791089}
   - component: {fileID: -6960159466308039298}
   - component: {fileID: 6745822311017442807}
+  - component: {fileID: 130827024128302152}
   m_Layer: 6
   m_Name: Enemy 3 - Kamikaze
   m_TagString: Enemy
@@ -121,7 +122,7 @@ MonoBehaviour:
   detectionRadius: 6
   explosionDelay: 0.5
   explosionRadius: 5
-  damageDealt: 10
+  damage: 10
   explosionEffect: {fileID: 7376211662991525148, guid: 98727f89407edf541addd11f109652d9, type: 3}
   explosionEffectDuration: 0.5
   scoreValue: 10
@@ -144,6 +145,20 @@ MonoBehaviour:
   hasDeathAnimation: 1
   scoreValue: 10
   expValue: 10
+--- !u!114 &130827024128302152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323813639670524191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa538dd73740c394fb0efac2b613c7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuffed: 0
+  buffEffect: {fileID: 0}
 --- !u!1 &5532193716483668527
 GameObject:
   m_ObjectHideFlags: 0
