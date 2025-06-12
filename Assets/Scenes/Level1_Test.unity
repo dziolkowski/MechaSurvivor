@@ -7596,9 +7596,10 @@ GameObject:
   - component: {fileID: 1679174513}
   - component: {fileID: 1679174512}
   - component: {fileID: 1679174511}
+  - component: {fileID: 1679174515}
   - component: {fileID: 1679174510}
   - component: {fileID: 1679174509}
-  - component: {fileID: 1679174515}
+  - component: {fileID: 1679174516}
   m_Layer: 6
   m_Name: Overlord
   m_TagString: Enemy
@@ -7619,7 +7620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: Overlord
-  maxHealth: 100
+  maxHealth: 10
   currentHealth: 0
   hasDeathAnimation: 0
   scoreValue: 10
@@ -7726,7 +7727,7 @@ Transform:
   m_GameObject: {fileID: 1679174508}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.1918273, y: 1.68, z: 28}
+  m_LocalPosition: {x: -57.9, y: 1.68, z: 28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7754,6 +7755,23 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1679174516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679174508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e2c9d7e5f9033458b31c11976fddb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffRadius: 10
+  buffCooldown: 10
+  healthIncrease: 20
+  damageIncrease: 5
+  buffEffectPrefab: {fileID: 2180482690152000369, guid: 5dd04d3a7cbeb594abff04a1b42e48b0, type: 3}
 --- !u!1 &1705945556
 GameObject:
   m_ObjectHideFlags: 0
