@@ -43786,6 +43786,14 @@ PrefabInstance:
       propertyPath: 'spawnPoints.Array.data[3]'
       value: 
       objectReference: {fileID: 1092391268}
+    - target: {fileID: 5167142783264055986, guid: 22184c4968701d4429bfad46c0b4f62d, type: 3}
+      propertyPath: events.Array.data[0].targetObject
+      value: 
+      objectReference: {fileID: 4323813639670524191, guid: ac012e27f4f83394cbdd4bb028b521f4, type: 3}
+    - target: {fileID: 5167142783264055986, guid: 22184c4968701d4429bfad46c0b4f62d, type: 3}
+      propertyPath: events.Array.data[1].targetObject
+      value: 
+      objectReference: {fileID: 4323813639670524191, guid: ac012e27f4f83394cbdd4bb028b521f4, type: 3}
     - target: {fileID: 8827893572495872097, guid: 22184c4968701d4429bfad46c0b4f62d, type: 3}
       propertyPath: dropPanel
       value: 
