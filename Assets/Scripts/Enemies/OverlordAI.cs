@@ -20,11 +20,14 @@ public class OverlordAI : MonoBehaviour
     private bool isAttacking = false; // Czy w trakcie ataku
     private Coroutine attackRoutine; // Referencja do aktywnego coroutina
     private List<ExplosionPool> activePools = new List<ExplosionPool>(); // Lista aktywnych basenow
+    
+    private Animator animator;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed; // Ustaw predkosc agenta
+        animator = GetComponent<Animator>();
 
         // Znajdz gracza jesli jeszcze nie znaleziony
         if (player == null)
@@ -67,6 +70,7 @@ public class OverlordAI : MonoBehaviour
         isAttacking = true;
         agent.ResetPath(); // Zatrzymaj ruch
         activePools.Clear();
+        animator.SetTrigger("Attack");
 
         Vector3 direction = (player.position - transform.position).normalized;
         float spacing = Vector3.Distance(transform.position, player.position) / amountOfPoolsSpawned;

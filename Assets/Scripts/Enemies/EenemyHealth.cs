@@ -66,7 +66,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         Die();
     }
 
-    private void Die()
+    // zmienione na public, problem z niszczeniem sie Overlorda
+    public void Die()
     {
         // Jesli przeciwnik ma OverlordAI, wykonaj dodatkowe czyszczenie
         OverlordAI overlordAI = GetComponent<OverlordAI>();
