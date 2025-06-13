@@ -80,7 +80,7 @@ public class OverlordAI : MonoBehaviour
             float radius = explosionInitialRadius + i * explosionIncrementalRadius;
 
             ExplosionPool explosionScript = pool.GetComponent<ExplosionPool>();
-            explosionScript.Prepare(explosionDamage, radius);
+            explosionScript.Prepare(explosionDamage);
             activePools.Add(explosionScript);
 
             yield return new WaitForSeconds(0.2f); // Odstep miedzy pojawianiem sie basenow
