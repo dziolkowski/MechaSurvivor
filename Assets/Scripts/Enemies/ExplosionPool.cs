@@ -4,11 +4,12 @@ using UnityEngine;
 public class ExplosionPool : MonoBehaviour
 {
     private int damage;
-    [SerializeField] private float explosionRadius = 1f; 
+    [SerializeField] private float explosionRadius = 1f;
 
-    public void Prepare(int overrideDamage)
+    public void Prepare(int overrideDamage, float overrideRadius)
     {
         damage = overrideDamage;
+        explosionRadius = overrideRadius;
     }
 
     public void Explode()
@@ -18,7 +19,7 @@ public class ExplosionPool : MonoBehaviour
 
     private IEnumerator ExplodeRoutine()
     {
-        yield return new WaitForSeconds(0.1f); // Czas na animacjê, jeœli masz
+        yield return new WaitForSeconds(0.1f); // Czas na animacje, jesli masz
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider hit in hitColliders)
@@ -36,9 +37,12 @@ public class ExplosionPool : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        if (Application.isPlaying)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        }
     }
 }
