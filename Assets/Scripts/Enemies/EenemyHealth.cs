@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private string enemyType;
-    public int maxHealth = 100; 
+    public int maxHealth = 100;
     public int currentHealth;
     [SerializeField] private bool hasDeathAnimation;
 
@@ -14,11 +14,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private Animator animator;
     private EnemyManager enemyManager;
     private bool isDead = false;
+    private NavMeshAgent navAgent;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         enemyManager = FindAnyObjectByType<EnemyManager>();
+        navAgent = GetComponent<NavMeshAgent>();
 
         SetEnemyType(enemyType);
     }
@@ -44,10 +46,20 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             isDead = true;
-            GetComponent<CapsuleCollider>().enabled = false;
-            GetComponent<NavMeshAgent>().isStopped = true;
 
-            if (hasDeathAnimation)
+            // Wylaczamy collider i ewentualnego NavMeshAgenta
+            CapsuleCollider collider = GetComponent<CapsuleCollider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+
+            if (navAgent != null)
+            {
+                navAgent.isStopped = true;
+            }
+
+            if (hasDeathAnimation && animator != null)
             {
                 animator.SetTrigger("Death");
             }
