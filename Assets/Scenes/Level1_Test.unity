@@ -9107,7 +9107,8 @@ Transform:
   m_LocalPosition: {x: -12.04, y: 1, z: -16.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1971383644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1968721457
@@ -9122,11 +9123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d19fe603774674d8827612199881b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeSpeed: 10
-  chargeDistance: 30
+  chargeSpeed: 5
+  chargeDistance: 20
   chargeCooldown: 1
   damage: 10
   playerTransform: {fileID: 2082429684}
+  stompAOEPrefab: {fileID: 1243197610343537173, guid: 0e68f4d78c77e6145bf43eaa116d6f5d, type: 3}
+  stompSpawnPoint: {fileID: 1971383644}
+  stompDelay: 0.3
 --- !u!114 &1968721458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9145,6 +9149,37 @@ MonoBehaviour:
   hasDeathAnimation: 0
   scoreValue: 10
   expValue: 10
+--- !u!1 &1971383643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1971383644}
+  m_Layer: 6
+  m_Name: Stomp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1971383644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971383643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.285, y: -1.004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1968721456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972360533
 GameObject:
   m_ObjectHideFlags: 0
