@@ -1922,7 +1922,7 @@ GameObject:
   - component: {fileID: 253745101}
   - component: {fileID: 253745100}
   - component: {fileID: 253745099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4658,7 +4658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 961551319}
   - component: {fileID: 961551320}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8771,7 +8771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.51587725
+      value: -13.48
       objectReference: {fileID: 0}
     - target: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8779,7 +8779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.193684
+      value: -18.4
       objectReference: {fileID: 0}
     - target: {fileID: 4849309033177612114, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9017,7 +9017,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 36
@@ -9104,7 +9104,7 @@ Transform:
   m_GameObject: {fileID: 1968721451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.04, y: 1, z: -16.77}
+  m_LocalPosition: {x: -5.63, y: 1, z: -16.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9123,14 +9123,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d19fe603774674d8827612199881b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeSpeed: 5
-  chargeDistance: 20
-  chargeCooldown: 1
+  chargeSpeed: 15
+  chargeDistance: 30
+  chargeCooldown: 2
   damage: 10
   playerTransform: {fileID: 2082429684}
   stompAOEPrefab: {fileID: 1243197610343537173, guid: 0e68f4d78c77e6145bf43eaa116d6f5d, type: 3}
   stompSpawnPoint: {fileID: 1971383644}
   stompDelay: 0.3
+  enemiesToSpawn:
+  - {fileID: 4323813639670524191, guid: 51c5384528d288b479de7ac7496c476b, type: 3}
+  - {fileID: 4323813639670524191, guid: d6c1faefb620821469014858124b280b, type: 3}
+  - {fileID: 4323813639670524191, guid: 238fd877be4b2914192833d087cd3bcd, type: 3}
+  - {fileID: 4323813639670524191, guid: ab16593521fe6b74bbfa894332bfa486, type: 3}
+  spawnCount: 4
+  spawnRadius: 3
 --- !u!114 &1968721458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9144,7 +9151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 
-  maxHealth: 100
+  maxHealth: 500
   currentHealth: 0
   hasDeathAnimation: 0
   scoreValue: 10

@@ -1,29 +1,40 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BehemothCharge : MonoBehaviour
 {
+    [Header("Charge")]
     public float chargeSpeed = 10f; // Predkosc szarzy
     public float chargeDistance = 10f; // Maksymalny dystans szarzy
     public float chargeCooldown = 2f; // Czas przerwy miedzy szarzami
-    public int damage = 10; // Obrazenia od szarzy
+    public int damage = 10; // Obrazenia zadawane graczowi
     public Transform playerTransform; // Transform gracza
 
+    [Header("Stomp")]
     public GameObject stompAOEPrefab; // Prefab strefy obrazen po tupnieciu
     public Transform stompSpawnPoint; // Punkt gdzie pojawi sie AOE
-    public float stompDelay = 0.3f; // Opoznienie przed pojawieniem sie AOE 
+    public float stompDelay = 0.3f; // Opoznienie przed pojawieniem sie AOE (po tupnieciu)
+
+    [Header("Enemies Spawn")]
+    public List<GameObject> enemiesToSpawn; // Lista prefabow przeciwnikow do spawnu
+    public int spawnCount = 2; // Ilosc przeciwnikow do spawnu po uderzeniu w przeszkode
+    public float spawnRadius = 3f; // Promien spawnu wokol Behemotha
 
     private Rigidbody rb;
-    private Vector3 startPosition;
     private Vector3 chargeDirection;
     private bool isCharging = false;
     private float distanceTraveled = 0f;
     private float cooldownTimer = 0f;
-    private bool hasHitPlayerDuringCharge = false;
+    private bool hasHitPlayer = false;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        animator = GetComponent<Animator>();
+
+        // Blokujemy rotacje i ruch w osi Y
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     void Update()
@@ -34,8 +45,7 @@ public class BehemothCharge : MonoBehaviour
 
             if (cooldownTimer <= 0f)
             {
-                ChoosePlayerDirection();
-                StartCharge();
+                StartChargeToPlayer();
             }
         }
     }
@@ -44,38 +54,52 @@ public class BehemothCharge : MonoBehaviour
     {
         if (isCharging)
         {
-            Vector3 movement = chargeDirection * chargeSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + movement);
-            distanceTraveled += movement.magnitude;
+            rb.velocity = chargeDirection * chargeSpeed;
+
+            distanceTraveled += (chargeDirection * chargeSpeed * Time.fixedDeltaTime).magnitude;
 
             if (distanceTraveled >= chargeDistance)
             {
                 StopCharge();
             }
         }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (isCharging && collision.gameObject.CompareTag("Player"))
+        else
         {
-            PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
-            if (player != null)
-            {
-                player.TakeDamage(damage);
-            }
+            rb.velocity = Vector3.zero;
+        }
 
-            hasHitPlayerDuringCharge = true;
-            StopCharge();
+        // Zabezpieczenie przed zapadaniem sie pod ziemie
+        if (transform.position.y < 0.5f)
+        {
+            Vector3 pos = transform.position;
+            pos.y = 0.5f;
+            transform.position = pos;
         }
     }
 
-    void StartCharge()
+    void StartChargeToPlayer()
     {
-        startPosition = transform.position;
+        if (playerTransform == null)
+        {
+            Debug.LogWarning("Nie przypisano transform gracza!");
+            return;
+        }
+
+        Vector3 direction = playerTransform.position - transform.position;
+        direction.y = 0f;
+        direction.Normalize();
+
+        StartCharge(direction);
+    }
+
+    void StartCharge(Vector3 direction)
+    {
+        chargeDirection = direction;
         distanceTraveled = 0f;
         isCharging = true;
-        hasHitPlayerDuringCharge = false; // Reset flagi
+        hasHitPlayer = false;
+
+        Debug.Log("Behemoth zaczyna szarze!");
     }
 
     void StopCharge()
@@ -83,15 +107,12 @@ public class BehemothCharge : MonoBehaviour
         isCharging = false;
         cooldownTimer = chargeCooldown;
 
+        // Zatrzymujemy ruch
         rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
 
-        StabilizeToGround();
 
-        // Jesli Behemoth NIE trafil gracza w czasie szarzy, wykonaj tupniecie
-        if (!hasHitPlayerDuringCharge)
+        if (!hasHitPlayer)
         {
-            Animator animator = GetComponent<Animator>();
             if (animator != null)
             {
                 animator.SetTrigger("Stomp");
@@ -107,52 +128,47 @@ public class BehemothCharge : MonoBehaviour
         {
             Instantiate(stompAOEPrefab, stompSpawnPoint.position, Quaternion.identity);
         }
-    }
-
-    void StabilizeToGround()
-    {
-        RaycastHit hit;
-        float rayHeight = 2f;
-        float maxRayDistance = 10f;
-        Vector3 rayOrigin = transform.position + Vector3.up * rayHeight;
-
-        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, maxRayDistance))
-        {
-            Vector3 newPos = transform.position;
-
-            // Sprawdz pozycje pivota vs collider
-            float yOffset = 0f;
-            Collider col = GetComponent<Collider>();
-            if (col != null)
-            {
-                float pivotToBottom = transform.position.y - col.bounds.min.y;
-
-                // Dodaj tylko tyle, ile potrzeba, zeby collider dotykal ziemi
-                yOffset = pivotToBottom;
-            }
-
-            newPos.y = hit.point.y + yOffset;
-            transform.position = newPos;
-        }
         else
         {
-            Debug.LogWarning("Behemoth nie znalazl ziemi pod soba!");
+            Debug.LogWarning("Brakuje prefab stompAOEPrefab lub stompSpawnPoint!");
         }
     }
 
-    void ChoosePlayerDirection()
+    void SpawnEnemiesOnCollision()
     {
-        if (playerTransform == null)
+        if (enemiesToSpawn.Count == 0) return;
+
+        for (int i = 0; i < spawnCount; i++)
         {
-            Debug.LogWarning("Behemoth nie ma przypisanego gracza!");
-            chargeDirection = transform.forward;
-            return;
+            GameObject prefab = enemiesToSpawn[Random.Range(0, enemiesToSpawn.Count)];
+
+            Vector3 spawnPos = transform.position + (Random.insideUnitSphere * spawnRadius);
+            spawnPos.y = transform.position.y;
+
+            Instantiate(prefab, spawnPos, Quaternion.identity);
         }
+    }
 
-        Vector3 direction = playerTransform.position - transform.position;
-        direction.y = 0f;
-        chargeDirection = direction.normalized;
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!isCharging) return;
 
-        transform.forward = chargeDirection;
+        // Jesli trafilismy gracza
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth player = collision.gameObject.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
+
+            hasHitPlayer = true;
+            StopCharge();
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            SpawnEnemiesOnCollision();
+            StopCharge();
+        }
     }
 }
