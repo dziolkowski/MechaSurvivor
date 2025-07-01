@@ -230,6 +230,7 @@ MonoBehaviour:
   stainLifetime: 10
   moveSpeedMultiplier: 0.5
   rotationSpeedMultiplier: 0.5
+  spriteRenderer: {fileID: 5133493705872974888}
 --- !u!114 &1731462074832458153
 MonoBehaviour:
   m_ObjectHideFlags: 0

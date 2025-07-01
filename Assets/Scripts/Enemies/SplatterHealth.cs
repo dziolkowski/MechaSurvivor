@@ -21,6 +21,9 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     [SerializeField] private float rotationSpeedMultiplier = 0.5f;
 
     private EnemyManager enemyManager;
+    
+    //flash sprite on damage
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -52,6 +55,11 @@ public class SplatterHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         if (currentHealth <= 0) return;
+        
+        if(spriteRenderer != null)
+        {
+            StartCoroutine(ChangeColorToRedAndBack());
+        }
 
         currentHealth -= damage;
         Debug.Log(gameObject.name + " received damage: " + damage);
@@ -70,6 +78,18 @@ public class SplatterHealth : MonoBehaviour, IDamageable
                 Die();
             }
         }
+    }
+    
+    private IEnumerator  ChangeColorToRedAndBack()
+    {
+        // Change the color to red
+        spriteRenderer.color = Color.red;
+
+        // Wait for 0.5 seconds
+        yield return new WaitForSeconds(0.1f);
+
+        // Change the color back to the original color
+        spriteRenderer.color = Color.white;;
     }
 
     // Smierc przeciwnika

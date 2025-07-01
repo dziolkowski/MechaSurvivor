@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
@@ -14,6 +16,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     private Animator animator;
     private EnemyManager enemyManager;
     private bool isDead = false;
+    
+    //flash sprite on damage
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -38,6 +43,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         if (isDead) return;
+        
+        if(spriteRenderer != null)
+        {
+            StartCoroutine(ChangeColorToRedAndBack());
+        }
 
         currentHealth -= damage;
 
@@ -56,6 +66,18 @@ public class EnemyHealth : MonoBehaviour, IDamageable
                 Die();
             }
         }
+    }
+
+    private IEnumerator  ChangeColorToRedAndBack()
+    {
+        // Change the color to red
+        spriteRenderer.color = Color.red;
+
+        // Wait for 0.5 seconds
+        yield return new WaitForSeconds(0.1f);
+
+        // Change the color back to the original color
+        spriteRenderer.color = Color.white;;
     }
 
     public void ForceDie()

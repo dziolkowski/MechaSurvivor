@@ -226,6 +226,7 @@ MonoBehaviour:
   hasDeathAnimation: 1
   scoreValue: 10
   expValue: 10
+  spriteRenderer: {fileID: 5133493705872974888}
 --- !u!114 &-6568809986168619099
 MonoBehaviour:
   m_ObjectHideFlags: 0
