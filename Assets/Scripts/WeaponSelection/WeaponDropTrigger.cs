@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,11 @@ using UnityEngine;
 public class WeaponDropTrigger : MonoBehaviour
 {
     private bool triggered = false;
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
