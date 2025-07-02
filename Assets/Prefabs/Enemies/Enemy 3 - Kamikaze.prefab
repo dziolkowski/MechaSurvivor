@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4323813639670524191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.507, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -124,7 +124,7 @@ MonoBehaviour:
   explosionDelay: 0.5
   explosionRadius: 5
   damage: 10
-  explosionEffect: {fileID: 7376211662991525148, guid: 98727f89407edf541addd11f109652d9, type: 3}
+  explosionEffect: {fileID: 4553287630450876385, guid: 15483e51212e3d74886ea57291f4639a, type: 3}
   explosionEffectDuration: 0.5
   scoreValue: 10
   expValue: 10
@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 7348422500340991493}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
