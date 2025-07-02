@@ -53,3 +53,7 @@ MonoBehaviour:
     health: 50
   - enemyName: Splatter
     health: 150
+  - enemyName: Overlord
+    health: 10000
+  - enemyName: Behemoth
+    health: 50000

@@ -32,6 +32,8 @@ public class BehemothCharge : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Blokujemy rotacje i ruch w osi Y
         rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -111,15 +113,18 @@ public class BehemothCharge : MonoBehaviour
         rb.velocity = Vector3.zero;
 
 
-        if (!hasHitPlayer)
-        {
+        //if (!hasHitPlayer)
+        //{
             if (animator != null)
             {
                 animator.SetTrigger("Stomp");
             }
+            else
+            {
+                Invoke(nameof(SpawnStompAOE), stompDelay);
+            }
 
-            Invoke(nameof(SpawnStompAOE), stompDelay);
-        }
+        //}
     }
 
     void SpawnStompAOE()
@@ -167,6 +172,7 @@ public class BehemothCharge : MonoBehaviour
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
+            animator.SetTrigger("HitWall");
             SpawnEnemiesOnCollision();
             StopCharge();
         }

@@ -6,10 +6,11 @@ using UnityEngine;
 public class WeaponDropTrigger : MonoBehaviour
 {
     private bool triggered = false;
+    [SerializeField] private bool isActiveOnStart = false;
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(isActiveOnStart);
     }
 
     private void OnTriggerEnter(Collider other)
