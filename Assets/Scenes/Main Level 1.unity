@@ -1576,6 +1576,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8556987868016262980, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
   m_PrefabInstance: {fileID: 347070414}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &240940053 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 46278562495282331, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
+  m_PrefabInstance: {fileID: 640764479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &241616382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2122,7 +2127,7 @@ PrefabInstance:
     - target: {fileID: 134383601592111934, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: topSlot
       value: 
-      objectReference: {fileID: 1869382559}
+      objectReference: {fileID: 240940053}
     - target: {fileID: 134383601592111934, guid: 2e35958ea6ecb4643976d78b46c9d0b2, type: 3}
       propertyPath: dropManager
       value: 
@@ -10256,11 +10261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1869382559 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8660509627757564682, guid: 71d0843e8ea28ee498a7dccc9efebe50, type: 3}
-  m_PrefabInstance: {fileID: 640764479}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1870188626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c740206ae4b5c754f84b6622a5f2a244, type: 3}
