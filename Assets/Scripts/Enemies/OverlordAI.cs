@@ -12,7 +12,7 @@ public class OverlordAI : MonoBehaviour
     [SerializeField] private int amountOfPoolsSpawned = 5; // Ilosc stref
     [SerializeField] private float explosionDelayBetweenPools = 0.5f; // Czas miedzy eksplozjami
     [SerializeField] private float explosionInitialRadius = 1f; // Poczatkowy promien
-    [SerializeField] private float explosionIncrementalRadius = 0.5f; // Przyrost promienia
+    [SerializeField] private float explosionIncrementalRadius = 0.5f; // Maksymalny przyrost promienia
     [SerializeField] private int explosionDamage = 10; // Obrazenia od eksplozji
     [SerializeField] private float attackTriggerDistance = 10f; // Obszar, w ktorym uruchamia sie atak
     [SerializeField] private GameObject explosionPoolPrefab; // Prefab strefy eksplozji
@@ -73,7 +73,8 @@ public class OverlordAI : MonoBehaviour
         animator.SetTrigger("Attack");
 
         Vector3 direction = (player.position - transform.position).normalized;
-        float spacing = Vector3.Distance(transform.position, player.position) / amountOfPoolsSpawned;
+        float totalDistance = Vector3.Distance(transform.position, player.position);
+        float spacing = totalDistance / amountOfPoolsSpawned;
 
         // Tworzenie basenow po kolei
         for (int i = 0; i < amountOfPoolsSpawned; i++)
@@ -81,13 +82,21 @@ public class OverlordAI : MonoBehaviour
             Vector3 spawnPos = transform.position + direction * spacing * (i + 1);
             GameObject pool = Instantiate(explosionPoolPrefab, spawnPos, Quaternion.identity);
 
-            float radius = explosionInitialRadius + i * explosionIncrementalRadius;
+            float distanceToPlayer = Vector3.Distance(spawnPos, player.position);
+            float t = 1.5f - (distanceToPlayer / totalDistance); // Im blizej gracza, tym wieksze t
+
+            float radius = explosionInitialRadius + t * explosionIncrementalRadius;
+
+            // Skala w poziomie
+            float visualScale = 1f + t;
+            float originalY = pool.transform.localScale.y;
+            pool.transform.localScale = new Vector3(visualScale, originalY, visualScale);
 
             ExplosionPool explosionScript = pool.GetComponent<ExplosionPool>();
             explosionScript.Prepare(explosionDamage, radius);
             activePools.Add(explosionScript);
 
-            yield return new WaitForSeconds(0.2f); // Odstep miedzy pojawianiem sie basenow
+            yield return new WaitForSeconds(0.2f);
         }
 
         yield return new WaitForSeconds(0.5f); // Pauza po ostatnim basenie
@@ -117,7 +126,6 @@ public class OverlordAI : MonoBehaviour
         }
     }
 
-
     private IEnumerator FinishExplosionSequenceAndDie()
     {
         // Eksplozje po kolei (tak jak w normalnym ataku)
@@ -130,7 +138,7 @@ public class OverlordAI : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.5f); // Opcjonalna pauza po ostatnim wybuchu
+        yield return new WaitForSeconds(0.5f); // Pauza po ostatnim wybuchu
 
         // Usuwanie obiektow po eksplozji
         foreach (ExplosionPool pool in activePools)

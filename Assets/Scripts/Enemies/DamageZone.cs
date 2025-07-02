@@ -2,44 +2,22 @@ using UnityEngine;
 
 public class DamageZone : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 10f; // Czas po, ktorym znika plama
-    [SerializeField] private float moveSpeedMultiplier = 0.5f; // Zmniejszenie predkosci poruszania
-    [SerializeField] private float rotationSpeedMultiplier = 0.5f; // Zmniejszenie predkosci obrotu
-    private PlayerController playerController;
+    public int damage = 20; // Obrazenia od AOE
+    private bool hasDamaged = false; // Czy juz zadano obrazenia
 
-    private void Start()
+    void OnTriggerEnter(Collider other)
     {
-        Invoke(nameof(DestroySelf), lifetime); // Plama znika po okreslonym czasie
-    }
+        if (hasDamaged) return;
 
-    private void OnTriggerEnter(Collider other)
-    {
         if (other.CompareTag("Player"))
         {
-            playerController = other.GetComponent<PlayerController>();
-            if (playerController != null)
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            if (player != null)
             {
-                playerController.ModifySpeed(moveSpeedMultiplier, rotationSpeedMultiplier);
+                player.TakeDamage(damage);
+                hasDamaged = true;
             }
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && playerController != null)
-        {
-            playerController.ResetSpeed();
-            playerController = null;
-        }
-    }
-
-    private void DestroySelf()
-    {
-        if (playerController != null) // Jesli gracz nadal jest w plamie, resetujemy jego predkosc
-        {
-            playerController.ResetSpeed();
-        }
-        Destroy(gameObject);
     }
 }
 
