@@ -17,28 +17,24 @@ public class BossEvents : MonoBehaviour
     {
         public string eventName;          // For easier identification in the Inspector
         public float timeToTrigger;       // When to trigger the event
-        public GameObject targetObject;    // Which object to affect/spawn
+        public GameObject targetObject;   // Which object to affect/spawn
         public EventType eventType;       // What kind of action to take
-        public Transform spawnLocation;    // Optional spawn location
+        public Transform spawnLocation;   // Optional spawn location
         [HideInInspector]
         public bool hasTriggered;         // Internal tracking
     }
 
     [SerializeField] private TimedEvent[] events;
-    [SerializeField] private bool autoStart = true;
+    [SerializeField] private bool autoStart = false; // Wy³¹czamy automatyczne rozpoczêcie
     [SerializeField] private bool loopEvents;
-    
+
     private float timer;
     private bool isRunning;
     private List<GameObject> spawnedObjects = new List<GameObject>(); // Track spawned objects
 
-    void Start()
-    {
-        if (autoStart)
-        {
-            StartEvents();
-        }
-    }
+    public GameObject bossObject; // Referencja do obiektu Bossa (Behemotha)
+    public GameObject congratulationsPanel; // Referencja do panelu "Congratulations!"
+    private bool bossDefeated = false; // Flaga informuj¹ca czy boss zosta³ ju¿ pokonany
 
     void Update()
     {
@@ -46,8 +42,6 @@ public class BossEvents : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        bool allEventsTriggered = true;
-        
         foreach (TimedEvent timedEvent in events)
         {
             if (!timedEvent.hasTriggered && timedEvent.targetObject != null && timer >= timedEvent.timeToTrigger)
@@ -55,17 +49,12 @@ public class BossEvents : MonoBehaviour
                 ExecuteEvent(timedEvent);
                 timedEvent.hasTriggered = true;
             }
-            
-            if (!timedEvent.hasTriggered)
-            {
-                allEventsTriggered = false;
-            }
         }
 
-        // If all events triggered and looping is enabled, reset
-        if (allEventsTriggered && loopEvents)
+        // Sprawdzanie czy boss zosta³ pokonany
+        if (!bossDefeated && bossObject == null)
         {
-            ResetEvents();
+            BossDefeated();
         }
     }
 
@@ -90,15 +79,24 @@ public class BossEvents : MonoBehaviour
                 break;
 
             case EventType.SpawnAtLocation:
-                Vector3 spawnPosition = timedEvent.spawnLocation != null 
-                    ? timedEvent.spawnLocation.position 
+                Vector3 spawnPosition = timedEvent.spawnLocation != null
+                    ? timedEvent.spawnLocation.position
                     : Vector3.zero;
-                
+
                 // Instantiate the new object and add it to our list
                 GameObject newObject = Instantiate(timedEvent.targetObject, spawnPosition, Quaternion.identity);
                 spawnedObjects.Add(newObject);
                 break;
         }
+    }
+
+    private void BossDefeated()
+    {
+        bossDefeated = true;
+        Debug.Log("Behemoth zosta³ pokonany!"); // Log do debugowania
+        Time.timeScale = 0; // Pauza w grze
+        congratulationsPanel.SetActive(true); // W³¹czenie panelu "Congratulations!"
+        isRunning = false; // Zatrzymanie dalszych zdarzeñ
     }
 
     public void StartEvents()
