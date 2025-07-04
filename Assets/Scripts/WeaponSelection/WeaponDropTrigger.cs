@@ -26,7 +26,7 @@ public class WeaponDropTrigger : MonoBehaviour
             }
 
             // Po uzyciu zniszczenie triggera
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
