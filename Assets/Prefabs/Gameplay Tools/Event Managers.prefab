@@ -50,36 +50,43 @@ MonoBehaviour:
     newHealthValue: 150
     newCanSpawnValue: 1
     triggerTime: 5
+    hasOccurred: 0
   - eventType: 1
     targetName: Maw
     newHealthValue: 0
     newCanSpawnValue: 1
     triggerTime: 10
+    hasOccurred: 0
   - eventType: 0
     targetName: Maw
     newHealthValue: 500
     newCanSpawnValue: 1
     triggerTime: 15
+    hasOccurred: 0
   - eventType: 1
     targetName: Kamikaze
     newHealthValue: 0
     newCanSpawnValue: 1
     triggerTime: 20
+    hasOccurred: 0
   - eventType: 0
     targetName: Kamikaze
     newHealthValue: 150
     newCanSpawnValue: 1
     triggerTime: 25
+    hasOccurred: 0
   - eventType: 1
     targetName: Splatter
     newHealthValue: 150
     newCanSpawnValue: 1
     triggerTime: 30
+    hasOccurred: 0
   - eventType: 0
     targetName: Splatter
     newHealthValue: 300
     newCanSpawnValue: 1
     triggerTime: 35
+    hasOccurred: 0
   enemyManager: {fileID: 0}
   spawner: {fileID: 0}
 --- !u!1 &817360923127953442
@@ -232,13 +239,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   events:
   - eventName: Spawn boss
-    timeToTrigger: 600
-    targetObject: {fileID: 3689770836958241545, guid: 54fefc408a3e56a459a4f50c3e26372d, type: 3}
+    timeToTrigger: 0
+    targetObject: {fileID: 4323813639670524191, guid: c3ef8de7d56c4704e8d2dae5ede7783e, type: 3}
     eventType: 3
     spawnLocation: {fileID: 0}
     hasTriggered: 0
   autoStart: 1
   loopEvents: 0
+  bossObject: {fileID: 4323813639670524191, guid: c3ef8de7d56c4704e8d2dae5ede7783e, type: 3}
+  congratulationsPanel: {fileID: 0}
 --- !u!114 &5167142783264055986
 MonoBehaviour:
   m_ObjectHideFlags: 0
