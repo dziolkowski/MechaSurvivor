@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: ShotgunProjectileAmount
   m_EditorClassIdentifier: 
-  upgradeTitle: Shotgun Projectile Amount
-  description: Increased number of projectiles
-  icon: {fileID: 21300000, guid: dd42a6880f387184e9678a5838b113f4, type: 3}
+  upgradeTitle: Projectile Amount
+  description: Increases Shotgun Number of projectiles shot
+  icon: {fileID: 663564146, guid: 8303e67cbde623745b0c48aa26d22ee5, type: 3}
   weaponType: 2
   statType: 3
   upgradeValues:
   - 1
   - 1
   - 1
-  - 1
-  - 1
+  - 2
+  - 4
   isPlayerUpgrade: 0

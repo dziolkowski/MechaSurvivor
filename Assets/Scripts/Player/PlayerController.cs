@@ -10,14 +10,18 @@ public class PlayerController : MonoBehaviour
     private float lastRotateTime = -Mathf.Infinity;
     private CharacterController characterController;
 
-    private float defaultMoveSpeed;
+    public float defaultMoveSpeed;
     private float defaultRotationSpeed;
 
     private int slowZones = 0; // Licznik plam spowalniajacych gracza
     private bool isRotating = false;
+    
+    private float upgradedMoveSpeed;
 
     [SerializeField] AudioClip skillSFX;
-
+    
+    [SerializeField] private Animator animator;
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -43,15 +47,19 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude > 0.1f)
         {
+            animator.SetBool("isWalking", true);
             moveDirection.Normalize();
             characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
         }
     }
 
     void Rotate()
     {
         float rotationInput = 0f;
-
         if (Input.GetKey(KeyCode.Mouse0))
         {
             rotationInput = -1f;
@@ -69,23 +77,24 @@ public class PlayerController : MonoBehaviour
         // Obrot specjalny po klawiszu
         if (Time.time - lastRotateTime >= rotateCooldown && !isRotating)
         {
-            if (Input.GetKeyDown(KeyCode.V)) // Lewo 90°
+            if (Input.GetKeyDown(KeyCode.V)) // Lewo 90ï¿½
             {
                 SkillRotate(-90f);
             }
-            else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90°
+            else if (Input.GetKeyDown(KeyCode.B)) // Prawo 90ï¿½
             {
                 SkillRotate(90f);
             }
-            else if (Input.GetKeyDown(KeyCode.Space)) // 180°
+            else if (Input.GetKeyDown(KeyCode.Space)) // 180ï¿½
             {
                 SkillRotate(180f);
             }
         }
-    }
+}
 
     private void SkillRotate(float value)
     {
+        animator.SetTrigger("QuickRotate");
         GetComponent<AudioSource>().PlayOneShot(skillSFX);
         StartCoroutine(SmoothRotate(value));
         lastRotateTime = Time.time;

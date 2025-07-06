@@ -53,7 +53,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001853215543066592}
+  - component: {fileID: 5504580437408716667}
   - component: {fileID: 2702633331967361272}
+  - component: {fileID: 6696532652367702109}
+  - component: {fileID: 3483898313632826022}
   m_Layer: 0
   m_Name: SideRocketLauncher
   m_TagString: Untagged
@@ -77,6 +80,102 @@ Transform:
   - {fileID: 5319053158321605573}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5504580437408716667
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077524513553424396}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.05
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2702633331967361272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,11 +191,42 @@ MonoBehaviour:
   weaponType: 4
   rocketPrefab: {fileID: 4412046368504688845, guid: 7870e8a711193e04bb9f16f116ea3067, type: 3}
   firePoint: {fileID: 5054636513551007043}
-  fireRate: 2
+  fireRate: 3
   rocketSpeed: 20
   explosionRadius: 5
-  damage: 50
+  damage: 65
   projectileSize: 1
+--- !u!114 &6696532652367702109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077524513553424396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ef35a37c6483d478463a11272e0f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 23ffdf08c8df1da459cc6a3081609dfa, type: 3}
+  - {fileID: 8300000, guid: df1cad2170f3db145bc292de26122eb6, type: 3}
+  - {fileID: 8300000, guid: a50c18203331a6c40977eea51c0a408a, type: 3}
+  - {fileID: 8300000, guid: 80cb41ecf8e841b42b7f277d5067f917, type: 3}
+--- !u!114 &3483898313632826022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077524513553424396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187bf8d7e4e72964397f94dc7dfde29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playAudioMode: 0
+  clipToPlay: 0
 --- !u!1 &6677274601802576208
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +268,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6677274601802576208}
-  m_Mesh: {fileID: -7017124100866302315, guid: 3251bfa42f123024da826822defb29cc, type: 3}
+  m_Mesh: {fileID: -7017124100866302315, guid: e59bcf1b743911f4db8b78eb79049ae0, type: 3}
 --- !u!23 &2320049016019418217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -159,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9ddecd10ad1d9064f97c9afcdecc2899, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

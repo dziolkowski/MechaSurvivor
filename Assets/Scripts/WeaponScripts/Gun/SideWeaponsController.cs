@@ -15,11 +15,12 @@ public class SideWeaponsController : BaseWeapon
     public int bulletDamage = 10; // Ilosc obrazen zadawanych przez pocisk
     public float projectileSize = 0.25f; // Wielkosc pocisku
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejny pocisk
-
-
+    
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.Gun; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -40,7 +41,7 @@ public class SideWeaponsController : BaseWeapon
     {
         if (bulletPrefab == null || bulletSpawnPoint == null)
         {
-            Debug.LogError("Prefab pocisku lub punkt startowy nie s¹ przypisane!");
+            Debug.LogError("Prefab pocisku lub punkt startowy nie sï¿½ przypisane!");
             return;
         }
 
@@ -66,6 +67,8 @@ public class SideWeaponsController : BaseWeapon
 
             if (i < projectileAmount - 1)
                 yield return new WaitForSeconds(delayBetweenProjectiles);
+
+            audioPlayer.PlayAudio();
         }
     }
 

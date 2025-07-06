@@ -13,10 +13,11 @@ public class RocketTopWeapon : BaseWeapon
     public float projectileSize = 1f; // Wielkosc pocisku
     private float nextFireTime = 0f;
 
-
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.RocketLauncher; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -54,6 +55,7 @@ public class RocketTopWeapon : BaseWeapon
     void FireRocket()
     {
         GameObject rocket = Instantiate(rocketPrefab, firePoint.position, firePoint.rotation);
+        audioPlayer.PlayAudio();
         rocket.transform.localScale = Vector3.one * projectileSize;
         Rigidbody rb = rocket.GetComponent<Rigidbody>();
         if (rb != null)

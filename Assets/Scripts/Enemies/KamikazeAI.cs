@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class KamikazeAI : MonoBehaviour, IDamageable
 {
-    private Transform player; // Gracz 
-
+    private Transform player;
     [SerializeField] private float movementSpeed = 3.5f;
     [SerializeField] private float detectionRadius = 5f;
-
     [SerializeField] private float explosionDelay = 0.5f;
     [SerializeField] private float explosionRadius = 5f;
-    [SerializeField] private int damageDealt = 10;
+    [SerializeField] public int damage = 10; 
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float explosionEffectDuration = 2f;
 
@@ -40,7 +38,6 @@ public class KamikazeAI : MonoBehaviour, IDamageable
 
     private void MoveToPlayer()
     {
-        // Jesli gracz nie przypiety, sprobuj go znalezc
         if (player == null)
         {
             GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -56,7 +53,7 @@ public class KamikazeAI : MonoBehaviour, IDamageable
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance <= detectionRadius)
         {
-            StartExplosion(); // Wybuch, gdy gracz jest blisko
+            StartExplosion();
         }
     }
 
@@ -65,7 +62,7 @@ public class KamikazeAI : MonoBehaviour, IDamageable
         if (isDead) return;
 
         isDead = true;
-        StartExplosion(); // Wybuch przy smierci
+        StartExplosion();
     }
 
     private void StartExplosion()
@@ -104,19 +101,14 @@ public class KamikazeAI : MonoBehaviour, IDamageable
                 if (hit.CompareTag("Player"))
                 {
                     PlayerHealth ph = hit.GetComponent<PlayerHealth>();
-                    if (ph != null)
-                    {
-                        ph.TakeDamage(damageDealt);
-                    }
+                    if (ph != null) ph.TakeDamage(damage);
                 }
                 else if (hit.CompareTag("Enemy") && hit.gameObject != gameObject)
                 {
                     IDamageable enemy = hit.GetComponent<IDamageable>();
-                    if (enemy != null)
-                    {
-                        enemy.TakeDamage(damageDealt);
-                    }
+                    if (enemy != null) enemy.TakeDamage(damage);
                 }
+
                 damaged.Add(hit.gameObject);
             }
         }
@@ -124,7 +116,7 @@ public class KamikazeAI : MonoBehaviour, IDamageable
         ScoreManager.Instance?.AddPoints(scoreValue);
         FindObjectOfType<PlayerExperience>()?.AddExperience(expValue);
 
-        Destroy(gameObject); // Znikniecie po eksplozji
+        Destroy(gameObject);
     }
 
     void OnDrawGizmosSelected()
@@ -134,6 +126,12 @@ public class KamikazeAI : MonoBehaviour, IDamageable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+
+    // Zwieksz obrazenia przeciwnika
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
     }
 }
 

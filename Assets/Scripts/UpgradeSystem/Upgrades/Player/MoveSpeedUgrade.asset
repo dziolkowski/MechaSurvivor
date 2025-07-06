@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: MoveSpeedUgrade
   m_EditorClassIdentifier: 
-  upgradeTitle: Move Speed Upgrade
-  description: Increased movement speed
-  icon: {fileID: 21300000, guid: 1b3338d28e909034dbd237d29fe6cdfa, type: 3}
+  upgradeTitle: Better Engines
+  description: Increased Mech Movement Speed
+  icon: {fileID: 21300000, guid: 90431f31d29cf1543bd50dab19e137ac, type: 3}
   weaponType: 5
   statType: 16
   upgradeValues:
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   isPlayerUpgrade: 1

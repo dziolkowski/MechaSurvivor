@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: AddingHPPointes
   m_EditorClassIdentifier: 
-  upgradeTitle: Adding HP Points
-  description: + 20 HP
-  icon: {fileID: 21300000, guid: 0c30bdca98c50e745aa17351909b0e50, type: 3}
+  upgradeTitle: Durability
+  description: Increases max Mech Health points
+  icon: {fileID: 21300000, guid: c40e557f5860530498ff70e4d92202c9, type: 3}
   weaponType: 5
   statType: 10
   upgradeValues:
-  - 20
-  - 20
-  - 20
-  - 20
-  - 20
+  - 25
+  - 25
+  - 50
+  - 50
+  - 100
   isPlayerUpgrade: 1

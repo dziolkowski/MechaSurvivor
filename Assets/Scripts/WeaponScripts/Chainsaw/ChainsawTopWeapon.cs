@@ -12,10 +12,11 @@ public class ChainsawTopWeapon : BaseWeapon
 
     private float attackCooldown = 0f; // Czas, jaki minal od ostatniego ataku
 
-
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.Chainsaw; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -44,6 +45,7 @@ public class ChainsawTopWeapon : BaseWeapon
         // Wyszukiwanie obiektow w promieniu areaSize
         Collider[] hits = Physics.OverlapSphere(attackPosition, areaSize);
 
+        audioPlayer.PlayAudio();
         foreach (Collider hit in hits)
         {
             // Jezeli obiekt ma tag "Enemy", zadaj obrazenia
@@ -111,7 +113,8 @@ public class ChainsawTopWeapon : BaseWeapon
                 areaSize += value;
                 break;
             case StatType.TimeToAttack:
-                timeToAttack += Mathf.RoundToInt(value);
+                timeToAttack -= value;
+                if (timeToAttack < 0.1f) timeToAttack = 0.1f;
                 break;
         }
 

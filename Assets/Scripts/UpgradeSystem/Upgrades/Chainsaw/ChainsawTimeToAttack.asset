@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: ChainsawTimeToAttack
   m_EditorClassIdentifier: 
-  upgradeTitle: Chainsaw Attack Speed
-  description: "Attack Speed \u200B\u200BIncrease"
-  icon: {fileID: 21300000, guid: 87d0a4da45b5c464f8bd2656100bbd99, type: 3}
+  upgradeTitle: Attack Speed
+  description: Increases Chainsaw Attack Speed
+  icon: {fileID: 19435185, guid: 4b4ca47d0d64cc34295e0b5cda6e3c0a, type: 3}
   weaponType: 3
   statType: 9
   upgradeValues:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
   isPlayerUpgrade: 0

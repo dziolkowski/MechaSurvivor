@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: GunDamage
   m_EditorClassIdentifier: 
-  upgradeTitle: Gun Damage
-  description: +5 Damage
-  icon: {fileID: 21300000, guid: 828b507cead68544588db20e9baf6141, type: 3}
+  upgradeTitle: Attack Damage
+  description: Increases Gun Attack Damage
+  icon: {fileID: -1801457183, guid: d7275d5292488d94fa1cfd54b9d49d8d, type: 3}
   weaponType: 0
   statType: 12
   upgradeValues:
   - 5
   - 5
-  - 5
-  - 5
-  - 5
+  - 10
+  - 10
+  - 30
   isPlayerUpgrade: 0

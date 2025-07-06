@@ -10,6 +10,7 @@ public class GameTimer : MonoBehaviour
     private float currentTime; // Aktualny czas
     public TextMeshProUGUI timerText; // Tekst na UI
     public GameOverManager gameOverManager; // Referencja do GameOverManager
+    public GameObject playerWin;
 
     private void Start()
     {
@@ -47,6 +48,7 @@ public class GameTimer : MonoBehaviour
     private void TimerEnded() 
     {
         Debug.Log("Game Over!");
-        gameOverManager.ShowGameOver(); // Pojawienie siê ekranu Game Over
+        gameOverManager.ShowGameOver(); // Pojawienie siï¿½ ekranu Game Over
+        playerWin.SetActive(true);
     }
 }

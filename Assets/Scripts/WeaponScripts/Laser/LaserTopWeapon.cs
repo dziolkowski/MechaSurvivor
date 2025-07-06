@@ -12,14 +12,17 @@ public class LaserTopWeapon : BaseWeapon
     public float fireRate = 0.1f; // Czestotliwosc strzelania
     public int laserDamage = 10; // Obrazenia zadawane przez laser
     public LayerMask hitLayers; // Warstwy, ktore moga byc trafione
+    public LayerMask enemyLayer; // Warstwa przeciwnikow
+    public LayerMask obstacleLayer;
 
     private float nextFireTime;
     private GameObject currentLaser; // Instancja aktualnie uzywanego lasera
 
-
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.Laser; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -62,6 +65,7 @@ public class LaserTopWeapon : BaseWeapon
             currentLaser.SetActive(false); // Laser na poczatku jest niewidoczny
         }
 
+        audioPlayer.PlayAudio();
         Ray ray = new Ray(laserOrigin.position, laserOrigin.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, laserRange, hitLayers);
 
@@ -72,20 +76,15 @@ public class LaserTopWeapon : BaseWeapon
 
         foreach (var hit in hits)
         {
-            if (((1 << hit.collider.gameObject.layer) & hitLayers) != 0) // Sprawdzenie, czy obiekt jest w warstwach hitLayers
+            if (((1 << hit.collider.gameObject.layer) & obstacleLayer) != 0)
             {
-                // Trafienie przeciwnika
-                IDamageable damageable = hit.collider.GetComponent<IDamageable>();
-                if (damageable != null)
-                {
-                    DealDamage(hit.collider); // Zadaj obrazenia
-                    targetPoint = hit.point; // Laser zatrzymuje sie na przeciwniku
-                    break; // Trafienie przeciwnika zatrzymuje promien
-                }
+                targetPoint = hit.point;
+                break;
+            }
 
-                // Trafienie przeszkody 
-                targetPoint = hit.point; // Skrocenie lasera do przeszkody
-                break; // Przeszkoda zatrzymuje promien
+            if (((1 << hit.collider.gameObject.layer) & enemyLayer) != 0)
+            {
+                DealDamage(hit.collider);
             }
         }
 

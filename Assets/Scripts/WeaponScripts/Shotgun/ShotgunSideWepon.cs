@@ -16,10 +16,11 @@ public class ShotgunSideWepon : BaseWeapon
     public float projectileSize = 0.25f; // Wielkosc pocisku
     private float nextFireTime = 0f; // Czas, po ktorym mozna wystrzelic kolejne pociski
 
-
+    private AudioPlaylistPlayer audioPlayer;
 
     protected override void Start()
     {
+        audioPlayer = GetComponent<AudioPlaylistPlayer>();
         weaponType = WeaponType.Shotgun; // Ustaw typ broni tutaj
         base.Start();
     }
@@ -37,6 +38,7 @@ public class ShotgunSideWepon : BaseWeapon
 
     void Fire()
     {
+        audioPlayer.PlayAudio();
         for (int i = 0; i < projectileAmount; i++)
         {
             // Generowanie losowego kata w zakresie rozrzutu

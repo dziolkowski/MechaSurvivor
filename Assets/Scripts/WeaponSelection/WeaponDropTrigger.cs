@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,12 @@ using UnityEngine;
 public class WeaponDropTrigger : MonoBehaviour
 {
     private bool triggered = false;
+    [SerializeField] private bool isActiveOnStart = false;
+
+    private void Start()
+    {
+        gameObject.SetActive(isActiveOnStart);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +26,7 @@ public class WeaponDropTrigger : MonoBehaviour
             }
 
             // Po uzyciu zniszczenie triggera
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
