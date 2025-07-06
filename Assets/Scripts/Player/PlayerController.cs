@@ -10,11 +10,13 @@ public class PlayerController : MonoBehaviour
     private float lastRotateTime = -Mathf.Infinity;
     private CharacterController characterController;
 
-    private float defaultMoveSpeed;
+    public float defaultMoveSpeed;
     private float defaultRotationSpeed;
 
     private int slowZones = 0; // Licznik plam spowalniajacych gracza
     private bool isRotating = false;
+    
+    private float upgradedMoveSpeed;
 
     [SerializeField] AudioClip skillSFX;
     

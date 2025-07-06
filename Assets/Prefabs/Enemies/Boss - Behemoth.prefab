@@ -236,7 +236,7 @@ MonoBehaviour:
   currentHealth: 0
   hasDeathAnimation: 1
   scoreValue: 10
-  expValue: 10
+  expValue: 1000
   spriteRenderer: {fileID: 5133493705872974888}
 --- !u!114 &-2201925720910494547
 MonoBehaviour:

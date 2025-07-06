@@ -42,7 +42,10 @@ public class PlayerUpgradeTracker : MonoBehaviour
             {
                 PlayerController player = FindObjectOfType<PlayerController>();
                 if (player != null)
+                {
                     player.moveSpeed += value;
+                    player.defaultMoveSpeed += value;
+                }
             }
             else if (upgrade.statType == StatType.RotationSpeed)
             {
