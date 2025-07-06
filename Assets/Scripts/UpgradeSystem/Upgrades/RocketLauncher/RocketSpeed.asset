@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RocketSpeed
   m_EditorClassIdentifier: 
   upgradeTitle: Rocket Speed
-  description: Increased rocket speed
-  icon: {fileID: 21300000, guid: 6c525a41374ab0b488daf145b20b6e46, type: 3}
+  description: Increases Rocket Launcher Rocket Speed
+  icon: {fileID: -253127009, guid: 5763de340fcec004bb368a1956a51991, type: 3}
   weaponType: 4
   statType: 6
   upgradeValues:
@@ -22,5 +22,5 @@ MonoBehaviour:
   - 5
   - 5
   - 5
-  - 5
+  - 10
   isPlayerUpgrade: 0

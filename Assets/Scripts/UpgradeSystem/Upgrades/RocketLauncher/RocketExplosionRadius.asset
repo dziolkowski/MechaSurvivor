@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RocketExplosionRadius
   m_EditorClassIdentifier: 
   upgradeTitle: Explosion Radius
-  description: Increased explosion radius
-  icon: {fileID: 21300000, guid: 6c525a41374ab0b488daf145b20b6e46, type: 3}
+  description: Increases Rocket Launcher Explosion Radius
+  icon: {fileID: -253127009, guid: 5763de340fcec004bb368a1956a51991, type: 3}
   weaponType: 4
   statType: 7
   upgradeValues:
-  - 2
-  - 2
-  - 2
-  - 2
+  - 1
+  - 1
+  - 1
+  - 1
   - 2
   isPlayerUpgrade: 0

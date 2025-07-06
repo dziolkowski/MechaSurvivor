@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: ShotgunFireRate
   m_EditorClassIdentifier: 
-  upgradeTitle: Shotgun Fire Rate
-  description: Increased fire rate
-  icon: {fileID: 21300000, guid: dd42a6880f387184e9678a5838b113f4, type: 3}
+  upgradeTitle: Fire Rate
+  description: Increases Shotgun Fire Rate
+  icon: {fileID: 663564146, guid: 8303e67cbde623745b0c48aa26d22ee5, type: 3}
   weaponType: 2
   statType: 1
   upgradeValues:
   - 0.1
   - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.2
+  - 0.2
+  - 0.5
   isPlayerUpgrade: 0

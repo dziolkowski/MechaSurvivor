@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1596e5a5534eb4fa847c6c3280f2c9, type: 3}
   m_Name: RocketDamage
   m_EditorClassIdentifier: 
-  upgradeTitle: Rocket Damage
-  description: Damage Increase
-  icon: {fileID: 21300000, guid: 6c525a41374ab0b488daf145b20b6e46, type: 3}
+  upgradeTitle: Attack Damage
+  description: Increases Rocket Launcher Attack Damage
+  icon: {fileID: -253127009, guid: 5763de340fcec004bb368a1956a51991, type: 3}
   weaponType: 4
   statType: 0
   upgradeValues:
   - 10
   - 10
   - 10
-  - 10
-  - 10
+  - 20
+  - 50
   isPlayerUpgrade: 0

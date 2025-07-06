@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: RocketSize
   m_EditorClassIdentifier: 
   upgradeTitle: Rocket Size
-  description: Increased rocket size
-  icon: {fileID: 21300000, guid: 6c525a41374ab0b488daf145b20b6e46, type: 3}
+  description: Increased Rocket Launcher Rocket Size
+  icon: {fileID: -253127009, guid: 5763de340fcec004bb368a1956a51991, type: 3}
   weaponType: 4
   statType: 2
   upgradeValues:
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
+  - 0.25
+  - 0.25
+  - 0.25
+  - 0.25
+  - 1
   isPlayerUpgrade: 0

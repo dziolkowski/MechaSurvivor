@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 3
-  chainsawDamage: 10
+  chainsawDamage: 75
   areaSize: 2
   timeToAttack: 1
   attackPoint: {fileID: 5725239251131415487}

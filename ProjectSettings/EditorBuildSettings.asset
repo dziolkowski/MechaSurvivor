@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 060e6cfc31bfe124295511dbd7187112
   - enabled: 1
-    path: Assets/Scenes/Main Level.unity
-    guid: d8970dad1febc2c428e161bd97dbfe85
+    path: Assets/Scenes/Main Level 1.unity
+    guid: f1f334f03420cdf42b92f4b268cc5e16
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

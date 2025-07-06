@@ -193,8 +193,8 @@ MonoBehaviour:
   laserPrefab: {fileID: 5793367457703852492, guid: 1c987b2b353a70f4e8bb6a3e4dfa5984, type: 3}
   laserOrigin: {fileID: 5054636513551007043}
   laserRange: 100
-  fireRate: 0.1
-  laserDamage: 15
+  fireRate: 0.6
+  laserDamage: 30
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

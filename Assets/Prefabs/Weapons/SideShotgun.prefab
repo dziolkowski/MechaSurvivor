@@ -191,12 +191,12 @@ MonoBehaviour:
   weaponType: 2
   bulletPrefab: {fileID: 9008639820600560658, guid: f2f5ff540f8af0f418563dce17577f20, type: 3}
   firePoint: {fileID: 5054636513551007043}
-  fireRate: 1.5
+  fireRate: 1
   bulletSpeed: 20
   bulletLifetime: 3
   projectileAmount: 4
   spreadAngle: 10
-  bulletDamage: 25
+  bulletDamage: 33
   projectileSize: 0.25
 --- !u!114 &-1141491048954490179
 MonoBehaviour:
