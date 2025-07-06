@@ -91,7 +91,7 @@ public class ChainsawSideWeapon : BaseWeapon
                 areaSize += value;
                 break;
             case StatType.TimeToAttack:
-                timeToAttack -= Mathf.RoundToInt(value);
+                timeToAttack -= value;
                 if (timeToAttack < 0.1f) timeToAttack = 0.1f;
                 break;
             }
