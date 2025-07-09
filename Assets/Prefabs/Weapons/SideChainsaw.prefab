@@ -5096,7 +5096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 3
   chainsawDamage: 75
-  areaSize: 2
+  areaSize: 4
   timeToAttack: 1
   attackPoint: {fileID: 760607596990382123}
 --- !u!114 &-5279230609369015340

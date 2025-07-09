@@ -18,9 +18,9 @@ MonoBehaviour:
   weaponType: 1
   statType: 1
   upgradeValues:
-  - 0.1
-  - 0.1
-  - 0.1
-  - 0.1
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
   - 0.1
   isPlayerUpgrade: 0
